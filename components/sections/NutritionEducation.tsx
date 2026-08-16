@@ -2,6 +2,7 @@
 
 import { useRef, useState } from "react";
 import { motion, useInView } from "framer-motion";
+import { CardContainer, CardBody, CardItem } from "@/components/ui/3d-card";
 
 const topics = [
   { title: "Calories", tag: "Energy Balance", img: "https://images.unsplash.com/photo-1490645935967-10de6ba17061?w=700&q=85&auto=format", desc: "What calories actually mean for your body, without the obsession." },
@@ -43,60 +44,68 @@ function TopicCard({ topic, index }: { topic: typeof topics[0]; index: number })
       initial={{ opacity: 0, y: 56 }}
       animate={inView ? { opacity: 1, y: 0 } : {}}
       transition={{ duration: 0.8, delay: index * 0.07, ease: [0.22, 1, 0.36, 1] }}
-      onMouseEnter={() => setHovered(true)}
-      onMouseLeave={() => setHovered(false)}
-      style={{
-        borderRadius: "20px", overflow: "hidden",
-        background: "var(--white)", border: "1px solid var(--border)",
-        position: "relative", cursor: "default",
-      }}
     >
-      <div style={{ aspectRatio: "4/3", overflow: "hidden", position: "relative" }}>
-        <motion.img
-          src={topic.img}
-          alt={topic.title}
-          animate={{ scale: hovered ? 1.08 : 1 }}
-          transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
-          style={{ width: "100%", height: "100%", objectFit: "cover", display: "block" }}
-        />
-        <motion.div
-          animate={{ opacity: hovered ? 0 : 1 }}
-          transition={{ duration: 0.3 }}
-          style={{
-            position: "absolute", top: "14px", left: "14px",
-            background: "rgba(255,255,255,0.92)", backdropFilter: "blur(8px)",
-            borderRadius: "100px", padding: "4px 12px",
-          }}
+      <CardContainer containerClassName="w-full">
+        <CardBody style={{
+          borderRadius: "20px", overflow: "hidden",
+          background: "var(--white)", border: "1px solid var(--border)",
+          position: "relative", cursor: "default",
+        }}
+          onMouseEnter={() => setHovered(true)}
+          onMouseLeave={() => setHovered(false)}
         >
-          <span style={{ fontFamily: "var(--font-body)", fontSize: "10px", fontWeight: 600, letterSpacing: "0.08em", textTransform: "uppercase", color: "var(--charcoal)" }}>
-            {topic.tag}
-          </span>
-        </motion.div>
-        <motion.div
-          animate={{ opacity: hovered ? 1 : 0 }}
-          transition={{ duration: 0.4 }}
-          style={{
-            position: "absolute", inset: 0,
-            background: "rgba(0,80,96,0.82)",
-            display: "flex", alignItems: "center", justifyContent: "center", padding: "24px",
-          }}
-        >
-          <p style={{ fontFamily: "var(--font-body)", fontSize: "15px", lineHeight: 1.6, color: "#fff", textAlign: "center" }}>
-            {topic.desc}
-          </p>
-        </motion.div>
-      </div>
-      <div style={{ padding: "20px 22px", display: "flex", justifyContent: "space-between", alignItems: "center" }}>
-        <h3 style={{ fontFamily: "var(--font-heading)", fontWeight: 700, fontSize: "17px", color: "var(--charcoal-deep)" }}>{topic.title}</h3>
-        <motion.div
-          animate={{ x: hovered ? 4 : 0, color: hovered ? "var(--orange)" : "var(--gray-muted)" }}
-          transition={{ duration: 0.2 }}
-        >
-          <svg width="18" height="18" viewBox="0 0 18 18" fill="none">
-            <path d="M3 9h12M10 5l5 4-5 4" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
-          </svg>
-        </motion.div>
-      </div>
+          <CardItem translateZ={20} style={{ display: "block" }}>
+            <div style={{ aspectRatio: "4/3", overflow: "hidden", position: "relative" }}>
+              <motion.img
+                src={topic.img}
+                alt={topic.title}
+                animate={{ scale: hovered ? 1.08 : 1 }}
+                transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
+                style={{ width: "100%", height: "100%", objectFit: "cover", display: "block" }}
+              />
+              <motion.div
+                animate={{ opacity: hovered ? 0 : 1 }}
+                transition={{ duration: 0.3 }}
+                style={{
+                  position: "absolute", top: "14px", left: "14px",
+                  background: "rgba(255,255,255,0.92)", backdropFilter: "blur(8px)",
+                  borderRadius: "100px", padding: "4px 12px",
+                }}
+              >
+                <span style={{ fontFamily: "var(--font-body)", fontSize: "10px", fontWeight: 600, letterSpacing: "0.08em", textTransform: "uppercase", color: "var(--charcoal)" }}>
+                  {topic.tag}
+                </span>
+              </motion.div>
+              <motion.div
+                animate={{ opacity: hovered ? 1 : 0 }}
+                transition={{ duration: 0.4 }}
+                style={{
+                  position: "absolute", inset: 0,
+                  background: "rgba(0,80,96,0.82)",
+                  display: "flex", alignItems: "center", justifyContent: "center", padding: "24px",
+                }}
+              >
+                <p style={{ fontFamily: "var(--font-body)", fontSize: "15px", lineHeight: 1.6, color: "#fff", textAlign: "center" }}>
+                  {topic.desc}
+                </p>
+              </motion.div>
+            </div>
+          </CardItem>
+          <CardItem translateZ={40} style={{ display: "block", padding: "20px 22px" }}>
+            <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
+              <h3 style={{ fontFamily: "var(--font-heading)", fontWeight: 700, fontSize: "17px", color: "var(--charcoal-deep)" }}>{topic.title}</h3>
+              <motion.div
+                animate={{ x: hovered ? 4 : 0, color: hovered ? "var(--orange)" : "var(--gray-muted)" }}
+                transition={{ duration: 0.2 }}
+              >
+                <svg width="18" height="18" viewBox="0 0 18 18" fill="none">
+                  <path d="M3 9h12M10 5l5 4-5 4" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+                </svg>
+              </motion.div>
+            </div>
+          </CardItem>
+        </CardBody>
+      </CardContainer>
     </motion.div>
   );
 }

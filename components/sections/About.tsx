@@ -2,6 +2,14 @@
 
 import { useRef } from "react";
 import { motion, useInView, useScroll, useTransform } from "framer-motion";
+import { AnimatedTooltip } from "@/components/ui/animated-tooltip";
+
+const credBadges = [
+  { id: 1, name: "Registered Dietitian", designation: "Fully credentialed & qualified", initials: "RD" },
+  { id: 2, name: "MNT Specialist", designation: "Medical Nutrition Therapy", initials: "MNT" },
+  { id: 3, name: "23 Yrs Experience", designation: "Helping real people, daily", initials: "23+" },
+  { id: 4, name: "Evidence-Based", designation: "Scientifically supported guidance", initials: "EB" },
+];
 
 const lines = [
   "Maureen brings 23 years of",
@@ -162,6 +170,18 @@ export default function About() {
                 </motion.div>
               ))}
             </div>
+
+            <motion.div
+              initial={{ opacity: 0, y: 16 }}
+              animate={inView ? { opacity: 1, y: 0 } : {}}
+              transition={{ duration: 0.6, delay: 0.85 }}
+              style={{ marginTop: "32px" }}
+            >
+              <p style={{ fontFamily: "var(--font-body)", fontSize: "11px", fontWeight: 600, letterSpacing: "0.12em", textTransform: "uppercase", color: "var(--gray-muted)", marginBottom: "14px" }}>
+                Credentials
+              </p>
+              <AnimatedTooltip items={credBadges} />
+            </motion.div>
           </motion.div>
         </div>
       </div>

@@ -2,6 +2,7 @@
 
 import { useRef, useState } from "react";
 import { motion, useInView, useScroll, useTransform } from "framer-motion";
+import { MovingBorder } from "@/components/ui/moving-border";
 
 export default function FinalCTA() {
   const ref = useRef<HTMLDivElement>(null);
@@ -122,20 +123,19 @@ export default function FinalCTA() {
                 onFocus={e => (e.target as HTMLElement).style.borderColor = "rgba(255,255,255,0.45)"}
                 onBlur={e => (e.target as HTMLElement).style.borderColor = "rgba(255,255,255,0.2)"}
               />
-              <motion.button
-                type="submit"
-                whileHover={{ scale: 1.04 } as any}
-                whileTap={{ scale: 0.97 } as any}
-                style={{
-                  padding: "16px 28px", borderRadius: "100px", border: "none",
-                  background: "var(--orange)",
-                  fontFamily: "var(--font-body)", fontSize: "14px", fontWeight: 600,
-                  color: "#fff", cursor: "none", whiteSpace: "nowrap",
-                  boxShadow: "0 8px 32px rgba(240,128,0,0.4)",
-                }}
-              >
-                Join the TrueDiet Waitlist
-              </motion.button>
+              <MovingBorder duration={2200}>
+                <button
+                  type="submit"
+                  style={{
+                    padding: "16px 28px", borderRadius: "100px", border: "none",
+                    background: "transparent",
+                    fontFamily: "var(--font-body)", fontSize: "14px", fontWeight: 600,
+                    color: "#fff", cursor: "none", whiteSpace: "nowrap",
+                  }}
+                >
+                  Join the TrueDiet Waitlist
+                </button>
+              </MovingBorder>
             </form>
           )}
         </motion.div>

@@ -2,6 +2,7 @@
 
 import { useRef, useState, useEffect } from "react";
 import { motion, useScroll, useTransform, type Variants } from "framer-motion";
+import { Spotlight } from "@/components/ui/spotlight";
 
 // Rotating cursor follower label shown on hero image hover
 function CursorFollower({ visible, x, y }: { visible: boolean; x: number; y: number }) {
@@ -144,6 +145,7 @@ export default function Hero() {
       style={{ position: "relative", minHeight: "100dvh", overflow: "hidden", background: "#fff" }}
     >
       <CursorFollower visible={cursorVisible} x={cursorPos.x} y={cursorPos.y} />
+      <Spotlight className="hero-spotlight" fill="rgba(0,80,96,0.07)" />
 
       {/* Full-bleed image — right half */}
       <div

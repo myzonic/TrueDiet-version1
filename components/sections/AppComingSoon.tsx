@@ -2,6 +2,7 @@
 
 import { useRef } from "react";
 import { motion, useInView, useScroll, useTransform } from "framer-motion";
+import { BackgroundBeams } from "@/components/ui/background-beams";
 
 const mockScreens = [
   { bg: "var(--charcoal-deep)", delay: 0.15, rotate: -6 },
@@ -87,7 +88,8 @@ export default function AppComingSoon() {
   const floatY = useTransform(scrollYProgress, [0, 1], ["4%", "-4%"]);
 
   return (
-    <section id="app" ref={ref} style={{ background: "var(--off-white)", overflow: "hidden" }}>
+    <section id="app" ref={ref} style={{ background: "var(--off-white)", overflow: "hidden", position: "relative" }}>
+      <BackgroundBeams />
       <motion.div
         initial={{ scaleX: 0 }}
         animate={inView ? { scaleX: 1 } : {}}
