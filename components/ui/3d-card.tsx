@@ -66,18 +66,18 @@ export function CardBody({
   children,
   className = "",
   style = {},
+  ...rest
 }: {
   children: React.ReactNode;
   className?: string;
   style?: React.CSSProperties;
+  [key: string]: unknown;
 }) {
   return (
     <div
       className={className}
-      style={{
-        transformStyle: "preserve-3d",
-        ...style,
-      }}
+      style={{ transformStyle: "preserve-3d", ...style }}
+      {...(rest as React.HTMLAttributes<HTMLDivElement>)}
     >
       {children}
     </div>
