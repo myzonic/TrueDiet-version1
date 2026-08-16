@@ -3,6 +3,7 @@ import { useRef } from "react";
 import { motion, useInView } from "framer-motion";
 import { AnimatedTestimonials } from "@/components/ui/animated-testimonials";
 import { LampContainer } from "@/components/ui/lamp";
+import { Carousel } from "@/components/ui/carousel";
 
 const testimonials = [
   {
@@ -26,6 +27,43 @@ const testimonials = [
     designation: "TrueDiet Client",
   },
 ];
+
+function TestimonialCard({ quote, name, designation }: { quote: string; name: string; designation: string }) {
+  return (
+    <div style={{
+      background: "var(--off-white)",
+      borderRadius: "20px",
+      padding: "32px 28px",
+      border: "1px solid var(--border)",
+      minHeight: "240px",
+      display: "flex",
+      flexDirection: "column",
+      justifyContent: "space-between",
+    }}>
+      <div style={{
+        fontFamily: "Georgia, serif",
+        fontSize: "48px",
+        lineHeight: 1,
+        color: "var(--orange)",
+        marginBottom: "12px",
+      }}>"</div>
+      <p style={{
+        fontFamily: "var(--font-body)",
+        fontSize: "15px",
+        lineHeight: 1.7,
+        color: "var(--charcoal)",
+        flex: 1,
+        fontStyle: "italic",
+      }}>
+        {quote}
+      </p>
+      <div style={{ marginTop: "20px", borderTop: "1px solid var(--border)", paddingTop: "16px" }}>
+        <p style={{ fontFamily: "var(--font-heading)", fontWeight: 700, fontSize: "14px", color: "var(--charcoal-deep)" }}>{name}</p>
+        <p style={{ fontFamily: "var(--font-body)", fontSize: "12px", color: "var(--gray-muted)", marginTop: "2px" }}>{designation}</p>
+      </div>
+    </div>
+  );
+}
 
 export default function Testimonials() {
   const ref = useRef<HTMLDivElement>(null);
@@ -71,18 +109,40 @@ export default function Testimonials() {
           </div>
         </LampContainer>
 
+        {/* Desktop: AnimatedTestimonials */}
         <motion.div
+          className="testimonials-desktop"
           initial={{ opacity: 0, y: 32 }}
           animate={inView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.7, delay: 0.5 }}
         >
           <AnimatedTestimonials testimonials={testimonials} />
         </motion.div>
+
+        {/* Mobile: Swipeable Carousel */}
+        <motion.div
+          className="testimonials-mobile"
+          initial={{ opacity: 0, y: 24 }}
+          animate={inView ? { opacity: 1, y: 0 } : {}}
+          transition={{ duration: 0.6, delay: 0.4 }}
+        >
+          <Carousel autoplay interval={5000}>
+            {testimonials.map((t) => (
+              <TestimonialCard key={t.name} {...t} />
+            ))}
+          </Carousel>
+        </motion.div>
       </div>
 
       <style>{`
         @media (max-width: 640px) {
           section > div { padding: 0 24px 64px !important; }
+        }
+        .testimonials-desktop { display: block; }
+        .testimonials-mobile { display: none; }
+        @media (max-width: 768px) {
+          .testimonials-desktop { display: none !important; }
+          .testimonials-mobile { display: block !important; }
         }
       `}</style>
     </section>

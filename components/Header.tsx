@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
+import { Drawer } from "vaul";
 
 const navLinks = [
   { label: "Home", href: "#home" },
@@ -20,12 +21,6 @@ export default function Header() {
     window.addEventListener("scroll", handleScroll, { passive: true });
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
-
-  // Lock body scroll when menu is open
-  useEffect(() => {
-    document.body.style.overflow = mobileOpen ? "hidden" : "";
-    return () => { document.body.style.overflow = ""; };
-  }, [mobileOpen]);
 
   return (
     <>
@@ -102,148 +97,155 @@ export default function Header() {
             </a>
           </nav>
 
-          {/* Hamburger Button */}
-          <button
-            onClick={() => setMobileOpen(!mobileOpen)}
-            className="mobile-menu-btn"
-            aria-label={mobileOpen ? "Close menu" : "Open menu"}
-            style={{
-              background: "none", border: "none", cursor: "pointer",
-              padding: "8px", display: "none",
-              position: "relative", zIndex: 200,
-              width: "44px", height: "44px",
-              alignItems: "center", justifyContent: "center",
-            }}
-          >
-            <div style={{ display: "flex", flexDirection: "column", gap: "5px", width: "22px" }}>
-              <motion.span
-                animate={mobileOpen
-                  ? { rotate: 45, y: 7, background: "#fff" }
-                  : { rotate: 0, y: 0, background: "var(--charcoal-deep)" }
-                }
-                transition={{ duration: 0.35, ease: [0.22, 1, 0.36, 1] }}
-                style={{ display: "block", height: "2px", borderRadius: "2px", transformOrigin: "center" }}
-              />
-              <motion.span
-                animate={mobileOpen
-                  ? { opacity: 0, scaleX: 0 }
-                  : { opacity: 1, scaleX: 1 }
-                }
-                transition={{ duration: 0.2 }}
-                style={{ display: "block", height: "2px", borderRadius: "2px", background: "var(--charcoal-deep)", transformOrigin: "center" }}
-              />
-              <motion.span
-                animate={mobileOpen
-                  ? { rotate: -45, y: -7, background: "#fff" }
-                  : { rotate: 0, y: 0, background: "var(--charcoal-deep)" }
-                }
-                transition={{ duration: 0.35, ease: [0.22, 1, 0.36, 1] }}
-                style={{ display: "block", height: "2px", borderRadius: "2px", transformOrigin: "center" }}
-              />
-            </div>
-          </button>
-        </div>
-      </motion.header>
-
-      {/* Full-screen mobile menu overlay */}
-      <AnimatePresence>
-        {mobileOpen && (
-          <motion.div
-            initial={{ opacity: 0, y: "-100%" }}
-            animate={{ opacity: 1, y: "0%" }}
-            exit={{ opacity: 0, y: "-100%" }}
-            transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
-            style={{
-              position: "fixed", inset: 0, zIndex: 90,
-              background: "var(--charcoal-deep)",
-              display: "flex", flexDirection: "column",
-              padding: "120px 40px 60px",
-            }}
-          >
-            {/* Background orb decoration */}
-            <div style={{
-              position: "absolute", bottom: "-10%", right: "-10%",
-              width: "300px", height: "300px", borderRadius: "50%",
-              background: "radial-gradient(circle, rgba(240,128,0,0.15) 0%, transparent 70%)",
-              pointerEvents: "none",
-            }} />
-            <div style={{
-              position: "absolute", top: "20%", left: "-5%",
-              width: "200px", height: "200px", borderRadius: "50%",
-              background: "radial-gradient(circle, rgba(96,144,0,0.1) 0%, transparent 70%)",
-              pointerEvents: "none",
-            }} />
-
-            {/* Nav links */}
-            <nav style={{ flex: 1, display: "flex", flexDirection: "column", justifyContent: "center" }}>
-              {navLinks.map((link, i) => (
-                <motion.div
-                  key={link.label}
-                  initial={{ opacity: 0, x: -40 }}
-                  animate={{ opacity: 1, x: 0 }}
-                  exit={{ opacity: 0, x: -20 }}
-                  transition={{ duration: 0.5, delay: 0.15 + i * 0.07, ease: [0.22, 1, 0.36, 1] }}
-                  style={{ borderBottom: "1px solid rgba(255,255,255,0.07)" }}
-                >
-                  <a
-                    href={link.href}
-                    onClick={() => setMobileOpen(false)}
-                    style={{
-                      display: "flex", alignItems: "center", justifyContent: "space-between",
-                      padding: "20px 0", textDecoration: "none",
-                    }}
-                  >
-                    <span style={{
-                      fontFamily: "var(--font-heading)", fontWeight: 800,
-                      fontSize: "clamp(28px, 8vw, 48px)",
-                      color: "#fff", letterSpacing: "-1px",
-                    }}>
-                      {link.label}
-                    </span>
-                    <span style={{ color: "rgba(255,255,255,0.25)", fontSize: "11px", fontFamily: "var(--font-body)", fontWeight: 600, letterSpacing: "0.12em", textTransform: "uppercase" }}>
-                      0{i + 1}
-                    </span>
-                  </a>
-                </motion.div>
-              ))}
-            </nav>
-
-            {/* Bottom CTA */}
-            <motion.div
-              initial={{ opacity: 0, y: 24 }}
-              animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0 }}
-              transition={{ duration: 0.5, delay: 0.55 }}
-            >
-              <a
-                href="#waitlist"
-                onClick={() => setMobileOpen(false)}
+          {/* Hamburger Button — triggers Drawer on mobile */}
+          <Drawer.Root open={mobileOpen} onOpenChange={setMobileOpen} direction="bottom">
+            <Drawer.Trigger asChild>
+              <button
+                className="mobile-menu-btn"
+                aria-label={mobileOpen ? "Close menu" : "Open menu"}
                 style={{
-                  display: "flex", alignItems: "center", justifyContent: "center", gap: "10px",
-                  padding: "18px 32px", borderRadius: "100px",
-                  fontFamily: "var(--font-body)", fontSize: "15px", fontWeight: 700,
-                  color: "#fff", textDecoration: "none",
-                  background: "var(--orange)",
-                  boxShadow: "0 12px 40px rgba(240,128,0,0.35)",
+                  background: "none", border: "none", cursor: "pointer",
+                  padding: "8px", display: "none",
+                  position: "relative", zIndex: 200,
+                  width: "44px", height: "44px",
+                  alignItems: "center", justifyContent: "center",
                 }}
               >
-                Join the Waitlist
-                <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
-                  <path d="M1 7h12M8 3l5 4-5 4" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
-                </svg>
-              </a>
+                <div style={{ display: "flex", flexDirection: "column", gap: "5px", width: "22px" }}>
+                  <motion.span
+                    animate={mobileOpen
+                      ? { rotate: 45, y: 7, background: "var(--charcoal-deep)" }
+                      : { rotate: 0, y: 0, background: "var(--charcoal-deep)" }
+                    }
+                    transition={{ duration: 0.35, ease: [0.22, 1, 0.36, 1] }}
+                    style={{ display: "block", height: "2px", borderRadius: "2px", transformOrigin: "center" }}
+                  />
+                  <motion.span
+                    animate={mobileOpen ? { opacity: 0, scaleX: 0 } : { opacity: 1, scaleX: 1 }}
+                    transition={{ duration: 0.2 }}
+                    style={{ display: "block", height: "2px", borderRadius: "2px", background: "var(--charcoal-deep)", transformOrigin: "center" }}
+                  />
+                  <motion.span
+                    animate={mobileOpen
+                      ? { rotate: -45, y: -7, background: "var(--charcoal-deep)" }
+                      : { rotate: 0, y: 0, background: "var(--charcoal-deep)" }
+                    }
+                    transition={{ duration: 0.35, ease: [0.22, 1, 0.36, 1] }}
+                    style={{ display: "block", height: "2px", borderRadius: "2px", transformOrigin: "center" }}
+                  />
+                </div>
+              </button>
+            </Drawer.Trigger>
 
-              <p style={{
-                fontFamily: "var(--font-body)", fontSize: "11px",
-                color: "rgba(255,255,255,0.3)", textAlign: "center",
-                marginTop: "20px", letterSpacing: "0.06em",
-              }}>
-                TRUEDIET · BY MAUREEN ASHBARRY, RD
-              </p>
-            </motion.div>
-          </motion.div>
-        )}
-      </AnimatePresence>
+            <Drawer.Portal>
+              <Drawer.Overlay style={{
+                position: "fixed", inset: 0,
+                background: "rgba(0,0,0,0.5)",
+                backdropFilter: "blur(4px)",
+                zIndex: 400,
+              }} />
+              <Drawer.Content
+                style={{
+                  position: "fixed",
+                  bottom: 0, left: 0, right: 0,
+                  zIndex: 401,
+                  background: "var(--charcoal-deep)",
+                  borderRadius: "24px 24px 0 0",
+                  padding: "0 0 40px",
+                  outline: "none",
+                  maxHeight: "88vh",
+                  overflow: "auto",
+                }}
+              >
+                {/* Drag handle */}
+                <div style={{ display: "flex", justifyContent: "center", padding: "12px 0 8px" }}>
+                  <div style={{ width: "40px", height: "4px", borderRadius: "2px", background: "rgba(255,255,255,0.2)" }} />
+                </div>
+
+                {/* Decoration orbs */}
+                <div style={{
+                  position: "absolute", bottom: "-10%", right: "-10%",
+                  width: "240px", height: "240px", borderRadius: "50%",
+                  background: "radial-gradient(circle, rgba(240,128,0,0.15) 0%, transparent 70%)",
+                  pointerEvents: "none",
+                }} />
+                <div style={{
+                  position: "absolute", top: "10%", left: "-5%",
+                  width: "160px", height: "160px", borderRadius: "50%",
+                  background: "radial-gradient(circle, rgba(96,144,0,0.1) 0%, transparent 70%)",
+                  pointerEvents: "none",
+                }} />
+
+                {/* TrueDiet label */}
+                <div style={{ padding: "8px 32px 20px" }}>
+                  <p style={{ fontFamily: "var(--font-body)", fontSize: "10px", fontWeight: 600, letterSpacing: "0.14em", textTransform: "uppercase", color: "rgba(255,255,255,0.3)" }}>
+                    TrueDiet · By Maureen Ashbarry, RD
+                  </p>
+                </div>
+
+                {/* Nav links */}
+                <nav style={{ padding: "0 24px" }}>
+                  {navLinks.map((link, i) => (
+                    <motion.div
+                      key={link.label}
+                      initial={{ opacity: 0, x: -24 }}
+                      animate={{ opacity: 1, x: 0 }}
+                      transition={{ duration: 0.4, delay: i * 0.06, ease: [0.22, 1, 0.36, 1] }}
+                      style={{ borderBottom: "1px solid rgba(255,255,255,0.07)" }}
+                    >
+                      <a
+                        href={link.href}
+                        onClick={() => setMobileOpen(false)}
+                        style={{
+                          display: "flex", alignItems: "center", justifyContent: "space-between",
+                          padding: "18px 0", textDecoration: "none",
+                        }}
+                      >
+                        <span style={{
+                          fontFamily: "var(--font-heading)", fontWeight: 800,
+                          fontSize: "clamp(24px, 7vw, 40px)",
+                          color: "#fff", letterSpacing: "-0.5px",
+                        }}>
+                          {link.label}
+                        </span>
+                        <span style={{ color: "rgba(255,255,255,0.2)", fontSize: "11px", fontFamily: "var(--font-body)", fontWeight: 600, letterSpacing: "0.12em", textTransform: "uppercase" }}>
+                          0{i + 1}
+                        </span>
+                      </a>
+                    </motion.div>
+                  ))}
+                </nav>
+
+                {/* CTA */}
+                <motion.div
+                  initial={{ opacity: 0, y: 16 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.4, delay: 0.4 }}
+                  style={{ padding: "28px 24px 0" }}
+                >
+                  <a
+                    href="#waitlist"
+                    onClick={() => setMobileOpen(false)}
+                    style={{
+                      display: "flex", alignItems: "center", justifyContent: "center", gap: "10px",
+                      padding: "16px 32px", borderRadius: "100px",
+                      fontFamily: "var(--font-body)", fontSize: "15px", fontWeight: 700,
+                      color: "#fff", textDecoration: "none",
+                      background: "var(--orange)",
+                      boxShadow: "0 8px 32px rgba(240,128,0,0.35)",
+                    }}
+                  >
+                    Join the Waitlist
+                    <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
+                      <path d="M1 7h12M8 3l5 4-5 4" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+                    </svg>
+                  </a>
+                </motion.div>
+              </Drawer.Content>
+            </Drawer.Portal>
+          </Drawer.Root>
+        </div>
+      </motion.header>
 
       <style>{`
         @media (max-width: 768px) {
