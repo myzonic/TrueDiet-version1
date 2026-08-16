@@ -211,7 +211,7 @@ export default function Hero() {
             transition={{ duration: 0.6, delay: 0.1 }}
             style={{ display: "inline-flex", alignItems: "center", gap: "10px", marginBottom: "32px", width: "fit-content" }}
           >
-            <div style={{ width: "32px", height: "1px", background: "var(--terracotta)" }} />
+            <div style={{ width: "44px", height: "2px", background: "var(--terracotta)", borderRadius: "2px" }} />
             <MorphingText
               texts={["Registered Dietitian", "23 Years Experience", "Evidence-Based", "Science-First"]}
               className="hero-morphing"
@@ -243,9 +243,9 @@ export default function Hero() {
             style={{ marginBottom: "52px", maxWidth: "480px" }}
           >
             <p style={{
-              fontFamily: "var(--font-body)", fontSize: "18px", lineHeight: 1.65,
+              fontFamily: "var(--font-body)", fontSize: "20px", lineHeight: 1.65,
               color: "var(--charcoal)",
-              borderLeft: "2px solid var(--terracotta)", paddingLeft: "20px",
+              borderLeft: "3px solid var(--terracotta)", paddingLeft: "22px",
             }}>
               Nutrition that is{" "}
               <span style={{ color: "var(--charcoal-deep)", fontWeight: 700, position: "relative", display: "inline-block", minWidth: "160px" }}>
@@ -288,8 +288,8 @@ export default function Hero() {
               }}
             />
             <span style={{
-              fontFamily: "var(--font-body)", fontSize: "10px",
-              letterSpacing: "0.18em", textTransform: "uppercase",
+              fontFamily: "var(--font-body)", fontSize: "12px",
+              letterSpacing: "0.2em", textTransform: "uppercase",
               color: "var(--gray-muted)", writingMode: "vertical-rl",
             }}>Scroll</span>
           </motion.div>
