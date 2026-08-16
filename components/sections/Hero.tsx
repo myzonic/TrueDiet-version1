@@ -247,12 +247,33 @@ export default function Hero() {
         </div>
       </motion.div>
 
+      {/* Mobile-only background image */}
+      <div className="hero-mobile-bg" style={{ display: "none" }}>
+        <img
+          src="/hero-mobile.jpg"
+          alt=""
+          aria-hidden="true"
+          style={{
+            position: "absolute", inset: 0,
+            width: "100%", height: "100%",
+            objectFit: "cover", objectPosition: "center right",
+            opacity: 0.4,
+            zIndex: 0,
+          }}
+        />
+        <div style={{
+          position: "absolute", inset: 0, zIndex: 1,
+          background: "linear-gradient(180deg, rgba(255,255,255,0.55) 0%, rgba(255,255,255,0.2) 50%, rgba(255,255,255,0.7) 100%)",
+        }} />
+      </div>
+
       <style>{`
         @media (max-width: 768px) {
-          .hero-img-wrap { width: 100% !important; height: 50% !important; top: auto !important; bottom: 0 !important; }
+          .hero-mobile-bg { display: block !important; position: absolute; inset: 0; }
+          .hero-img-wrap { display: none !important; }
           .hero-content > div { padding: 100px 24px 60px !important; min-height: unset !important; }
           .hero-card { display: none !important; }
-          h1 { font-size: clamp(36px, 10vw, 60px) !important; letter-spacing: -1px !important; }
+          h1 { font-size: clamp(28px, 8vw, 48px) !important; letter-spacing: -0.5px !important; word-break: keep-all !important; }
         }
       `}</style>
     </section>
