@@ -10,7 +10,7 @@ const timeline = [
   { year: "2001", title: "Registered Dietitian", desc: "Began clinical practice after completing her dietetics degree and RD credential." },
   { year: "2008", title: "Medical Nutrition Therapy", desc: "Specialised in MNT — working with complex medical conditions through targeted nutrition intervention." },
   { year: "2015", title: "Digital Education", desc: "Expanded reach to online nutrition education, helping people navigate an increasingly noisy information landscape." },
-  { year: "2024", title: "TrueDiet Founded", desc: "Created TrueDiet as a dedicated evidence-based platform to make credible nutrition accessible to everyone." },
+  { year: "2026", title: "TrueDiet Founded", desc: "Created TrueDiet as a dedicated evidence-based platform to make credible nutrition accessible to everyone." },
 ];
 
 const credBadges = [

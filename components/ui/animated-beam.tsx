@@ -44,71 +44,123 @@ export function AnimatedBeam({ nodes }: { nodes: BeamNode[] }) {
   const gradId = "beam-grad";
 
   return (
-    <div style={{ position: "relative", display: "flex", alignItems: "center", justifyContent: "space-between", gap: "0", width: "100%" }}>
-      {/* SVG overlay for beams */}
-      <svg
-        ref={svgRef}
-        style={{ position: "absolute", inset: 0, width: "100%", height: "100%", overflow: "visible", pointerEvents: "none", zIndex: 0 }}
-      >
-        <defs>
-          <linearGradient id={gradId} x1="0%" y1="0%" x2="100%" y2="0%">
-            <stop offset="0%" stopColor="rgba(0,80,96,0)">
-              <animate attributeName="offset" values="-1;1" dur="2.5s" repeatCount="indefinite" />
-            </stop>
-            <stop offset="50%" stopColor="var(--orange)" stopOpacity="0.9">
-              <animate attributeName="offset" values="-0.5;1.5" dur="2.5s" repeatCount="indefinite" />
-            </stop>
-            <stop offset="100%" stopColor="rgba(96,144,0,0)">
-              <animate attributeName="offset" values="0;2" dur="2.5s" repeatCount="indefinite" />
-            </stop>
-          </linearGradient>
-        </defs>
-        {paths.map((d, i) => (
-          <g key={i}>
-            <path d={d} stroke="rgba(0,80,96,0.12)" strokeWidth="2" fill="none" />
-            <path d={d} stroke={`url(#${gradId})`} strokeWidth="2.5" fill="none" strokeLinecap="round" />
-          </g>
-        ))}
-      </svg>
-
-      {nodes.map((node, i) => (
-        <motion.div
-          key={i}
-          ref={(el) => { nodeRefs.current[i] = el; }}
-          initial={{ opacity: 0, scale: 0.85 }}
-          whileInView={{ opacity: 1, scale: 1 }}
-          viewport={{ once: true, margin: "-40px" }}
-          transition={{ duration: 0.6, delay: i * 0.15, ease: [0.22, 1, 0.36, 1] }}
-          style={{
-            display: "flex", flexDirection: "column", alignItems: "center",
-            gap: "10px", position: "relative", zIndex: 1, flex: "0 0 auto",
-          }}
+    <>
+      <div className="beam-desktop" style={{ position: "relative", display: "flex", alignItems: "center", justifyContent: "space-between", gap: "0", width: "100%" }}>
+        <svg
+          ref={svgRef}
+          style={{ position: "absolute", inset: 0, width: "100%", height: "100%", overflow: "visible", pointerEvents: "none", zIndex: 0 }}
         >
-          <div style={{
-            width: "56px", height: "56px", borderRadius: "16px",
-            background: node.highlight ? "var(--charcoal-deep)" : "var(--white)",
-            border: node.highlight ? "none" : "1.5px solid var(--border)",
-            boxShadow: node.highlight ? "0 8px 32px rgba(0,80,96,0.25)" : "0 4px 16px rgba(0,80,96,0.08)",
-            display: "flex", alignItems: "center", justifyContent: "center",
-          }}>
-            {node.icon}
-          </div>
-          <div style={{ textAlign: "center" }}>
-            <p style={{
-              fontFamily: "var(--font-heading)", fontWeight: 700,
-              fontSize: "13px", color: node.highlight ? "var(--charcoal-deep)" : "var(--charcoal)",
-              whiteSpace: "nowrap",
+          <defs>
+            <linearGradient id={gradId} x1="0%" y1="0%" x2="100%" y2="0%">
+              <stop offset="0%" stopColor="rgba(0,80,96,0)">
+                <animate attributeName="offset" values="-1;1" dur="2.5s" repeatCount="indefinite" />
+              </stop>
+              <stop offset="50%" stopColor="var(--orange)" stopOpacity="0.9">
+                <animate attributeName="offset" values="-0.5;1.5" dur="2.5s" repeatCount="indefinite" />
+              </stop>
+              <stop offset="100%" stopColor="rgba(96,144,0,0)">
+                <animate attributeName="offset" values="0;2" dur="2.5s" repeatCount="indefinite" />
+              </stop>
+            </linearGradient>
+          </defs>
+          {paths.map((d, i) => (
+            <g key={i}>
+              <path d={d} stroke="rgba(0,80,96,0.12)" strokeWidth="2" fill="none" />
+              <path d={d} stroke={`url(#${gradId})`} strokeWidth="2.5" fill="none" strokeLinecap="round" />
+            </g>
+          ))}
+        </svg>
+
+        {nodes.map((node, i) => (
+          <motion.div
+            key={i}
+            ref={(el) => { nodeRefs.current[i] = el; }}
+            initial={{ opacity: 0, scale: 0.85 }}
+            whileInView={{ opacity: 1, scale: 1 }}
+            viewport={{ once: true, margin: "-40px" }}
+            transition={{ duration: 0.6, delay: i * 0.15, ease: [0.22, 1, 0.36, 1] }}
+            style={{
+              display: "flex", flexDirection: "column", alignItems: "center",
+              gap: "10px", position: "relative", zIndex: 1, flex: "0 0 auto",
+            }}
+          >
+            <div style={{
+              width: "56px", height: "56px", borderRadius: "16px",
+              background: node.highlight ? "var(--charcoal-deep)" : "var(--white)",
+              border: node.highlight ? "none" : "1.5px solid var(--border)",
+              boxShadow: node.highlight ? "0 8px 32px rgba(0,80,96,0.25)" : "0 4px 16px rgba(0,80,96,0.08)",
+              display: "flex", alignItems: "center", justifyContent: "center",
             }}>
-              {node.label}
-            </p>
-            {node.sub && (
-              <p style={{ fontFamily: "var(--font-body)", fontSize: "11px", color: "var(--gray-muted)", marginTop: "2px", whiteSpace: "nowrap" }}>
-                {node.sub}
+              {node.icon}
+            </div>
+            <div style={{ textAlign: "center" }}>
+              <p style={{
+                fontFamily: "var(--font-heading)", fontWeight: 700,
+                fontSize: "13px", color: node.highlight ? "var(--charcoal-deep)" : "var(--charcoal)",
+                whiteSpace: "nowrap",
+              }}>
+                {node.label}
               </p>
+              {node.sub && (
+                <p style={{ fontFamily: "var(--font-body)", fontSize: "11px", color: "var(--gray-muted)", marginTop: "2px", whiteSpace: "nowrap" }}>
+                  {node.sub}
+                </p>
+              )}
+            </div>
+          </motion.div>
+        ))}
+      </div>
+
+      {/* Mobile: vertical stacked layout */}
+      <div className="beam-mobile" style={{ display: "none", flexDirection: "column", alignItems: "center", gap: "0" }}>
+        {nodes.map((node, i) => (
+          <div key={i} style={{ display: "flex", flexDirection: "column", alignItems: "center" }}>
+            <motion.div
+              initial={{ opacity: 0, scale: 0.85 }}
+              whileInView={{ opacity: 1, scale: 1 }}
+              viewport={{ once: true, margin: "-40px" }}
+              transition={{ duration: 0.6, delay: i * 0.15, ease: [0.22, 1, 0.36, 1] }}
+              style={{ display: "flex", alignItems: "center", gap: "16px", padding: "16px 0" }}
+            >
+              <div style={{
+                width: "52px", height: "52px", borderRadius: "14px", flexShrink: 0,
+                background: node.highlight ? "var(--charcoal-deep)" : "var(--white)",
+                border: node.highlight ? "none" : "1.5px solid var(--border)",
+                boxShadow: node.highlight ? "0 8px 24px rgba(0,80,96,0.25)" : "0 4px 12px rgba(0,80,96,0.08)",
+                display: "flex", alignItems: "center", justifyContent: "center",
+              }}>
+                {node.icon}
+              </div>
+              <div>
+                <p style={{ fontFamily: "var(--font-heading)", fontWeight: 700, fontSize: "14px", color: node.highlight ? "var(--charcoal-deep)" : "var(--charcoal)" }}>
+                  {node.label}
+                </p>
+                {node.sub && (
+                  <p style={{ fontFamily: "var(--font-body)", fontSize: "12px", color: "var(--gray-muted)", marginTop: "2px" }}>
+                    {node.sub}
+                  </p>
+                )}
+              </div>
+            </motion.div>
+            {i < nodes.length - 1 && (
+              <div style={{ width: "1px", height: "28px", background: "var(--border)", position: "relative" }}>
+                <motion.div
+                  animate={{ height: ["0%", "100%"] }}
+                  transition={{ duration: 1.5, repeat: Infinity, ease: "linear" }}
+                  style={{ position: "absolute", top: 0, left: 0, width: "100%", background: "var(--orange)", borderRadius: "1px" }}
+                />
+              </div>
             )}
           </div>
-        </motion.div>
-      ))}
-    </div>
+        ))}
+      </div>
+
+      <style>{`
+        @media (max-width: 640px) {
+          .beam-desktop { display: none !important; }
+          .beam-mobile { display: flex !important; }
+        }
+      `}</style>
+    </>
   );
 }

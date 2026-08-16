@@ -211,7 +211,7 @@ export default function Hero() {
             transition={{ duration: 0.6, delay: 0.1 }}
             style={{ display: "inline-flex", alignItems: "center", gap: "10px", marginBottom: "32px", width: "fit-content" }}
           >
-            <div style={{ width: "44px", height: "2px", background: "var(--terracotta)", borderRadius: "2px" }} />
+            <div style={{ width: "48px", height: "3px", background: "var(--terracotta)", borderRadius: "3px" }} />
             <MorphingText
               texts={["Registered Dietitian", "23 Years Experience", "Evidence-Based", "Science-First"]}
               className="hero-morphing"
@@ -243,7 +243,7 @@ export default function Hero() {
             style={{ marginBottom: "52px", maxWidth: "480px" }}
           >
             <p style={{
-              fontFamily: "var(--font-body)", fontSize: "20px", lineHeight: 1.65,
+              fontFamily: "var(--font-body)", fontSize: "16px", lineHeight: 1.7,
               color: "var(--charcoal)",
               borderLeft: "3px solid var(--terracotta)", paddingLeft: "22px",
             }}>
