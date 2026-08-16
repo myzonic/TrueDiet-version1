@@ -6,7 +6,6 @@ import { Spotlight } from "@/components/ui/spotlight";
 import { FlipWords } from "@/components/ui/flip-words";
 import { SparklesCore } from "@/components/ui/sparkles";
 import { ShimmerButton } from "@/components/ui/shimmer-button";
-import { MorphingText } from "@/components/ui/morphing-text";
 
 // Rotating cursor follower label shown on hero image hover
 function CursorFollower({ visible, x, y }: { visible: boolean; x: number; y: number }) {
@@ -54,7 +53,7 @@ const charVariant: Variants = {
 
 function SplitLine({ text, startIndex, color }: { text: string; startIndex: number; color?: string }) {
   return (
-    <span style={{ display: "block", overflow: "hidden", lineHeight: 1.05, color: color || "var(--charcoal-deep)", textAlign: "left", whiteSpace: "nowrap" }}>
+    <span style={{ display: "block", overflow: "visible", lineHeight: 1.15, color: color || "var(--charcoal-deep)", textAlign: "left", whiteSpace: "nowrap" }}>
       {text.split("").map((char, i) => (
         <motion.span
           key={i}
@@ -204,7 +203,7 @@ export default function Hero() {
           minHeight: "100dvh", display: "flex", flexDirection: "column",
           justifyContent: "center", paddingTop: "120px", paddingBottom: "80px",
         }}>
-          {/* Label with MorphingText */}
+          {/* Label — CSS fade rotator, smooth on all devices */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
@@ -212,19 +211,11 @@ export default function Hero() {
             style={{ display: "inline-flex", alignItems: "center", gap: "10px", marginBottom: "32px", width: "fit-content" }}
           >
             <div style={{ width: "48px", height: "3px", background: "var(--terracotta)", borderRadius: "3px" }} />
-            {/* Desktop: animated MorphingText */}
-            <MorphingText
-              texts={["Registered Dietitian", "23 Years Experience", "Evidence-Based", "Science-First"]}
-              className="hero-morphing hero-label-desktop"
-            />
-            {/* Mobile: static label, no SVG lag */}
-            <span className="hero-label-mobile" style={{
-              fontFamily: "var(--font-body)", fontSize: "13px", fontWeight: 600,
-              letterSpacing: "0.13em", textTransform: "uppercase", color: "var(--terracotta)",
-              display: "none",
-            }}>
-              Registered Dietitian
-            </span>
+            <div className="hero-label-rotator">
+              {["Registered Dietitian", "23 Years Experience", "Evidence-Based", "Science-First"].map((t, i) => (
+                <span key={i} className={`hero-label-item hero-label-item-${i}`}>{t}</span>
+              ))}
+            </div>
           </motion.div>
 
           {/* Headline */}
@@ -373,25 +364,57 @@ export default function Hero() {
       </div>
 
       <style>{`
+        /* ── Label rotator ── */
+        .hero-label-rotator {
+          position: relative;
+          height: 18px;
+          overflow: visible;
+          display: flex;
+          align-items: center;
+        }
+        .hero-label-item {
+          position: absolute;
+          left: 0;
+          white-space: nowrap;
+          font-family: var(--font-body);
+          font-size: 13px;
+          font-weight: 600;
+          letter-spacing: 0.13em;
+          text-transform: uppercase;
+          color: var(--terracotta);
+          opacity: 0;
+          animation: label-cycle 12s ease-in-out infinite;
+        }
+        .hero-label-item-0 { animation-delay: 0s; }
+        .hero-label-item-1 { animation-delay: 3s; }
+        .hero-label-item-2 { animation-delay: 6s; }
+        .hero-label-item-3 { animation-delay: 9s; }
+        @keyframes label-cycle {
+          0%    { opacity: 0; transform: translateY(6px); }
+          5%    { opacity: 1; transform: translateY(0); }
+          20%   { opacity: 1; transform: translateY(0); }
+          25%   { opacity: 0; transform: translateY(-6px); }
+          100%  { opacity: 0; transform: translateY(-6px); }
+        }
+
+        /* ── H1 split lines — never clip ── */
+        .hero-content h1 span[style] {
+          overflow: visible !important;
+        }
+
         @media (max-width: 768px) {
           .hero-mobile-bg { display: block !important; }
           .hero-img-wrap { display: none !important; }
           .hero-card { display: none !important; }
 
-          /* Layout */
           .hero-content > div {
-            padding: 96px 24px 80px !important;
+            padding: 110px 24px 80px !important;
             min-height: unset !important;
             justify-content: flex-start !important;
-            padding-top: 110px !important;
           }
-
-          /* Label row */
           .hero-content > div > div:first-child {
             margin-bottom: 20px !important;
           }
-
-          /* H1 */
           .hero-content h1 {
             font-size: clamp(34px, 9.5vw, 52px) !important;
             letter-spacing: -0.5px !important;
@@ -399,29 +422,14 @@ export default function Hero() {
             margin-bottom: 24px !important;
             max-width: 100% !important;
           }
-
-          /* Subline container */
           .hero-content h1 + div {
             margin-bottom: 32px !important;
             max-width: 100% !important;
           }
-
-          /* Subline paragraph */
           .hero-content p {
             font-size: 15px !important;
             line-height: 1.65 !important;
           }
-
-          /* Scroll hint */
-          .hero-content > div > div[style*="bottom: 40px"] {
-            display: none !important;
-          }
-
-          /* Label: hide morphing SVG, show static text */
-          .hero-label-desktop { display: none !important; }
-          .hero-label-mobile { display: inline !important; }
-
-          /* Force framer-motion opacity reset */
           .hero-content h1,
           .hero-content h1 span,
           .hero-content p,
