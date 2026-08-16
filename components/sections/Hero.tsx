@@ -49,7 +49,7 @@ const charVariant: Variants = {
 
 function SplitLine({ text, startIndex, color }: { text: string; startIndex: number; color?: string }) {
   return (
-    <span style={{ display: "block", overflow: "hidden", lineHeight: 1.05, color: color || "var(--charcoal-deep)" }}>
+    <span style={{ display: "block", overflow: "hidden", lineHeight: 1.05, color: color || "var(--charcoal-deep)", textAlign: "left" }}>
       {text.split("").map((char, i) => (
         <motion.span
           key={i}
@@ -209,6 +209,7 @@ export default function Hero() {
               fontSize: "clamp(44px, 7vw, 110px)",
               lineHeight: 1.0, letterSpacing: "-3px",
               marginBottom: "36px", maxWidth: "640px",
+              textAlign: "left",
             }}
           >
             <SplitLine text="Real Nutrition." startIndex={0} />
