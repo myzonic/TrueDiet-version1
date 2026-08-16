@@ -1,0 +1,260 @@
+"use client";
+
+import { useRef, useState } from "react";
+import { motion, useScroll, useTransform, type Variants } from "framer-motion";
+
+const charVariant: Variants = {
+  hidden: { y: "110%", opacity: 0 },
+  visible: (i: number) => ({
+    y: "0%", opacity: 1,
+    transition: { duration: 0.75, delay: 0.3 + i * 0.035, ease: [0.22, 1, 0.36, 1] },
+  }),
+};
+
+function SplitLine({ text, startIndex, color }: { text: string; startIndex: number; color?: string }) {
+  return (
+    <span style={{ display: "block", overflow: "hidden", lineHeight: 1.05, color: color || "var(--charcoal-deep)" }}>
+      {text.split("").map((char, i) => (
+        <motion.span
+          key={i}
+          custom={startIndex + i}
+          variants={charVariant}
+          style={{ display: "inline-block", whiteSpace: "pre" }}
+        >
+          {char}
+        </motion.span>
+      ))}
+    </span>
+  );
+}
+
+function MagneticButton({ href, children, primary }: { href: string; children: React.ReactNode; primary?: boolean }) {
+  const ref = useRef<HTMLAnchorElement>(null);
+  const [pos, setPos] = useState({ x: 0, y: 0 });
+
+  const handleMove = (e: React.MouseEvent) => {
+    const rect = ref.current!.getBoundingClientRect();
+    const x = (e.clientX - rect.left - rect.width / 2) * 0.35;
+    const y = (e.clientY - rect.top - rect.height / 2) * 0.35;
+    setPos({ x, y });
+  };
+
+  return (
+    <motion.a
+      ref={ref}
+      href={href}
+      onMouseMove={handleMove}
+      onMouseLeave={() => setPos({ x: 0, y: 0 })}
+      animate={{ x: pos.x, y: pos.y }}
+      transition={{ type: "spring", stiffness: 350, damping: 25 }}
+      data-magnetic
+      style={{
+        display: "inline-flex", alignItems: "center", gap: "10px",
+        padding: primary ? "16px 32px" : "15px 30px",
+        borderRadius: "100px",
+        fontFamily: "var(--font-body)", fontSize: "14px", fontWeight: 600,
+        letterSpacing: "0.02em", textDecoration: "none",
+        position: "relative", overflow: "hidden",
+        ...(primary
+          ? { background: "var(--orange)", color: "#fff", border: "none" }
+          : { background: "transparent", color: "var(--charcoal-deep)", border: "1.5px solid rgba(0,80,96,0.25)" }),
+      }}
+    >
+      {primary && (
+        <motion.span
+          style={{ position: "absolute", inset: 0, borderRadius: "100px", background: "rgba(0,0,0,0.12)", opacity: 0 }}
+          whileHover={{ opacity: 1 }}
+          transition={{ duration: 0.2 }}
+        />
+      )}
+      <span style={{ position: "relative", zIndex: 1 }}>{children}</span>
+      {primary && (
+        <span style={{ position: "relative", zIndex: 1 }}>
+          <svg width="13" height="13" viewBox="0 0 13 13" fill="none">
+            <path d="M1 6.5h11M7 2.5l4.5 4-4.5 4" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+          </svg>
+        </span>
+      )}
+    </motion.a>
+  );
+}
+
+export default function Hero() {
+  const containerRef = useRef<HTMLDivElement>(null);
+  const { scrollYProgress } = useScroll({ target: containerRef, offset: ["start start", "end start"] });
+  const imageScale = useTransform(scrollYProgress, [0, 1], [1, 1.12]);
+  const imageY = useTransform(scrollYProgress, [0, 1], ["0%", "20%"]);
+  const textY = useTransform(scrollYProgress, [0, 1], ["0%", "14%"]);
+  const opacity = useTransform(scrollYProgress, [0, 0.5], [1, 0]);
+
+  return (
+    <section
+      id="home"
+      ref={containerRef}
+      style={{ position: "relative", minHeight: "100dvh", overflow: "hidden", background: "#fff" }}
+    >
+      {/* Full-bleed image — right half */}
+      <div style={{
+        position: "absolute", top: 0, right: 0,
+        width: "52%", height: "100%",
+        overflow: "hidden", zIndex: 0,
+      }} className="hero-img-wrap">
+        <motion.div style={{ scale: imageScale, y: imageY, height: "100%", transformOrigin: "center top" }}>
+          <motion.img
+            src="https://images.unsplash.com/photo-1543362906-acfc16c67564?w=1200&q=90&auto=format"
+            alt="Fresh nutritious food"
+            initial={{ opacity: 0, scale: 1.08 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 1.4, ease: [0.22, 1, 0.36, 1] }}
+            style={{ width: "100%", height: "100%", objectFit: "cover", display: "block" }}
+          />
+        </motion.div>
+        <div style={{
+          position: "absolute", inset: 0,
+          background: "linear-gradient(90deg, #fff 0%, rgba(255,255,255,0.2) 40%, transparent 100%)",
+        }} />
+        <div style={{
+          position: "absolute", inset: 0,
+          background: "linear-gradient(0deg, rgba(255,255,255,0.5) 0%, transparent 40%)",
+        }} />
+      </div>
+
+      {/* Noise grain */}
+      <div style={{
+        position: "absolute", inset: 0, zIndex: 1, pointerEvents: "none",
+        backgroundImage: `url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.03'/%3E%3C/svg%3E")`,
+        opacity: 0.4,
+      }} />
+
+      {/* Content */}
+      <motion.div style={{ y: textY, opacity, position: "relative", zIndex: 2 }} className="hero-content">
+        <div style={{
+          maxWidth: "1280px", margin: "0 auto", padding: "0 48px",
+          minHeight: "100dvh", display: "flex", flexDirection: "column",
+          justifyContent: "center", paddingTop: "120px", paddingBottom: "80px",
+        }}>
+          {/* Label */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.1 }}
+            style={{ display: "inline-flex", alignItems: "center", gap: "10px", marginBottom: "40px", width: "fit-content" }}
+          >
+            <div style={{ width: "32px", height: "1px", background: "var(--terracotta)" }} />
+            <span style={{
+              fontFamily: "var(--font-body)", fontSize: "11px", fontWeight: 600,
+              letterSpacing: "0.16em", textTransform: "uppercase", color: "var(--terracotta)",
+            }}>
+              Registered Dietitian · 23 Years Experience
+            </span>
+          </motion.div>
+
+          {/* Headline */}
+          <motion.h1
+            initial="hidden"
+            animate="visible"
+            style={{
+              fontFamily: "var(--font-heading)", fontWeight: 800,
+              fontSize: "clamp(44px, 7vw, 110px)",
+              lineHeight: 1.0, letterSpacing: "-3px",
+              marginBottom: "36px", maxWidth: "640px",
+            }}
+          >
+            <SplitLine text="Real Nutrition." startIndex={0} />
+            <SplitLine text="Real Science." startIndex={16} />
+            <SplitLine text="Real Results." startIndex={30} color="var(--orange)" />
+          </motion.h1>
+
+          {/* Subline */}
+          <motion.div
+            initial={{ opacity: 0, y: 24 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.7, delay: 1.1, ease: [0.22, 1, 0.36, 1] }}
+            style={{ marginBottom: "52px", maxWidth: "440px" }}
+          >
+            <p style={{
+              fontFamily: "var(--font-body)", fontSize: "18px", lineHeight: 1.65,
+              color: "var(--charcoal)",
+              borderLeft: "2px solid var(--terracotta)", paddingLeft: "20px",
+            }}>
+              Cut through the nutrition noise with evidence-based guidance from a Registered Dietitian.
+            </p>
+          </motion.div>
+
+          {/* CTAs */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 1.3 }}
+            style={{ display: "flex", gap: "16px", alignItems: "center", flexWrap: "wrap" }}
+          >
+            <MagneticButton href="#waitlist" primary>Join the Waitlist</MagneticButton>
+            <MagneticButton href="#about">Meet Maureen</MagneticButton>
+          </motion.div>
+
+          {/* Scroll hint */}
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ delay: 2 }}
+            style={{ position: "absolute", bottom: "40px", left: "48px", display: "flex", alignItems: "center", gap: "14px" }}
+          >
+            <motion.div
+              animate={{ scaleY: [1, 0.3, 1] }}
+              transition={{ duration: 1.8, repeat: Infinity, ease: "easeInOut" }}
+              style={{
+                width: "1px", height: "40px",
+                background: "linear-gradient(to bottom, var(--terracotta), transparent)",
+                transformOrigin: "top",
+              }}
+            />
+            <span style={{
+              fontFamily: "var(--font-body)", fontSize: "10px",
+              letterSpacing: "0.18em", textTransform: "uppercase",
+              color: "var(--gray-muted)", writingMode: "vertical-rl",
+            }}>Scroll</span>
+          </motion.div>
+
+          {/* Floating stat card */}
+          <motion.div
+            initial={{ opacity: 0, x: 40, y: 20 }}
+            animate={{ opacity: 1, x: 0, y: 0 }}
+            transition={{ duration: 0.8, delay: 1.5, ease: [0.22, 1, 0.36, 1] }}
+            style={{
+              position: "absolute", bottom: "120px", right: "calc(52% - 100px)",
+              background: "rgba(255,255,255,0.94)", backdropFilter: "blur(20px)",
+              borderRadius: "16px", padding: "20px 24px",
+              boxShadow: "0 8px 40px rgba(0,80,96,0.12), 0 0 0 1px rgba(0,80,96,0.06)",
+              display: "flex", alignItems: "center", gap: "16px", zIndex: 10,
+            }}
+            className="hero-card"
+          >
+            <div style={{
+              width: "44px", height: "44px", borderRadius: "12px",
+              background: "var(--blush)",
+              display: "flex", alignItems: "center", justifyContent: "center", flexShrink: 0,
+            }}>
+              <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+                <circle cx="10" cy="10" r="8" stroke="var(--charcoal-deep)" strokeWidth="1.5"/>
+                <path d="M7 10l2 2 4-4" stroke="var(--charcoal-deep)" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+              </svg>
+            </div>
+            <div>
+              <p style={{ fontFamily: "var(--font-heading)", fontWeight: 800, fontSize: "22px", color: "var(--charcoal-deep)", lineHeight: 1 }}>23+</p>
+              <p style={{ fontFamily: "var(--font-body)", fontSize: "11px", color: "var(--gray-muted)", marginTop: "3px", letterSpacing: "0.04em" }}>Years as Registered Dietitian</p>
+            </div>
+          </motion.div>
+        </div>
+      </motion.div>
+
+      <style>{`
+        @media (max-width: 768px) {
+          .hero-img-wrap { width: 100% !important; height: 50% !important; top: auto !important; bottom: 0 !important; }
+          .hero-content > div { padding: 100px 24px 60px !important; min-height: unset !important; }
+          .hero-card { display: none !important; }
+          h1 { font-size: clamp(36px, 10vw, 60px) !important; letter-spacing: -1px !important; }
+        }
+      `}</style>
+    </section>
+  );
+}
