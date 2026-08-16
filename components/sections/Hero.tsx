@@ -185,7 +185,7 @@ export default function Hero() {
       }} />
 
       {/* Content */}
-      <motion.div style={{ y: textY, opacity, position: "relative", zIndex: 2 }} className="hero-content">
+      <motion.div style={{ y: textY, opacity, position: "relative", zIndex: 10 }} className="hero-content">
         <div style={{
           maxWidth: "1280px", margin: "0 auto", padding: "0 48px",
           minHeight: "100dvh", display: "flex", flexDirection: "column",
@@ -307,7 +307,7 @@ export default function Hero() {
       </motion.div>
 
       {/* Mobile-only background image + video */}
-      <div className="hero-mobile-bg" style={{ display: "none" }}>
+      <div className="hero-mobile-bg" style={{ display: "none", position: "absolute", inset: 0, zIndex: 0 }}>
         {/* Static image — always visible */}
         <img
           src="/hero-mobile.jpg"
@@ -347,11 +347,22 @@ export default function Hero() {
 
       <style>{`
         @media (max-width: 768px) {
-          .hero-mobile-bg { display: block !important; position: absolute; inset: 0; }
+          .hero-mobile-bg { display: block !important; }
           .hero-img-wrap { display: none !important; }
           .hero-content > div { padding: 100px 24px 60px !important; min-height: unset !important; }
           .hero-card { display: none !important; }
           h1 { font-size: clamp(28px, 8vw, 48px) !important; letter-spacing: -0.5px !important; word-break: keep-all !important; }
+          .hero-content h1,
+          .hero-content h1 span,
+          .hero-content p,
+          .hero-content a,
+          .hero-content span {
+            opacity: 1 !important;
+            color: var(--charcoal-deep) !important;
+          }
+          .hero-content a[data-magnetic] {
+            opacity: 1 !important;
+          }
         }
       `}</style>
     </section>
