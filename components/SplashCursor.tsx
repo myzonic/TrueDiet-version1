@@ -19,7 +19,7 @@ const COLORS = [
 export default function SplashCursor() {
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const ripplesRef = useRef<Ripple[]>([]);
-  const rafRef = useRef<number>();
+  const rafRef = useRef<number | undefined>(undefined);
   const lastPos = useRef({ x: -1, y: -1 });
 
   useEffect(() => {

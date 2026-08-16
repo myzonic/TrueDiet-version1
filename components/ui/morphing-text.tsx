@@ -17,7 +17,7 @@ export function MorphingText({
   const morphRef = useRef(0);
   const cooldownRef = useRef(COOLDOWN);
   const lastTimeRef = useRef<number | null>(null);
-  const rafRef = useRef<number>();
+  const rafRef = useRef<number | undefined>(undefined);
 
   const setMorph = (fraction: number) => {
     const t1 = text1Ref.current;
