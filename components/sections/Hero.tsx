@@ -3,6 +3,42 @@
 import { useRef, useState } from "react";
 import { motion, useScroll, useTransform, type Variants } from "framer-motion";
 
+// Rotating cursor follower label shown on hero image hover
+function CursorFollower({ visible, x, y }: { visible: boolean; x: number; y: number }) {
+  return (
+    <motion.div
+      animate={{ opacity: visible ? 1 : 0, scale: visible ? 1 : 0.7 }}
+      transition={{ duration: 0.25 }}
+      style={{
+        position: "fixed", top: y - 40, left: x - 40,
+        width: "80px", height: "80px",
+        pointerEvents: "none", zIndex: 9000,
+      }}
+    >
+      {/* Rotating text ring */}
+      <svg viewBox="0 0 80 80" width="80" height="80" style={{ position: "absolute", inset: 0 }}>
+        <defs>
+          <path id="circle-path" d="M 40,40 m -28,0 a 28,28 0 1,1 56,0 a 28,28 0 1,1 -56,0" />
+        </defs>
+        <motion.text
+          animate={{ rotate: 360 }}
+          transition={{ duration: 8, repeat: Infinity, ease: "linear" }}
+          style={{ transformOrigin: "40px 40px", fontSize: "9px", fill: "var(--charcoal-deep)", fontFamily: "var(--font-body)", fontWeight: 700, letterSpacing: "0.18em", textTransform: "uppercase" }}
+        >
+          <textPath href="#circle-path">Evidence-Based · Science-First ·</textPath>
+        </motion.text>
+      </svg>
+      {/* Center dot */}
+      <div style={{
+        position: "absolute", top: "50%", left: "50%",
+        transform: "translate(-50%,-50%)",
+        width: "8px", height: "8px", borderRadius: "50%",
+        background: "var(--orange)",
+      }} />
+    </motion.div>
+  );
+}
+
 const charVariant: Variants = {
   hidden: { y: "110%", opacity: 0 },
   visible: (i: number) => ({
@@ -87,18 +123,33 @@ export default function Hero() {
   const textY = useTransform(scrollYProgress, [0, 1], ["0%", "14%"]);
   const opacity = useTransform(scrollYProgress, [0, 0.5], [1, 0]);
 
+  const [cursorVisible, setCursorVisible] = useState(false);
+  const [cursorPos, setCursorPos] = useState({ x: 0, y: 0 });
+
+  const handleImageMouseMove = (e: React.MouseEvent) => {
+    setCursorPos({ x: e.clientX, y: e.clientY });
+  };
+
   return (
     <section
       id="home"
       ref={containerRef}
       style={{ position: "relative", minHeight: "100dvh", overflow: "hidden", background: "#fff" }}
     >
+      <CursorFollower visible={cursorVisible} x={cursorPos.x} y={cursorPos.y} />
+
       {/* Full-bleed image — right half */}
-      <div style={{
-        position: "absolute", top: 0, right: 0,
-        width: "52%", height: "100%",
-        overflow: "hidden", zIndex: 0,
-      }} className="hero-img-wrap">
+      <div
+        style={{
+          position: "absolute", top: 0, right: 0,
+          width: "52%", height: "100%",
+          overflow: "hidden", zIndex: 0, cursor: "none",
+        }}
+        className="hero-img-wrap"
+        onMouseEnter={() => setCursorVisible(true)}
+        onMouseLeave={() => setCursorVisible(false)}
+        onMouseMove={handleImageMouseMove}
+      >
         <motion.div style={{ scale: imageScale, y: imageY, height: "100%", transformOrigin: "center top" }}>
           <motion.img
             src="https://images.unsplash.com/photo-1543362906-acfc16c67564?w=1200&q=90&auto=format"
