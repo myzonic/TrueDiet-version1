@@ -2,6 +2,7 @@
 
 import { useRef, useEffect, useState } from "react";
 import { motion, useInView } from "framer-motion";
+import { BorderBeam } from "@/components/ui/border-beam";
 
 function CountUp({ target, suffix = "" }: { target: number; suffix?: string }) {
   const [count, setCount] = useState(0);
@@ -68,6 +69,7 @@ export default function Credibility() {
               minHeight: "360px", position: "relative", overflow: "hidden",
             }}
           >
+            <BorderBeam size={140} duration={8} colorFrom="rgba(240,128,0,0.8)" colorTo="rgba(96,144,0,0.4)" />
             <div style={{
               position: "absolute", bottom: "-40px", right: "-40px",
               width: "200px", height: "200px", borderRadius: "50%",
@@ -160,6 +162,7 @@ export default function Credibility() {
               padding: "40px", position: "relative", overflow: "hidden",
             }}
           >
+            <BorderBeam size={100} duration={12} colorFrom="rgba(255,255,255,0.6)" colorTo="rgba(255,255,255,0.1)" />
             <div style={{
               position: "absolute", top: "-30px", right: "-20px",
               fontFamily: "Georgia, serif", fontSize: "180px", lineHeight: 1,

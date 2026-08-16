@@ -84,3 +84,13 @@ img {
 ::-webkit-scrollbar { width: 6px; }
 ::-webkit-scrollbar-track { background: var(--off-white); }
 ::-webkit-scrollbar-thumb { background: var(--sage); border-radius: 3px; }
+
+/* MorphingText hero label sizing */
+.hero-morphing svg { height: 1em !important; }
+.hero-morphing svg text { font-size: 11px !important; letter-spacing: 0.14em; text-transform: uppercase; }
+
+/* Hide splash cursor and orbiting on mobile */
+@media (max-width: 768px) {
+  .splash-cursor-canvas { display: none !important; }
+  .orbiting-wrap { display: none !important; }
+}

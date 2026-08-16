@@ -5,6 +5,8 @@ import { motion, useScroll, useTransform, type Variants } from "framer-motion";
 import { Spotlight } from "@/components/ui/spotlight";
 import { FlipWords } from "@/components/ui/flip-words";
 import { SparklesCore } from "@/components/ui/sparkles";
+import { ShimmerButton } from "@/components/ui/shimmer-button";
+import { MorphingText } from "@/components/ui/morphing-text";
 
 // Rotating cursor follower label shown on hero image hover
 function CursorFollower({ visible, x, y }: { visible: boolean; x: number; y: number }) {
@@ -202,20 +204,18 @@ export default function Hero() {
           minHeight: "100dvh", display: "flex", flexDirection: "column",
           justifyContent: "center", paddingTop: "120px", paddingBottom: "80px",
         }}>
-          {/* Label */}
+          {/* Label with MorphingText */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.1 }}
-            style={{ display: "inline-flex", alignItems: "center", gap: "10px", marginBottom: "40px", width: "fit-content" }}
+            style={{ display: "inline-flex", alignItems: "center", gap: "10px", marginBottom: "32px", width: "fit-content" }}
           >
             <div style={{ width: "32px", height: "1px", background: "var(--terracotta)" }} />
-            <span style={{
-              fontFamily: "var(--font-body)", fontSize: "11px", fontWeight: 600,
-              letterSpacing: "0.16em", textTransform: "uppercase", color: "var(--terracotta)",
-            }}>
-              Registered Dietitian · 23 Years Experience
-            </span>
+            <MorphingText
+              texts={["Registered Dietitian", "23 Years Experience", "Evidence-Based", "Science-First"]}
+              className="hero-morphing"
+            />
           </motion.div>
 
           {/* Headline */}
@@ -262,7 +262,12 @@ export default function Hero() {
             transition={{ duration: 0.6, delay: 1.3 }}
             style={{ display: "flex", gap: "16px", alignItems: "center", flexWrap: "wrap" }}
           >
-            <MagneticButton href="#waitlist" primary>Join the Waitlist</MagneticButton>
+            <ShimmerButton type="button" onClick={() => document.getElementById("contact")?.scrollIntoView({ behavior: "smooth" })}>
+              Join the Waitlist
+              <svg width="13" height="13" viewBox="0 0 13 13" fill="none">
+                <path d="M1 6.5h11M7 2.5l4.5 4-4.5 4" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+              </svg>
+            </ShimmerButton>
             <MagneticButton href="#about">Meet Maureen</MagneticButton>
           </motion.div>
 

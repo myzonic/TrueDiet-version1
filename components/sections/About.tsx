@@ -3,6 +3,7 @@
 import { useRef } from "react";
 import { motion, useInView, useScroll, useTransform } from "framer-motion";
 import { AnimatedTooltip } from "@/components/ui/animated-tooltip";
+import { OrbitingCircles } from "@/components/ui/orbiting-circles";
 
 const credBadges = [
   { id: 1, name: "Registered Dietitian", designation: "Fully credentialed & qualified", initials: "RD" },
@@ -181,6 +182,38 @@ export default function About() {
                 Credentials
               </p>
               <AnimatedTooltip items={credBadges} />
+            </motion.div>
+
+            {/* Orbiting credentials visual */}
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={inView ? { opacity: 1 } : {}}
+              transition={{ duration: 0.8, delay: 1 }}
+              style={{ marginTop: "40px", display: "flex", justifyContent: "flex-start" }}
+              className="orbiting-wrap"
+            >
+              <OrbitingCircles
+                size={220}
+                items={[
+                  { label: "RD", radius: 75, duration: 18, delay: 0 },
+                  { label: "MNT", radius: 75, duration: 18, delay: -6, reverse: true },
+                  { label: "23 Yrs", radius: 105, duration: 26, delay: 0 },
+                  { label: "Evidence", radius: 105, duration: 26, delay: -9 },
+                ]}
+                center={
+                  <div style={{
+                    width: "64px", height: "64px", borderRadius: "50%",
+                    background: "var(--charcoal-deep)",
+                    display: "flex", alignItems: "center", justifyContent: "center",
+                    boxShadow: "0 8px 32px rgba(0,80,96,0.3)",
+                  }}>
+                    <svg width="28" height="28" viewBox="0 0 28 28" fill="none">
+                      <circle cx="14" cy="14" r="12" stroke="#fff" strokeWidth="1.5"/>
+                      <path d="M9 14l3 3 7-7" stroke="var(--orange)" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                    </svg>
+                  </div>
+                }
+              />
             </motion.div>
           </motion.div>
         </div>
