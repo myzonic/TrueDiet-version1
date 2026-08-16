@@ -6,7 +6,7 @@ import { motion, useInView, AnimatePresence } from "framer-motion";
 const faqs = [
   {
     q: "What makes TrueDiet different from other nutrition apps?",
-    a: "TrueDiet is built by a Registered Dietitian with 23 years of clinical experience — not by marketers or influencers. Every piece of information is evidence-based, peer-reviewed, and free from supplement sponsorships or affiliate incentives. You get the truth about nutrition, not what's trending.",
+    a: "TrueDiet is built by a Registered Dietitian with 23 years of clinical experience, not by marketers or influencers. Every piece of information is evidence-based, peer-reviewed, and free from supplement sponsorships or affiliate incentives. You get the truth about nutrition, not what's trending.",
   },
   {
     q: "Do I need to follow a specific diet to benefit from TrueDiet?",
@@ -14,11 +14,11 @@ const faqs = [
   },
   {
     q: "Are peptides and supplements worth taking?",
-    a: "It depends entirely on the individual and the specific supplement. Many supplements are unnecessary for people who eat a varied diet, while others have genuine evidence behind them. TrueDiet reviews the actual science — not what supplement companies want you to believe.",
+    a: "It depends entirely on the individual and the specific supplement. Many supplements are unnecessary for people who eat a varied diet, while others have genuine evidence behind them. TrueDiet reviews the actual science, not what supplement companies want you to believe.",
   },
   {
     q: "How do I know if nutrition information online is reliable?",
-    a: "Look for credentials (Registered Dietitian or PhD in nutrition), primary source citations, and absence of product promotion. If a claim sounds too good to be true — 'lose 10kg in a week' or 'this one food cures everything' — it almost certainly is. TrueDiet teaches you to critically evaluate what you read.",
+    a: "Look for credentials (Registered Dietitian or PhD in nutrition), primary source citations, and absence of product promotion. If a claim sounds too good to be true ('lose 10kg in a week' or 'this one food cures everything'), it almost certainly is. TrueDiet teaches you to critically evaluate what you read.",
   },
   {
     q: "What is Medical Nutrition Therapy (MNT)?",
