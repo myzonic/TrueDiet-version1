@@ -358,10 +358,6 @@ export default function Hero() {
           .hero-content a,
           .hero-content span {
             opacity: 1 !important;
-            color: var(--charcoal-deep) !important;
-          }
-          .hero-content a[data-magnetic] {
-            opacity: 1 !important;
           }
         }
       `}</style>
