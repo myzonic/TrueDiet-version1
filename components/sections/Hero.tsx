@@ -54,7 +54,7 @@ const charVariant: Variants = {
 
 function SplitLine({ text, startIndex, color }: { text: string; startIndex: number; color?: string }) {
   return (
-    <span style={{ display: "block", overflow: "hidden", lineHeight: 1.05, color: color || "var(--charcoal-deep)", textAlign: "left" }}>
+    <span style={{ display: "block", overflow: "hidden", lineHeight: 1.05, color: color || "var(--charcoal-deep)", textAlign: "left", whiteSpace: "nowrap" }}>
       {text.split("").map((char, i) => (
         <motion.span
           key={i}
