@@ -3,6 +3,8 @@
 import { useRef, useState, useEffect } from "react";
 import { motion, useScroll, useTransform, type Variants } from "framer-motion";
 import { Spotlight } from "@/components/ui/spotlight";
+import { FlipWords } from "@/components/ui/flip-words";
+import { SparklesCore } from "@/components/ui/sparkles";
 
 // Rotating cursor follower label shown on hero image hover
 function CursorFollower({ visible, x, y }: { visible: boolean; x: number; y: number }) {
@@ -146,6 +148,13 @@ export default function Hero() {
     >
       <CursorFollower visible={cursorVisible} x={cursorPos.x} y={cursorPos.y} />
       <Spotlight className="hero-spotlight" fill="rgba(0,80,96,0.07)" />
+      <SparklesCore
+        particleDensity={40}
+        particleColor="#005060"
+        minSize={0.6}
+        maxSize={1.2}
+        className="hero-sparkles"
+      />
 
       {/* Full-bleed image — right half */}
       <div
@@ -226,19 +235,23 @@ export default function Hero() {
             <SplitLine text="Real Results." startIndex={30} color="var(--orange)" />
           </motion.h1>
 
-          {/* Subline */}
+          {/* Subline with FlipWords */}
           <motion.div
             initial={{ opacity: 0, y: 24 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.7, delay: 1.1, ease: [0.22, 1, 0.36, 1] }}
-            style={{ marginBottom: "52px", maxWidth: "440px" }}
+            style={{ marginBottom: "52px", maxWidth: "480px" }}
           >
             <p style={{
               fontFamily: "var(--font-body)", fontSize: "18px", lineHeight: 1.65,
               color: "var(--charcoal)",
               borderLeft: "2px solid var(--terracotta)", paddingLeft: "20px",
             }}>
-              Cut through the nutrition noise with evidence-based guidance from a Registered Dietitian.
+              Nutrition that is{" "}
+              <span style={{ color: "var(--charcoal-deep)", fontWeight: 700, position: "relative", display: "inline-block", minWidth: "160px" }}>
+                <FlipWords words={["Evidence-Based", "Science-First", "No-Gimmicks", "Trustworthy"]} duration={2800} />
+              </span>
+              <br />from a Registered Dietitian with 23 years of experience.
             </p>
           </motion.div>
 

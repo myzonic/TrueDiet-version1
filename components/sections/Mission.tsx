@@ -5,6 +5,7 @@ import { motion, useInView, useScroll, useTransform } from "framer-motion";
 import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { LampContainer } from "@/components/ui/lamp";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -101,8 +102,33 @@ export default function Mission() {
         </div>
       </div>
 
+      {/* Lamp header */}
+      <LampContainer>
+        <div style={{ textAlign: "center", padding: "0 24px 48px" }}>
+          <motion.div
+            initial={{ opacity: 0, y: 12 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            style={{ display: "flex", justifyContent: "center", alignItems: "center", gap: "10px", marginBottom: "16px" }}
+          >
+            <div style={{ width: "28px", height: "1px", background: "var(--terracotta)" }} />
+            <span style={{ fontFamily: "var(--font-body)", fontSize: "10px", fontWeight: 600, letterSpacing: "0.16em", textTransform: "uppercase", color: "var(--terracotta)" }}>Our Mission</span>
+            <div style={{ width: "28px", height: "1px", background: "var(--terracotta)" }} />
+          </motion.div>
+          <motion.p
+            initial={{ opacity: 0, y: 16 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ delay: 0.15 }}
+            style={{ fontFamily: "var(--font-body)", fontSize: "clamp(14px, 2vw, 17px)", color: "var(--gray-muted)", maxWidth: "480px", margin: "0 auto" }}
+          >
+            Science-backed guidance for every nutrition question.
+          </motion.p>
+        </div>
+      </LampContainer>
+
       {/* Content below */}
-      <div style={{ maxWidth: "1280px", margin: "0 auto", padding: "80px 48px" }}>
+      <div style={{ maxWidth: "1280px", margin: "0 auto", padding: "40px 48px 80px" }}>
         <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "80px", alignItems: "start" }} className="mission-content">
 
           {/* Left */}

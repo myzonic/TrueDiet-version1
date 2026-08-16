@@ -3,6 +3,8 @@
 import { useRef, useState } from "react";
 import { motion, useInView, useScroll, useTransform } from "framer-motion";
 import { MovingBorder } from "@/components/ui/moving-border";
+import { GlowingEffect } from "@/components/ui/glowing-effect";
+import { SparklesCore } from "@/components/ui/sparkles";
 
 export default function FinalCTA() {
   const ref = useRef<HTMLDivElement>(null);
@@ -34,6 +36,14 @@ export default function FinalCTA() {
         position: "absolute", inset: 0, zIndex: 1, pointerEvents: "none",
         backgroundImage: `url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E")`,
       }} />
+      {/* Sparkles overlay */}
+      <SparklesCore
+        particleDensity={30}
+        particleColor="#fff"
+        minSize={0.4}
+        maxSize={1}
+        className="cta-sparkles"
+      />
 
       {/* Content */}
       <div style={{ position: "relative", zIndex: 2, width: "100%", maxWidth: "800px", margin: "0 auto", padding: "96px 48px", textAlign: "center" }}>
@@ -123,19 +133,21 @@ export default function FinalCTA() {
                 onFocus={e => (e.target as HTMLElement).style.borderColor = "rgba(255,255,255,0.45)"}
                 onBlur={e => (e.target as HTMLElement).style.borderColor = "rgba(255,255,255,0.2)"}
               />
-              <MovingBorder duration={2200}>
-                <button
-                  type="submit"
-                  style={{
-                    padding: "16px 28px", borderRadius: "100px", border: "none",
-                    background: "transparent",
-                    fontFamily: "var(--font-body)", fontSize: "14px", fontWeight: 600,
-                    color: "#fff", cursor: "none", whiteSpace: "nowrap",
-                  }}
-                >
-                  Join the TrueDiet Waitlist
-                </button>
-              </MovingBorder>
+              <GlowingEffect glowColor="var(--orange)">
+                <MovingBorder duration={2200}>
+                  <button
+                    type="submit"
+                    style={{
+                      padding: "16px 28px", borderRadius: "100px", border: "none",
+                      background: "transparent",
+                      fontFamily: "var(--font-body)", fontSize: "14px", fontWeight: 600,
+                      color: "#fff", cursor: "none", whiteSpace: "nowrap",
+                    }}
+                  >
+                    Join the TrueDiet Waitlist
+                  </button>
+                </MovingBorder>
+              </GlowingEffect>
             </form>
           )}
         </motion.div>
