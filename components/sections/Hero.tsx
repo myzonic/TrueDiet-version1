@@ -224,7 +224,7 @@ export default function Hero() {
             animate="visible"
             style={{
               fontFamily: "var(--font-heading)", fontWeight: 800,
-              fontSize: "clamp(44px, 7vw, 110px)",
+              fontSize: "clamp(40px, 6.5vw, 106px)",
               lineHeight: 1.0, letterSpacing: "-3px",
               marginBottom: "36px", maxWidth: "640px",
               textAlign: "left",
