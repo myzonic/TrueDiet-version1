@@ -212,10 +212,19 @@ export default function Hero() {
             style={{ display: "inline-flex", alignItems: "center", gap: "10px", marginBottom: "32px", width: "fit-content" }}
           >
             <div style={{ width: "48px", height: "3px", background: "var(--terracotta)", borderRadius: "3px" }} />
+            {/* Desktop: animated MorphingText */}
             <MorphingText
               texts={["Registered Dietitian", "23 Years Experience", "Evidence-Based", "Science-First"]}
-              className="hero-morphing"
+              className="hero-morphing hero-label-desktop"
             />
+            {/* Mobile: static label, no SVG lag */}
+            <span className="hero-label-mobile" style={{
+              fontFamily: "var(--font-body)", fontSize: "13px", fontWeight: 600,
+              letterSpacing: "0.13em", textTransform: "uppercase", color: "var(--terracotta)",
+              display: "none",
+            }}>
+              Registered Dietitian
+            </span>
           </motion.div>
 
           {/* Headline */}
@@ -367,9 +376,52 @@ export default function Hero() {
         @media (max-width: 768px) {
           .hero-mobile-bg { display: block !important; }
           .hero-img-wrap { display: none !important; }
-          .hero-content > div { padding: 100px 24px 60px !important; min-height: unset !important; }
           .hero-card { display: none !important; }
-          h1 { font-size: clamp(42px, 11vw, 58px) !important; letter-spacing: -1px !important; word-break: keep-all !important; }
+
+          /* Layout */
+          .hero-content > div {
+            padding: 96px 24px 80px !important;
+            min-height: unset !important;
+            justify-content: flex-start !important;
+            padding-top: 110px !important;
+          }
+
+          /* Label row */
+          .hero-content > div > div:first-child {
+            margin-bottom: 20px !important;
+          }
+
+          /* H1 */
+          .hero-content h1 {
+            font-size: clamp(34px, 9.5vw, 52px) !important;
+            letter-spacing: -0.5px !important;
+            line-height: 1.08 !important;
+            margin-bottom: 24px !important;
+            max-width: 100% !important;
+          }
+
+          /* Subline container */
+          .hero-content h1 + div {
+            margin-bottom: 32px !important;
+            max-width: 100% !important;
+          }
+
+          /* Subline paragraph */
+          .hero-content p {
+            font-size: 15px !important;
+            line-height: 1.65 !important;
+          }
+
+          /* Scroll hint */
+          .hero-content > div > div[style*="bottom: 40px"] {
+            display: none !important;
+          }
+
+          /* Label: hide morphing SVG, show static text */
+          .hero-label-desktop { display: none !important; }
+          .hero-label-mobile { display: inline !important; }
+
+          /* Force framer-motion opacity reset */
           .hero-content h1,
           .hero-content h1 span,
           .hero-content p,
