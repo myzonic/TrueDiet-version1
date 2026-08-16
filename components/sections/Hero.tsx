@@ -53,7 +53,7 @@ const charVariant: Variants = {
 
 function SplitLine({ text, startIndex, color }: { text: string; startIndex: number; color?: string }) {
   return (
-    <span style={{ display: "block", overflow: "visible", lineHeight: 1.15, color: color || "var(--charcoal-deep)", textAlign: "left", whiteSpace: "nowrap" }}>
+    <span style={{ display: "block", overflow: "hidden", lineHeight: 1.1, color: color || "var(--charcoal-deep)", textAlign: "left", whiteSpace: "nowrap" }}>
       {text.split("").map((char, i) => (
         <motion.span
           key={i}
@@ -367,17 +367,18 @@ export default function Hero() {
         /* ── Label rotator ── */
         .hero-label-rotator {
           position: relative;
-          height: 18px;
+          height: 20px;
           overflow: visible;
           display: flex;
           align-items: center;
+          min-width: 220px;
         }
         .hero-label-item {
           position: absolute;
           left: 0;
           white-space: nowrap;
           font-family: var(--font-body);
-          font-size: 13px;
+          font-size: 15px;
           font-weight: 600;
           letter-spacing: 0.13em;
           text-transform: uppercase;
@@ -395,11 +396,6 @@ export default function Hero() {
           20%   { opacity: 1; transform: translateY(0); }
           25%   { opacity: 0; transform: translateY(-6px); }
           100%  { opacity: 0; transform: translateY(-6px); }
-        }
-
-        /* ── H1 split lines — never clip ── */
-        .hero-content h1 span[style] {
-          overflow: visible !important;
         }
 
         @media (max-width: 768px) {

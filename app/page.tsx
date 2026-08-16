@@ -2,7 +2,6 @@ import Header from "@/components/Header";
 import CustomCursor from "@/components/CustomCursor";
 import Preloader from "@/components/Preloader";
 import SplashCursor from "@/components/SplashCursor";
-import MobileDock from "@/components/MobileDock";
 import Marquee from "@/components/Marquee";
 import BackToTop from "@/components/BackToTop";
 import SectionDivider from "@/components/SectionDivider";
@@ -57,7 +56,6 @@ export default function Home() {
       </main>
       <Footer />
       <BackToTop />
-      <MobileDock />
     </>
   );
 }
