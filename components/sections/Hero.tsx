@@ -129,7 +129,7 @@ export default function Hero() {
 
   // Show video after 2s on mount (mobile only — CSS hides on desktop)
   useEffect(() => {
-    const t = setTimeout(() => setVideoVisible(true), 3000);
+    const t = setTimeout(() => setVideoVisible(true), 8000);
     return () => clearTimeout(t);
   }, []);
 
