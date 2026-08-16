@@ -3,6 +3,7 @@
 import { useRef } from "react";
 import { motion, useInView, useScroll, useTransform } from "framer-motion";
 import { BackgroundBeams } from "@/components/ui/background-beams";
+import { Ripple } from "@/components/ui/ripple";
 
 const mockScreens = [
   { bg: "var(--charcoal-deep)", delay: 0.15, rotate: -6 },
@@ -183,7 +184,7 @@ export default function AppComingSoon() {
 
   return (
     <section id="app" ref={ref} style={{ background: "var(--off-white)", overflow: "hidden", position: "relative" }}>
-      <BackgroundBeams />
+      <div className="app-beams-desktop"><BackgroundBeams /></div>
       <motion.div
         initial={{ scaleX: 0 }}
         animate={inView ? { scaleX: 1 } : {}}
@@ -214,7 +215,8 @@ export default function AppComingSoon() {
             </div>
 
             {/* Mobile phone mockup */}
-            <div className="app-screens-mobile" style={{ display: "none" }}>
+            <div className="app-screens-mobile" style={{ display: "none", position: "relative" }}>
+              <Ripple color="rgba(0,80,96,0.15)" count={4} size={180} />
               <PhoneMockup inView={inView} />
             </div>
           </motion.div>
@@ -293,6 +295,7 @@ export default function AppComingSoon() {
           .app-grid { grid-template-columns: 1fr !important; gap: 48px !important; }
           .app-screens-desktop { display: none !important; }
           .app-screens-mobile { display: block !important; }
+          .app-beams-desktop { display: none !important; }
         }
       `}</style>
     </section>

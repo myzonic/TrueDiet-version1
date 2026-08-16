@@ -2,42 +2,96 @@
 
 import { useRef, useEffect, useState } from "react";
 import { motion, useInView } from "framer-motion";
-import { useGSAP } from "@gsap/react";
-import gsap from "gsap";
-import { ScrollTrigger } from "gsap/ScrollTrigger";
 
-gsap.registerPlugin(ScrollTrigger);
-
-const stats = [
-  { value: 23, suffix: "+", label: "Years as Registered Dietitian" },
-  { value: 500, suffix: "+", label: "Clients Helped" },
-  { value: 100, suffix: "%", label: "Evidence-Based" },
-  { value: 0, suffix: "", label: "Gimmicks. Ever." },
-];
-
-function StatCounter({ value, suffix, label, delay }: { value: number; suffix: string; label: string; delay: number }) {
+function CountUp({ target, suffix = "" }: { target: number; suffix?: string }) {
   const [count, setCount] = useState(0);
-  const ref = useRef<HTMLDivElement>(null);
-  const inView = useInView(ref, { once: true, margin: "-60px" });
+  const ref = useRef<HTMLSpanElement>(null);
+  const inView = useInView(ref, { once: true });
 
   useEffect(() => {
-    if (!inView || value === 0) { if (value === 0) setCount(0); return; }
+    if (!inView || target === 0) { setCount(0); return; }
     let start = 0;
     const duration = 1800;
     const step = (ts: number) => {
       if (!start) start = ts;
       const p = Math.min((ts - start) / duration, 1);
-      const eased = 1 - Math.pow(1 - p, 3);
-      setCount(Math.floor(eased * value));
+      setCount(Math.floor((1 - Math.pow(1 - p, 3)) * target));
       if (p < 1) requestAnimationFrame(step);
-      else setCount(value);
+      else setCount(target);
     };
     requestAnimationFrame(step);
-  }, [inView, value]);
+  }, [inView, target]);
+
+  return <span ref={ref}>{count}{suffix}</span>;
+}
+
+function RadialProgress({ pct, label, color = "var(--orange)", size = 120 }: {
+  pct: number; label: string; color?: string; size?: number;
+}) {
+  const ref = useRef<SVGCircleElement>(null);
+  const inView = useInView(ref as any, { once: true });
+  const r = 46;
+  const circ = 2 * Math.PI * r;
+  const dash = circ * (pct / 100);
 
   return (
     <motion.div
-      ref={ref}
+      initial={{ opacity: 0, y: 24 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true, margin: "-60px" }}
+      transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
+      style={{ display: "flex", flexDirection: "column", alignItems: "center", gap: "14px", flex: "1 1 180px" }}
+    >
+      <div style={{ position: "relative", width: size, height: size }}>
+        <svg width={size} height={size} viewBox="0 0 100 100">
+          <circle
+            cx="50" cy="50" r={r}
+            stroke="rgba(255,255,255,0.07)"
+            strokeWidth="7" fill="none"
+          />
+          <motion.circle
+            ref={ref}
+            cx="50" cy="50" r={r}
+            stroke={color}
+            strokeWidth="7" fill="none"
+            strokeLinecap="round"
+            strokeDasharray={circ}
+            initial={{ strokeDashoffset: circ }}
+            animate={inView ? { strokeDashoffset: circ - dash } : {}}
+            transition={{ duration: 1.8, ease: [0.22, 1, 0.36, 1], delay: 0.3 }}
+            transform="rotate(-90 50 50)"
+          />
+        </svg>
+        <div style={{
+          position: "absolute", inset: 0,
+          display: "flex", flexDirection: "column",
+          alignItems: "center", justifyContent: "center",
+        }}>
+          <span style={{
+            fontFamily: "var(--font-heading)", fontWeight: 800,
+            fontSize: "26px", lineHeight: 1, color: "#fff",
+            letterSpacing: "-1px",
+          }}>
+            {pct}{pct < 100 ? "%" : "%"}
+          </span>
+        </div>
+      </div>
+      <p style={{
+        fontFamily: "var(--font-body)", fontSize: "12px",
+        fontWeight: 500, letterSpacing: "0.08em",
+        color: "rgba(255,255,255,0.4)",
+        textTransform: "uppercase", textAlign: "center",
+        maxWidth: "120px",
+      }}>
+        {label}
+      </p>
+    </motion.div>
+  );
+}
+
+function StatCounter({ value, suffix, label, delay }: { value: number; suffix: string; label: string; delay: number }) {
+  return (
+    <motion.div
       initial={{ opacity: 0, y: 32 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, margin: "-60px" }}
@@ -50,7 +104,7 @@ function StatCounter({ value, suffix, label, delay }: { value: number; suffix: s
         letterSpacing: "-2px", color: "#fff",
         fontVariantNumeric: "tabular-nums",
       }}>
-        {count}{suffix}
+        <CountUp target={value} suffix={suffix} />
       </div>
       <p style={{
         fontFamily: "var(--font-body)", fontSize: "13px",
@@ -65,22 +119,8 @@ function StatCounter({ value, suffix, label, delay }: { value: number; suffix: s
 }
 
 export default function StatsStrip() {
-  const sectionRef = useRef<HTMLDivElement>(null);
-
-  useGSAP(() => {
-    if (!sectionRef.current) return;
-    const dividers = sectionRef.current.querySelectorAll(".stat-divider");
-    gsap.fromTo(dividers,
-      { scaleY: 0 },
-      {
-        scaleY: 1, stagger: 0.15, duration: 0.8, ease: "power3.out",
-        scrollTrigger: { trigger: sectionRef.current, start: "top 70%" },
-      }
-    );
-  }, { scope: sectionRef });
-
   return (
-    <section ref={sectionRef} style={{
+    <section style={{
       background: "var(--charcoal-deep)",
       padding: "80px 48px", overflow: "hidden", position: "relative",
     }}>
@@ -96,21 +136,22 @@ export default function StatsStrip() {
         display: "flex", alignItems: "center", justifyContent: "center",
         gap: "0", flexWrap: "wrap",
       }} className="stats-inner">
-        {stats.map((s, i) => (
-          <div key={i} style={{ display: "flex", alignItems: "center", flex: "1 1 180px" }}>
-            <StatCounter value={s.value} suffix={s.suffix} label={s.label} delay={i * 0.08} />
-            {i < stats.length - 1 && (
-              <div
-                className="stat-divider"
-                style={{
-                  width: "1px", height: "60px", flexShrink: 0,
-                  background: "rgba(255,255,255,0.1)",
-                  transformOrigin: "center", transform: "scaleY(0)",
-                }}
-              />
-            )}
-          </div>
-        ))}
+
+        {/* Number counters */}
+        <div style={{ display: "flex", alignItems: "center", flex: "1 1 180px" }}>
+          <StatCounter value={23} suffix="+" label="Years as Registered Dietitian" delay={0} />
+          <div className="stat-divider" style={{ width: "1px", height: "60px", flexShrink: 0, background: "rgba(255,255,255,0.1)" }} />
+        </div>
+
+        <div style={{ display: "flex", alignItems: "center", flex: "1 1 180px" }}>
+          <StatCounter value={500} suffix="+" label="Clients Helped" delay={0.08} />
+          <div className="stat-divider" style={{ width: "1px", height: "60px", flexShrink: 0, background: "rgba(255,255,255,0.1)" }} />
+        </div>
+
+        {/* Radial progress rings */}
+        <RadialProgress pct={100} label="Evidence-Based" color="var(--orange)" />
+        <div className="stat-divider" style={{ width: "1px", height: "60px", flexShrink: 0, background: "rgba(255,255,255,0.1)", alignSelf: "center" }} />
+        <RadialProgress pct={0} label="Gimmicks. Ever." color="var(--terracotta)" />
       </div>
 
       <style>{`

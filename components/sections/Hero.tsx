@@ -369,7 +369,7 @@ export default function Hero() {
           .hero-img-wrap { display: none !important; }
           .hero-content > div { padding: 100px 24px 60px !important; min-height: unset !important; }
           .hero-card { display: none !important; }
-          h1 { font-size: clamp(28px, 8vw, 48px) !important; letter-spacing: -0.5px !important; word-break: keep-all !important; }
+          h1 { font-size: clamp(42px, 11vw, 58px) !important; letter-spacing: -1px !important; word-break: keep-all !important; }
           .hero-content h1,
           .hero-content h1 span,
           .hero-content p,

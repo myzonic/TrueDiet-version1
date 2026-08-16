@@ -6,6 +6,8 @@ import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { LampContainer } from "@/components/ui/lamp";
+import { AnimatedBeam } from "@/components/ui/animated-beam";
+import { Aurora } from "@/components/ui/aurora";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -14,6 +16,40 @@ const truths = [
   { num: "02", text: "Evidence over influencers." },
   { num: "03", text: "Facts over misinformation." },
   { num: "04", text: "Realistic nutrition over quick fixes." },
+];
+
+const beamNodes = [
+  {
+    label: "Information Overload",
+    sub: "Trends · Fads · Noise",
+    icon: (
+      <svg width="22" height="22" viewBox="0 0 22 22" fill="none">
+        <circle cx="11" cy="11" r="9" stroke="var(--gray-muted)" strokeWidth="1.4"/>
+        <path d="M11 7v5l3 2" stroke="var(--gray-muted)" strokeWidth="1.4" strokeLinecap="round"/>
+      </svg>
+    ),
+  },
+  {
+    label: "TrueDiet",
+    sub: "Evidence-Based Filter",
+    highlight: true,
+    icon: (
+      <svg width="22" height="22" viewBox="0 0 22 22" fill="none">
+        <circle cx="11" cy="11" r="9" stroke="#fff" strokeWidth="1.4"/>
+        <path d="M7 11l3 3 5-5" stroke="var(--orange)" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"/>
+      </svg>
+    ),
+  },
+  {
+    label: "Clarity",
+    sub: "Trusted · Actionable",
+    icon: (
+      <svg width="22" height="22" viewBox="0 0 22 22" fill="none">
+        <circle cx="11" cy="11" r="9" stroke="var(--terracotta)" strokeWidth="1.4"/>
+        <path d="M8 11l2 2 4-4" stroke="var(--terracotta)" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round"/>
+      </svg>
+    ),
+  },
 ];
 
 export default function Mission() {
@@ -27,33 +63,23 @@ export default function Mission() {
   useGSAP(() => {
     if (!imageWrapRef.current || !headlineRef.current) return;
 
-    // Clip-path reveal on image
     gsap.fromTo(imageWrapRef.current,
       { clipPath: "inset(0 100% 0 0)" },
       {
         clipPath: "inset(0 0% 0 0)",
         duration: 1.2,
         ease: "power4.out",
-        scrollTrigger: {
-          trigger: imageWrapRef.current,
-          start: "top 80%",
-        },
+        scrollTrigger: { trigger: imageWrapRef.current, start: "top 80%" },
       }
     );
 
-    // Headline word-by-word stagger
     const words = headlineRef.current.querySelectorAll<HTMLSpanElement>(".word");
     gsap.fromTo(words,
       { yPercent: 110, opacity: 0 },
       {
         yPercent: 0, opacity: 1,
-        stagger: 0.07,
-        duration: 0.75,
-        ease: "power3.out",
-        scrollTrigger: {
-          trigger: headlineRef.current,
-          start: "top 80%",
-        },
+        stagger: 0.07, duration: 0.75, ease: "power3.out",
+        scrollTrigger: { trigger: headlineRef.current, start: "top 80%" },
       }
     );
   }, { scope: sectionRef });
@@ -63,7 +89,7 @@ export default function Mission() {
   return (
     <section id="mission" ref={sectionRef} style={{ background: "var(--off-white)", overflow: "hidden" }}>
 
-      {/* Full-width image reveal */}
+      {/* Full-width image reveal with Aurora */}
       <div style={{ position: "relative", height: "60vh", overflow: "hidden" }}>
         <div ref={imageWrapRef} style={{ position: "absolute", inset: 0 }}>
           <motion.img
@@ -127,8 +153,8 @@ export default function Mission() {
         </div>
       </LampContainer>
 
-      {/* Content below */}
-      <div style={{ maxWidth: "1280px", margin: "0 auto", padding: "40px 48px 80px" }}>
+      {/* Content */}
+      <div style={{ maxWidth: "1280px", margin: "0 auto", padding: "40px 48px 60px" }}>
         <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "80px", alignItems: "start" }} className="mission-content">
 
           {/* Left */}
@@ -163,7 +189,7 @@ export default function Mission() {
             </motion.div>
           </div>
 
-          {/* Right — numbered list with GSAP hover lines */}
+          {/* Right — numbered list */}
           <div style={{ display: "flex", flexDirection: "column" }}>
             {truths.map((item, i) => (
               <motion.div
@@ -179,27 +205,46 @@ export default function Mission() {
                   cursor: "default",
                 }}
               >
-                <span style={{
-                  fontFamily: "var(--font-heading)", fontWeight: 300, fontSize: "12px",
-                  color: "var(--terracotta)", letterSpacing: "0.04em", flexShrink: 0,
-                }}>
+                <span style={{ fontFamily: "var(--font-heading)", fontWeight: 300, fontSize: "12px", color: "var(--terracotta)", letterSpacing: "0.04em", flexShrink: 0 }}>
                   {item.num}
                 </span>
-                <span style={{
-                  fontFamily: "var(--font-heading)", fontWeight: 700,
-                  fontSize: "clamp(16px, 1.8vw, 22px)", color: "var(--charcoal-deep)", lineHeight: 1.2,
-                }}>
+                <span style={{ fontFamily: "var(--font-heading)", fontWeight: 700, fontSize: "clamp(16px, 1.8vw, 22px)", color: "var(--charcoal-deep)", lineHeight: 1.2 }}>
                   {item.text}
                 </span>
               </motion.div>
             ))}
           </div>
         </div>
+
+        {/* Animated Beam — full width below content */}
+        <motion.div
+          initial={{ opacity: 0, y: 32 }}
+          animate={inView ? { opacity: 1, y: 0 } : {}}
+          transition={{ duration: 0.8, delay: 0.6 }}
+          style={{
+            marginTop: "64px",
+            background: "var(--white)",
+            borderRadius: "24px",
+            border: "1px solid var(--border)",
+            padding: "40px 48px",
+          }}
+          className="beam-section"
+        >
+          <p style={{
+            fontFamily: "var(--font-body)", fontSize: "10px", fontWeight: 600,
+            letterSpacing: "0.16em", textTransform: "uppercase", color: "var(--terracotta)",
+            marginBottom: "32px", textAlign: "center",
+          }}>
+            How TrueDiet Works
+          </p>
+          <AnimatedBeam nodes={beamNodes} />
+        </motion.div>
       </div>
 
       <style>{`
         @media (max-width: 768px) {
           .mission-content { grid-template-columns: 1fr !important; gap: 40px !important; }
+          .beam-section { padding: 28px 20px !important; }
         }
       `}</style>
     </section>

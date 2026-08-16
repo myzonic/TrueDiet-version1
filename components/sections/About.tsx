@@ -4,6 +4,14 @@ import { useRef } from "react";
 import { motion, useInView, useScroll, useTransform } from "framer-motion";
 import { AnimatedTooltip } from "@/components/ui/animated-tooltip";
 import { OrbitingCircles } from "@/components/ui/orbiting-circles";
+import { HyperText } from "@/components/ui/hyper-text";
+
+const timeline = [
+  { year: "2001", title: "Registered Dietitian", desc: "Began clinical practice after completing her dietetics degree and RD credential." },
+  { year: "2008", title: "Medical Nutrition Therapy", desc: "Specialised in MNT — working with complex medical conditions through targeted nutrition intervention." },
+  { year: "2015", title: "Digital Education", desc: "Expanded reach to online nutrition education, helping people navigate an increasingly noisy information landscape." },
+  { year: "2024", title: "TrueDiet Founded", desc: "Created TrueDiet as a dedicated evidence-based platform to make credible nutrition accessible to everyone." },
+];
 
 const credBadges = [
   { id: 1, name: "Registered Dietitian", designation: "Fully credentialed & qualified", initials: "RD" },
@@ -74,9 +82,10 @@ export default function About() {
           >
             <div style={{ display: "flex", alignItems: "center", gap: "10px", marginBottom: "8px" }}>
               <div style={{ width: "24px", height: "1px", background: "var(--terracotta)" }} />
-              <span style={{ fontFamily: "var(--font-body)", fontSize: "10px", fontWeight: 600, letterSpacing: "0.14em", textTransform: "uppercase", color: "var(--terracotta)" }}>
-                About
-              </span>
+              <HyperText
+                text="About"
+                style={{ fontFamily: "var(--font-body)", fontSize: "10px", fontWeight: 600, letterSpacing: "0.14em", textTransform: "uppercase", color: "var(--terracotta)" }}
+              />
             </div>
             <p style={{ fontFamily: "var(--font-body)", fontSize: "12px", color: "var(--gray-muted)", lineHeight: 1.6 }}>
               Maureen Ashbarry<br />Registered Dietitian
@@ -217,6 +226,67 @@ export default function About() {
             </motion.div>
           </motion.div>
         </div>
+      </div>
+
+      {/* Career Timeline */}
+      <div style={{ maxWidth: "1280px", margin: "0 auto", padding: "0 48px 96px" }}>
+        <motion.div
+          initial={{ opacity: 0, y: 24 }}
+          animate={inView ? { opacity: 1, y: 0 } : {}}
+          transition={{ duration: 0.6, delay: 1.1 }}
+        >
+          <div style={{ display: "flex", alignItems: "center", gap: "10px", marginBottom: "40px" }}>
+            <div style={{ width: "28px", height: "1px", background: "var(--terracotta)" }} />
+            <HyperText
+              text="Career Milestones"
+              style={{ fontFamily: "var(--font-body)", fontSize: "10px", fontWeight: 600, letterSpacing: "0.16em", textTransform: "uppercase", color: "var(--terracotta)" }}
+            />
+          </div>
+
+          <div style={{ position: "relative" }}>
+            {/* Vertical line */}
+            <div style={{
+              position: "absolute", left: "64px", top: "8px", bottom: "8px",
+              width: "1px", background: "var(--border)",
+            }} />
+
+            {timeline.map((item, i) => (
+              <motion.div
+                key={item.year}
+                initial={{ opacity: 0, x: -20 }}
+                animate={inView ? { opacity: 1, x: 0 } : {}}
+                transition={{ duration: 0.6, delay: 1.2 + i * 0.1, ease: [0.22, 1, 0.36, 1] }}
+                style={{ display: "flex", gap: "32px", alignItems: "flex-start", marginBottom: i < timeline.length - 1 ? "32px" : "0", position: "relative" }}
+              >
+                {/* Year label */}
+                <div style={{ width: "48px", flexShrink: 0, paddingTop: "2px" }}>
+                  <span style={{ fontFamily: "var(--font-heading)", fontWeight: 700, fontSize: "12px", color: "var(--terracotta)", letterSpacing: "0.04em" }}>
+                    {item.year}
+                  </span>
+                </div>
+
+                {/* Dot */}
+                <div style={{
+                  width: "12px", height: "12px", borderRadius: "50%",
+                  background: i === timeline.length - 1 ? "var(--orange)" : "var(--charcoal-deep)",
+                  border: "2px solid var(--white)",
+                  boxShadow: i === timeline.length - 1 ? "0 0 0 3px rgba(240,128,0,0.2)" : "0 0 0 2px var(--border)",
+                  flexShrink: 0, marginTop: "4px",
+                }} />
+
+                {/* Content */}
+                <div style={{ flex: 1 }}>
+                  <p style={{ fontFamily: "var(--font-heading)", fontWeight: 700, fontSize: "15px", color: "var(--charcoal-deep)", marginBottom: "4px" }}>
+                    {item.title}
+                  </p>
+                  <p style={{ fontFamily: "var(--font-body)", fontSize: "13px", lineHeight: 1.6, color: "var(--gray-muted)" }}>
+                    {item.desc}
+                  </p>
+                </div>
+              </motion.div>
+            ))}
+          </div>
+        </motion.div>
       </div>
 
       <style>{`
