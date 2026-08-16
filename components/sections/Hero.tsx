@@ -1,6 +1,6 @@
 "use client";
 
-import { useRef, useState } from "react";
+import { useRef, useState, useEffect } from "react";
 import { motion, useScroll, useTransform, type Variants } from "framer-motion";
 
 // Rotating cursor follower label shown on hero image hover
@@ -125,6 +125,13 @@ export default function Hero() {
 
   const [cursorVisible, setCursorVisible] = useState(false);
   const [cursorPos, setCursorPos] = useState({ x: 0, y: 0 });
+  const [videoVisible, setVideoVisible] = useState(false);
+
+  // Show video after 2s on mount (mobile only — CSS hides on desktop)
+  useEffect(() => {
+    const t = setTimeout(() => setVideoVisible(true), 2000);
+    return () => clearTimeout(t);
+  }, []);
 
   const handleImageMouseMove = (e: React.MouseEvent) => {
     setCursorPos({ x: e.clientX, y: e.clientY });
@@ -299,8 +306,9 @@ export default function Hero() {
         </div>
       </motion.div>
 
-      {/* Mobile-only background image */}
+      {/* Mobile-only background image + video */}
       <div className="hero-mobile-bg" style={{ display: "none" }}>
+        {/* Static image — always visible */}
         <img
           src="/hero-mobile.jpg"
           alt=""
@@ -309,12 +317,30 @@ export default function Hero() {
             position: "absolute", inset: 0,
             width: "100%", height: "100%",
             objectFit: "cover", objectPosition: "center right",
-            opacity: 0.4,
-            zIndex: 0,
+            opacity: 0.4, zIndex: 0,
+            transition: "opacity 0.8s ease",
+            ...(videoVisible ? { opacity: 0.15 } : {}),
+          }}
+        />
+        {/* Video — fades in after 2s */}
+        <motion.video
+          src="/hero-mobile.mp4"
+          autoPlay
+          muted
+          loop
+          playsInline
+          initial={{ opacity: 0 }}
+          animate={{ opacity: videoVisible ? 0.55 : 0 }}
+          transition={{ duration: 1.2, ease: "easeInOut" }}
+          style={{
+            position: "absolute", inset: 0,
+            width: "100%", height: "100%",
+            objectFit: "cover", objectPosition: "center",
+            zIndex: 1,
           }}
         />
         <div style={{
-          position: "absolute", inset: 0, zIndex: 1,
+          position: "absolute", inset: 0, zIndex: 2,
           background: "linear-gradient(180deg, rgba(255,255,255,0.55) 0%, rgba(255,255,255,0.2) 50%, rgba(255,255,255,0.7) 100%)",
         }} />
       </div>
