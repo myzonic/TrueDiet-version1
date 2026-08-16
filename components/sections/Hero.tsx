@@ -330,7 +330,7 @@ export default function Hero() {
           loop
           playsInline
           initial={{ opacity: 0 }}
-          animate={{ opacity: videoVisible ? 0.55 : 0 }}
+          animate={{ opacity: videoVisible ? 0.28 : 0 }}
           transition={{ duration: 1.2, ease: "easeInOut" }}
           style={{
             position: "absolute", inset: 0,
@@ -341,7 +341,7 @@ export default function Hero() {
         />
         <div style={{
           position: "absolute", inset: 0, zIndex: 2,
-          background: "linear-gradient(180deg, rgba(255,255,255,0.55) 0%, rgba(255,255,255,0.2) 50%, rgba(255,255,255,0.7) 100%)",
+          background: "linear-gradient(180deg, rgba(255,255,255,0.82) 0%, rgba(255,255,255,0.6) 40%, rgba(255,255,255,0.75) 100%)",
         }} />
       </div>
 
