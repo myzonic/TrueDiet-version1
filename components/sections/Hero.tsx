@@ -240,7 +240,7 @@ export default function Hero() {
             }}
           >
             <SplitLine text="Real Nutrition." startIndex={0} />
-            <SplitLine text="Real Science." startIndex={16} />
+            <SplitLine text="Real Science." startIndex={16} color="var(--terracotta)" />
             <SplitLine text="Real Results." startIndex={30} color="var(--orange)" />
           </motion.h1>
 
