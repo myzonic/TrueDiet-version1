@@ -429,8 +429,7 @@ export default function Hero() {
           .hero-content h1,
           .hero-content h1 span,
           .hero-content p,
-          .hero-content a,
-          .hero-content span {
+          .hero-content a {
             opacity: 1 !important;
           }
         }
