@@ -317,7 +317,7 @@ export default function Hero() {
             position: "absolute", inset: 0,
             width: "100%", height: "100%",
             objectFit: "cover", objectPosition: "center right",
-            opacity: 0.4, zIndex: 0,
+            opacity: 0.5, zIndex: 0,
           }}
         />
         {/* Video — fades in after 2s */}
@@ -328,7 +328,7 @@ export default function Hero() {
           loop
           playsInline
           initial={{ opacity: 0 }}
-          animate={{ opacity: videoVisible ? 0.4 : 0 }}
+          animate={{ opacity: videoVisible ? 0.5 : 0 }}
           transition={{ duration: 1.2, ease: "easeInOut" }}
           style={{
             position: "absolute", inset: 0,
