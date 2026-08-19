@@ -165,7 +165,7 @@ export default function AppPage() {
               }}>
                 App Philosophy
               </h3>
-              <ul style={{ listStyle: "none", padding: 0, margin: 0, maxWidth: "600px", margin: "0 auto" }}>
+              <ul style={{ listStyle: "none", padding: 0, margin: "0 auto", maxWidth: "600px" }}>
                 {["No gimmicks.", "No miracle promises.", "No supplement sponsorships driving recommendations.", "No nutrition fearmongering.", "Just evidence based nutrition."].map((item, i) => (
                   <li key={i} style={{
                     fontFamily: "var(--font-body)", fontSize: "16px", lineHeight: 2,
