@@ -48,14 +48,14 @@ export default function NutritionTabs({ topics }: NutritionTabsProps) {
               position: "relative",
             }}
             onMouseEnter={(e) => {
-              e.currentTarget.style.color = "var(--charcoal-deep)";
+              if ((e.currentTarget as HTMLButtonElement).getAttribute("data-state") !== "active") {
+                (e.currentTarget as HTMLButtonElement).style.color = "var(--charcoal-deep)";
+              }
             }}
             onMouseLeave={(e) => {
-              e.currentTarget.style.color = "var(--gray-muted)";
-            }}
-            _selected={{
-              color: "var(--charcoal-deep)",
-              borderBottomColor: "var(--orange)",
+              if ((e.currentTarget as HTMLButtonElement).getAttribute("data-state") !== "active") {
+                (e.currentTarget as HTMLButtonElement).style.color = "var(--gray-muted)";
+              }
             }}
           >
             {topic.title}
@@ -134,14 +134,14 @@ export default function NutritionTabs({ topics }: NutritionTabsProps) {
       ))}
 
       <style>{`
+        [role="tab"][data-state="active"] {
+          color: var(--charcoal-deep) !important;
+          border-bottom-color: var(--orange) !important;
+        }
         @media (max-width: 768px) {
           .nutrition-tab-content {
             grid-template-columns: 1fr !important;
             gap: 32px !important;
-          }
-          [data-state="active"] {
-            color: var(--charcoal-deep) !important;
-            border-bottom-color: var(--orange) !important;
           }
         }
       `}</style>
