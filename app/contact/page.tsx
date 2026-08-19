@@ -5,24 +5,29 @@ import { motion } from "framer-motion";
 import Header from "@/components/Header";
 import PageHero from "@/components/PageHero";
 import SocialLinks from "@/components/SocialLinks";
+import { ToastNotification, useToast } from "@/components/ToastNotification";
 import Footer from "@/components/sections/Footer";
 
 export default function ContactPage() {
   const [formData, setFormData] = useState({ firstName: "", lastName: "", email: "", subject: "", message: "" });
   const [submitted, setSubmitted] = useState(false);
+  const { toast, showToast, setToast } = useToast();
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    setSubmitted(true);
-    setTimeout(() => {
-      setFormData({ firstName: "", lastName: "", email: "", subject: "", message: "" });
-      setSubmitted(false);
-    }, 3000);
+    showToast("Message sent successfully! We'll get back to you soon.", "success");
+    setFormData({ firstName: "", lastName: "", email: "", subject: "", message: "" });
   };
 
   return (
     <>
       <Header />
+      <ToastNotification
+        message={toast?.message || ""}
+        type={toast?.type || "success"}
+        isOpen={!!toast}
+        onClose={() => setToast(null)}
+      />
       <main>
         <PageHero
           eyebrow="Get in Touch"
@@ -46,26 +51,7 @@ export default function ContactPage() {
                 }}>
                   Send us a Message
                 </h2>
-                {submitted ? (
-                  <div style={{
-                    background: "rgba(96,144,0,0.1)", borderRadius: "12px", padding: "32px",
-                    border: "1px solid rgba(96,144,0,0.3)", textAlign: "center",
-                  }}>
-                    <p style={{
-                      fontFamily: "var(--font-heading)", fontWeight: 700, fontSize: "18px",
-                      color: "var(--terracotta)", marginBottom: "12px",
-                    }}>
-                      Thank You!
-                    </p>
-                    <p style={{
-                      fontFamily: "var(--font-body)", fontSize: "14px", lineHeight: 1.6,
-                      color: "var(--gray-muted)",
-                    }}>
-                      We've received your message and will get back to you as soon as possible.
-                    </p>
-                  </div>
-                ) : (
-                  <form onSubmit={handleSubmit} style={{ display: "grid", gap: "24px" }}>
+                <form onSubmit={handleSubmit} style={{ display: "grid", gap: "24px" }}>
                     <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "16px" }}>
                       <input
                         type="text"
@@ -151,7 +137,6 @@ export default function ContactPage() {
                       Send Message
                     </button>
                   </form>
-                )}
               </motion.div>
 
               {/* Contact Info */}

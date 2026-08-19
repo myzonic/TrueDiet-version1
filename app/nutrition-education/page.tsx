@@ -3,6 +3,7 @@
 import { motion } from "framer-motion";
 import Header from "@/components/Header";
 import PageHero from "@/components/PageHero";
+import NutritionTabs from "@/components/NutritionTabs";
 import Footer from "@/components/sections/Footer";
 import { ShimmerButton } from "@/components/ui/shimmer-button";
 
@@ -119,7 +120,7 @@ export default function NutritionEducationPage() {
               </div>
             </motion.div>
 
-            {/* Topics */}
+            {/* Topics with Tabs */}
             <div style={{ marginBottom: "80px" }}>
               <h3 style={{
                 fontFamily: "var(--font-heading)", fontWeight: 800, fontSize: "32px",
@@ -127,52 +128,7 @@ export default function NutritionEducationPage() {
               }}>
                 Explore Nutrition Topics
               </h3>
-              <div style={{
-                display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(320px, 1fr))", gap: "32px",
-              }}>
-                {topics.map((topic, i) => (
-                  <motion.div
-                    key={i}
-                    initial={{ opacity: 0, y: 20 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ duration: 0.5, delay: i * 0.08 }}
-                    style={{
-                      background: "var(--white)", borderRadius: "16px",
-                      border: "1px solid var(--border)", overflow: "hidden",
-                      boxShadow: "0 4px 12px rgba(0,80,96,0.08)",
-                    }}
-                  >
-                    <img
-                      src={topic.image}
-                      alt={topic.title}
-                      style={{
-                        width: "100%", height: "200px", objectFit: "cover",
-                      }}
-                    />
-                    <div style={{ padding: "24px" }}>
-                      <h4 style={{
-                        fontFamily: "var(--font-heading)", fontWeight: 700, fontSize: "18px",
-                        color: "var(--charcoal-deep)", marginBottom: "12px",
-                      }}>
-                        {topic.title}
-                      </h4>
-                      <p style={{
-                        fontFamily: "var(--font-body)", fontSize: "13px", lineHeight: 1.6,
-                        color: "var(--gray-muted)", marginBottom: "12px",
-                      }}>
-                        {topic.desc}
-                      </p>
-                      <p style={{
-                        fontFamily: "var(--font-body)", fontSize: "13px", lineHeight: 1.6,
-                        color: "var(--charcoal)",
-                      }}>
-                        {topic.cta}
-                      </p>
-                    </div>
-                  </motion.div>
-                ))}
-              </div>
+              <NutritionTabs topics={topics.map((t, i) => ({ id: String(i), ...t }))} />
             </div>
 
             {/* Approach */}
