@@ -5,11 +5,11 @@ import { motion, AnimatePresence } from "framer-motion";
 import { Drawer } from "vaul";
 
 const navLinks = [
-  { label: "Home", href: "#home" },
-  { label: "About Maureen", href: "#about" },
-  { label: "Nutrition", href: "#nutrition" },
-  { label: "Resources", href: "#resources" },
-  { label: "Contact", href: "#contact" },
+  { label: "Home", href: "/" },
+  { label: "About Maureen", href: "/about" },
+  { label: "Nutrition Education", href: "/nutrition-education" },
+  { label: "Resources", href: "/resources" },
+  { label: "Contact", href: "/contact" },
 ];
 
 export default function Header() {
