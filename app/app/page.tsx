@@ -19,6 +19,22 @@ export default function AppPage() {
 
         <section style={{ background: "var(--white)", padding: "80px 48px" }}>
           <div style={{ maxWidth: "1280px", margin: "0 auto" }}>
+            {/* App mockup image */}
+            <div style={{ marginBottom: "80px", textAlign: "center" }}>
+              <motion.img
+                initial={{ opacity: 0, scale: 0.95 }}
+                animate={{ opacity: 1, scale: 1 }}
+                transition={{ duration: 0.8 }}
+                src="https://images.unsplash.com/photo-1512941691920-25bda36dc643?w=600&q=90&auto=format"
+                alt="TrueDiet App"
+                style={{
+                  maxWidth: "400px", height: "500px", objectFit: "cover",
+                  borderRadius: "24px", boxShadow: "0 20px 60px rgba(0,80,96,0.2)",
+                  margin: "0 auto",
+                }}
+              />
+            </div>
+
             {/* Why TrueDiet */}
             <motion.div
               initial={{ opacity: 0, y: 20 }}

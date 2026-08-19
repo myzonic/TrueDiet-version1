@@ -12,30 +12,35 @@ export default function ResourcesPage() {
       subtitle: "A Practical Starting Point for Better Nutrition",
       desc: "Explore an evidence based framework designed to help you build nutritious eating habits while focusing on sustainable choices.",
       status: "Coming with the TrueDiet App",
+      image: "https://images.unsplash.com/photo-1546069901-ba9599a7e63c?w=500&q=90&auto=format",
     },
     {
       title: "Label Reading Framework",
       subtitle: "Decode Any Nutrition Label in 60 Seconds",
       desc: "Learn how to move beyond front of package marketing and understand the information that actually matters on a nutrition label.",
       status: "Coming with the TrueDiet App",
+      image: "https://images.unsplash.com/photo-1585518419759-14b5cfe4c173?w=500&q=90&auto=format",
     },
     {
       title: "Hunger Fullness Scale",
       subtitle: "Reconnect With Your Body's Signals",
       desc: "A practical tool designed to help you understand hunger and fullness cues and develop a more mindful approach to eating.",
       status: "Coming with the TrueDiet App",
+      image: "https://images.unsplash.com/photo-1490645935967-10de6ba17061?w=500&q=90&auto=format",
     },
     {
       title: "Nutrition Myths, Debunked",
       subtitle: "Top 12 Nutrition Myths: What Does the Science Actually Say?",
       desc: "From detox products to 'clean eating,' explore common nutrition claims and learn how to evaluate them critically.",
       status: "Coming with the TrueDiet App",
+      image: "https://images.unsplash.com/photo-1516534775068-bb57e5a928f0?w=500&q=90&auto=format",
     },
     {
       title: "Supplements Deep Dive",
       subtitle: "What Does Your Body Actually Need?",
       desc: "Explore the evidence behind common supplements and learn how to distinguish useful information from marketing hype.",
       status: "Coming with the TrueDiet App",
+      image: "https://images.unsplash.com/photo-1505344565106-52b80b8b6195?w=500&q=90&auto=format",
     },
   ];
 
@@ -94,38 +99,48 @@ export default function ResourcesPage() {
                   viewport={{ once: true }}
                   transition={{ duration: 0.5, delay: i * 0.08 }}
                   style={{
-                    background: "var(--off-white)", padding: "32px", borderRadius: "16px",
+                    background: "var(--white)", borderRadius: "16px",
                     border: "1px solid var(--border)", display: "flex", flexDirection: "column",
+                    overflow: "hidden", boxShadow: "0 4px 12px rgba(0,80,96,0.08)",
                   }}
                 >
-                  <h3 style={{
-                    fontFamily: "var(--font-heading)", fontWeight: 700, fontSize: "20px",
-                    color: "var(--charcoal-deep)", marginBottom: "8px",
-                  }}>
-                    {res.title}
-                  </h3>
-                  <p style={{
-                    fontFamily: "var(--font-body)", fontSize: "14px", lineHeight: 1.6,
-                    color: "var(--terracotta)", fontWeight: 600, marginBottom: "12px",
-                  }}>
-                    {res.subtitle}
-                  </p>
-                  <p style={{
-                    fontFamily: "var(--font-body)", fontSize: "14px", lineHeight: 1.6,
-                    color: "var(--gray-muted)", marginBottom: "24px", flex: 1,
-                  }}>
-                    {res.desc}
-                  </p>
-                  <div style={{
-                    background: "rgba(240,128,0,0.1)", padding: "12px 16px", borderRadius: "8px",
-                  }}>
-                    <p style={{
-                      fontFamily: "var(--font-body)", fontSize: "12px", fontWeight: 600,
-                      letterSpacing: "0.04em", textTransform: "uppercase",
-                      color: "var(--orange)",
+                  <img
+                    src={res.image}
+                    alt={res.title}
+                    style={{
+                      width: "100%", height: "200px", objectFit: "cover",
+                    }}
+                  />
+                  <div style={{ padding: "24px", display: "flex", flexDirection: "column", flex: 1 }}>
+                    <h3 style={{
+                      fontFamily: "var(--font-heading)", fontWeight: 700, fontSize: "18px",
+                      color: "var(--charcoal-deep)", marginBottom: "8px",
                     }}>
-                      {res.status}
+                      {res.title}
+                    </h3>
+                    <p style={{
+                      fontFamily: "var(--font-body)", fontSize: "13px", lineHeight: 1.6,
+                      color: "var(--terracotta)", fontWeight: 600, marginBottom: "12px",
+                    }}>
+                      {res.subtitle}
                     </p>
+                    <p style={{
+                      fontFamily: "var(--font-body)", fontSize: "13px", lineHeight: 1.6,
+                      color: "var(--gray-muted)", marginBottom: "24px", flex: 1,
+                    }}>
+                      {res.desc}
+                    </p>
+                    <div style={{
+                      background: "rgba(240,128,0,0.1)", padding: "12px 16px", borderRadius: "8px",
+                    }}>
+                      <p style={{
+                        fontFamily: "var(--font-body)", fontSize: "11px", fontWeight: 600,
+                        letterSpacing: "0.04em", textTransform: "uppercase",
+                        color: "var(--orange)",
+                      }}>
+                        {res.status}
+                      </p>
+                    </div>
                   </div>
                 </motion.div>
               ))}

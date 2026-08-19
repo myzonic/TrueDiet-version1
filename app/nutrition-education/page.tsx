@@ -12,36 +12,43 @@ export default function NutritionEducationPage() {
       title: "Calories & Energy Balance",
       desc: "Understand what calories actually mean, how energy balance works, and why nutrition is about more than simply counting numbers.",
       cta: "Learn the science behind energy, metabolism, and sustainable nutrition.",
+      image: "https://images.unsplash.com/photo-1512621776951-a57141f2eefd?w=500&q=90&auto=format",
     },
     {
       title: "Macronutrients",
       desc: "Protein. Carbohydrates. Fat.",
       cta: "Learn what each macronutrient does, why your body needs them, and how to think about them without unnecessary complexity.",
+      image: "https://images.unsplash.com/photo-1495521821757-a1efb6729352?w=500&q=90&auto=format",
     },
     {
       title: "Food Labels",
       desc: "Marketing can make food packaging confusing.",
       cta: "Learn how to read nutrition labels, understand serving sizes, evaluate ingredients, and make more informed choices at the grocery store.",
+      image: "https://images.unsplash.com/photo-1585518419759-14b5cfe4c173?w=500&q=90&auto=format",
     },
     {
       title: "Mindful Eating",
       desc: "Develop a healthier relationship with food and your body.",
       cta: "Learn to recognize hunger and fullness cues while developing a healthier, more sustainable relationship with food.",
+      image: "https://images.unsplash.com/photo-1490645935967-10de6ba17061?w=500&q=90&auto=format",
     },
     {
       title: "Nutrition Trends",
       desc: "Every week brings another nutrition trend.",
       cta: "TrueDiet separates what is supported by evidence from what is simply popular online.",
+      image: "https://images.unsplash.com/photo-1631046555190-7e0c3fd56f10?w=500&q=90&auto=format",
     },
     {
       title: "Nutrition Misinformation",
       desc: "Navigate conflicting claims and unreliable sources.",
       cta: "Learn how to identify questionable claims, recognize misleading nutrition advice, and find credible sources of information.",
+      image: "https://images.unsplash.com/photo-1516534775068-bb57e5a928f0?w=500&q=90&auto=format",
     },
     {
       title: "Peptides & Supplements",
       desc: "Understand the evidence behind popular supplements.",
       cta: "Understand what current evidence says about supplements and emerging nutrition topics.",
+      image: "https://images.unsplash.com/photo-1505344565106-52b80b8b6195?w=500&q=90&auto=format",
     },
   ];
 
@@ -131,28 +138,38 @@ export default function NutritionEducationPage() {
                     viewport={{ once: true }}
                     transition={{ duration: 0.5, delay: i * 0.08 }}
                     style={{
-                      background: "var(--off-white)", padding: "32px", borderRadius: "16px",
-                      border: "1px solid var(--border)",
+                      background: "var(--white)", borderRadius: "16px",
+                      border: "1px solid var(--border)", overflow: "hidden",
+                      boxShadow: "0 4px 12px rgba(0,80,96,0.08)",
                     }}
                   >
-                    <h4 style={{
-                      fontFamily: "var(--font-heading)", fontWeight: 700, fontSize: "20px",
-                      color: "var(--charcoal-deep)", marginBottom: "12px",
-                    }}>
-                      {topic.title}
-                    </h4>
-                    <p style={{
-                      fontFamily: "var(--font-body)", fontSize: "14px", lineHeight: 1.6,
-                      color: "var(--gray-muted)", marginBottom: "16px", minHeight: "40px",
-                    }}>
-                      {topic.desc}
-                    </p>
-                    <p style={{
-                      fontFamily: "var(--font-body)", fontSize: "14px", lineHeight: 1.6,
-                      color: "var(--charcoal)",
-                    }}>
-                      {topic.cta}
-                    </p>
+                    <img
+                      src={topic.image}
+                      alt={topic.title}
+                      style={{
+                        width: "100%", height: "200px", objectFit: "cover",
+                      }}
+                    />
+                    <div style={{ padding: "24px" }}>
+                      <h4 style={{
+                        fontFamily: "var(--font-heading)", fontWeight: 700, fontSize: "18px",
+                        color: "var(--charcoal-deep)", marginBottom: "12px",
+                      }}>
+                        {topic.title}
+                      </h4>
+                      <p style={{
+                        fontFamily: "var(--font-body)", fontSize: "13px", lineHeight: 1.6,
+                        color: "var(--gray-muted)", marginBottom: "12px",
+                      }}>
+                        {topic.desc}
+                      </p>
+                      <p style={{
+                        fontFamily: "var(--font-body)", fontSize: "13px", lineHeight: 1.6,
+                        color: "var(--charcoal)",
+                      }}>
+                        {topic.cta}
+                      </p>
+                    </div>
                   </motion.div>
                 ))}
               </div>

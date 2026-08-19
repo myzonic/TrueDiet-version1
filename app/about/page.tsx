@@ -18,6 +18,24 @@ export default function AboutPage() {
           subtitle="Real Experience. Real Science. Real Nutrition."
         />
 
+        {/* Hero image */}
+        <section style={{ background: "var(--off-white)", padding: "60px 48px" }}>
+          <div style={{ maxWidth: "1280px", margin: "0 auto" }}>
+            <motion.img
+              initial={{ opacity: 0, scale: 1.05 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ duration: 0.8 }}
+              src="https://images.unsplash.com/photo-1576091160550-112173f7f869?w=1200&q=90&auto=format"
+              alt="Maureen Ashbarry, Registered Dietitian"
+              style={{
+                width: "100%", maxWidth: "500px", height: "600px",
+                objectFit: "cover", borderRadius: "20px", margin: "0 auto",
+                display: "block", boxShadow: "0 20px 60px rgba(0,80,96,0.15)",
+              }}
+            />
+          </div>
+        </section>
+
         {/* Main content */}
         <section style={{ background: "var(--off-white)", padding: "80px 48px" }}>
           <div style={{ maxWidth: "1280px", margin: "0 auto" }}>
