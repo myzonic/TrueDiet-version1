@@ -25,7 +25,7 @@ export default function AppPage() {
                 initial={{ opacity: 0, scale: 0.95 }}
                 animate={{ opacity: 1, scale: 1 }}
                 transition={{ duration: 0.8 }}
-                src="https://images.pexels.com/photos/788946/pexels-photo-788946.jpeg?w=600&h=500&auto=compress&cs=tinysrgb"
+                src="https://images.unsplash.com/photo-1586253408452-8bc107f81060?w=600&h=500&auto=format&fit=crop&q=80"
                 alt="TrueDiet App"
                 style={{
                   maxWidth: "400px", height: "500px", objectFit: "cover",
