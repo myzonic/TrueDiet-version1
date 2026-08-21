@@ -19,7 +19,7 @@ export default function AboutPage() {
         />
 
         {/* Hero image */}
-        <section style={{ background: "var(--off-white)", padding: "60px 48px" }}>
+        <section style={{ background: "var(--off-white)", padding: "clamp(30px, 5vw, 60px) clamp(20px, 4vw, 48px)" }}>
           <div style={{ maxWidth: "1280px", margin: "0 auto" }}>
             <motion.img
               initial={{ opacity: 0, scale: 1.05 }}
@@ -28,16 +28,26 @@ export default function AboutPage() {
               src="https://images.unsplash.com/photo-1559839734-2b71ea197ec2?w=900&q=90&auto=format"
               alt="Maureen Ashbarry, Registered Dietitian"
               style={{
-                width: "100%", maxWidth: "500px", height: "600px",
-                objectFit: "cover", borderRadius: "20px", margin: "0 auto",
-                display: "block", boxShadow: "0 20px 60px rgba(0,80,96,0.15)",
+                width: "100%", maxWidth: "500px", height: "clamp(350px, 80vw, 600px)",
+                objectFit: "cover", borderRadius: "clamp(12px, 3vw, 20px)", margin: "0 auto",
+                display: "block", boxShadow: "0 10px 40px rgba(0,80,96,0.12)",
               }}
             />
           </div>
         </section>
 
         {/* Main content */}
-        <section style={{ background: "var(--off-white)", padding: "80px 48px" }}>
+        <section style={{ background: "var(--off-white)", padding: "clamp(40px, 8vw, 80px) clamp(20px, 4vw, 48px)" }}>
+        <style>{`
+          @media (max-width: 768px) {
+            .about-grid { grid-template-columns: 1fr !important; gap: 24px !important; }
+            .about-creds { display: grid !important; grid-template-columns: 1fr 1fr !important; gap: 16px !important; }
+            .about-sections { margin-bottom: 40px !important; padding: 24px !important; }
+            .about-h2 { font-size: clamp(24px, 6vw, 48px) !important; }
+            .about-h3 { font-size: clamp(20px, 5vw, 32px) !important; }
+            .about-p { font-size: 15px !important; line-height: 1.7 !important; }
+          }
+        `}</style>
           <div style={{ maxWidth: "1280px", margin: "0 auto" }}>
             <motion.div
               initial={{ opacity: 0, y: 20 }}
@@ -191,7 +201,7 @@ export default function AboutPage() {
               }}>
                 Credentials & Professional Background
               </h3>
-              <div style={{
+              <div className="about-creds" style={{
                 display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(200px, 1fr))", gap: "24px",
               }}>
                 {[

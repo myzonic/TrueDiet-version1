@@ -214,7 +214,22 @@ export default function ContactPage() {
 
           <style>{`
             @media (max-width: 768px) {
-              .contact-grid { grid-template-columns: 1fr !important; gap: 48px !important; }
+              .contact-grid { grid-template-columns: 1fr !important; gap: 32px !important; }
+              .contact-form input,
+              .contact-form textarea {
+                font-size: 16px !important;
+                padding: 12px 14px !important;
+              }
+              .contact-form button {
+                padding: 14px 20px !important;
+                font-size: 14px !important;
+                width: 100% !important;
+              }
+              .contact-form input[type="text"],
+              .contact-form input[type="email"] {
+                -webkit-appearance: none !important;
+                border-radius: 8px !important;
+              }
             }
           `}</style>
         </section>
