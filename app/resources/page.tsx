@@ -12,7 +12,7 @@ export default function ResourcesPage() {
       subtitle: "A Practical Starting Point for Better Nutrition",
       desc: "Explore an evidence based framework designed to help you build nutritious eating habits while focusing on sustainable choices.",
       status: "Coming with the TrueDiet App",
-      image: "/images/resources/7 Day Anti Inflammatory Reset.jpg",
+      image: "/images/resources/7 Day Anti Inflammatory Reset.png",
     },
     {
       title: "Label Reading Framework",
