@@ -1,6 +1,7 @@
 "use client";
 
-import { motion } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
+import { useState } from "react";
 import Header from "@/components/Header";
 import PageHero from "@/components/PageHero";
 import NutritionTabs from "@/components/NutritionTabs";
@@ -68,6 +69,8 @@ export default function NutritionEducationPage() {
     { num: "03", step: "Understand the Science", desc: "Translate complicated research into understandable information." },
     { num: "04", step: "Apply It to Real Life", desc: "Turn knowledge into practical decisions that work for you." },
   ];
+
+  const [openFaqNE, setOpenFaqNE] = useState<number | null>(null);
 
   return (
     <>
@@ -281,7 +284,7 @@ export default function NutritionEducationPage() {
                 Have a Nutrition Question?
               </h2>
               <p style={{ fontFamily: "var(--font-body)", fontSize: "clamp(15px, 2vw, 18px)", lineHeight: 1.7, color: "rgba(255,255,255,0.6)", marginBottom: "40px", maxWidth: "520px", margin: "0 auto 40px" }}>
-                Don't let another social media trend decide what you believe. Get in touch with us.
+                Don&apos;t let another social media trend decide what you believe. Get in touch with us.
               </p>
               <ShimmerButton type="button" onClick={() => window.location.href = "/contact"}>
                 Contact Us
@@ -289,6 +292,303 @@ export default function NutritionEducationPage() {
                   <path d="M1 6.5h11M7 2.5l4.5 4-4.5 4" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
                 </svg>
               </ShimmerButton>
+            </motion.div>
+          </div>
+        </section>
+
+        {/* NE Section A — The Foundations of Nutrition */}
+        <section style={{ background: "var(--off-white)", padding: "clamp(60px, 10vw, 120px) clamp(16px, 5vw, 64px)" }}>
+          <div style={{ maxWidth: "1280px", margin: "0 auto" }}>
+            <div style={{ display: "flex", alignItems: "center", gap: "10px", marginBottom: "16px" }}>
+              <div style={{ width: "24px", height: "1px", background: "var(--orange)" }} />
+              <span style={{ fontFamily: "var(--font-body)", fontSize: "11px", fontWeight: 600, letterSpacing: "0.12em", textTransform: "uppercase", color: "var(--orange)" }}>
+                Core Concepts
+              </span>
+            </div>
+            <motion.h2
+              initial={{ opacity: 0, y: 16 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6 }}
+              style={{
+                fontFamily: "var(--font-heading)", fontWeight: 800,
+                fontSize: "clamp(28px, 5vw, 48px)", lineHeight: 1.1,
+                letterSpacing: "-1px", color: "var(--charcoal-deep)", marginBottom: "24px",
+              }}
+            >
+              The Foundations of Nutrition
+            </motion.h2>
+            <motion.p
+              initial={{ opacity: 0, y: 12 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6, delay: 0.1 }}
+              style={{ fontFamily: "var(--font-body)", fontSize: "clamp(15px, 2vw, 17px)", lineHeight: 1.75, color: "var(--charcoal)", maxWidth: "780px", marginBottom: "clamp(40px, 7vw, 64px)" }}
+            >
+              A balanced eating pattern includes a variety of foods that provide energy and essential nutrients. These include carbohydrates, proteins, fats, vitamins, minerals, fiber, and fluids. No single food needs to provide everything.
+            </motion.p>
+
+            <div className="ne-macro-grid" style={{ display: "grid", gridTemplateColumns: "repeat(2, 1fr)", gap: "clamp(16px, 3vw, 28px)" }}>
+              {[
+                { title: "Protein", desc: "Found in fish, poultry, eggs, dairy foods, beans, lentils, nuts, seeds, and soy foods. Consider how protein fits into your overall eating pattern." },
+                { title: "Carbohydrates", desc: "An important source of energy found in grains, fruits, vegetables, beans, and other foods. The type and overall dietary pattern both matter." },
+                { title: "Dietary Fats", desc: "Play important roles in the body. Sources include nuts, seeds, avocados, olive oil, fish, and dairy. Understanding different sources is more useful than eliminating fat." },
+                { title: "Vitamins & Minerals", desc: "Micronutrients that support growth, metabolism, immune function, and bone health. A varied eating pattern provides a broad range." },
+              ].map((card, i) => (
+                <motion.div
+                  key={i}
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.5, delay: i * 0.1 }}
+                  whileHover={{ y: -6, boxShadow: "0 24px 64px rgba(0,80,96,0.14)" }}
+                  style={{ background: "var(--white)", borderRadius: "16px", border: "1px solid var(--border)", padding: "clamp(20px, 4vw, 36px)", cursor: "default" }}
+                >
+                  <div style={{ width: "32px", height: "2px", background: "var(--orange)", borderRadius: "2px", marginBottom: "16px" }} />
+                  <h3 style={{ fontFamily: "var(--font-heading)", fontWeight: 700, fontSize: "clamp(16px, 2vw, 20px)", color: "var(--charcoal-deep)", marginBottom: "12px" }}>{card.title}</h3>
+                  <p style={{ fontFamily: "var(--font-body)", fontSize: "clamp(13px, 1.6vw, 15px)", lineHeight: 1.75, color: "var(--gray-muted)" }}>{card.desc}</p>
+                </motion.div>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        {/* NE Section B — Nutrition Myths vs Evidence */}
+        <section style={{ background: "var(--white)", padding: "clamp(60px, 10vw, 120px) clamp(16px, 5vw, 64px)" }}>
+          <div style={{ maxWidth: "1280px", margin: "0 auto" }}>
+            <div style={{ display: "flex", alignItems: "center", gap: "10px", marginBottom: "16px" }}>
+              <div style={{ width: "24px", height: "1px", background: "var(--orange)" }} />
+              <span style={{ fontFamily: "var(--font-body)", fontSize: "11px", fontWeight: 600, letterSpacing: "0.12em", textTransform: "uppercase", color: "var(--orange)" }}>
+                Myths vs Evidence
+              </span>
+            </div>
+            <motion.h2
+              initial={{ opacity: 0, y: 16 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6 }}
+              style={{
+                fontFamily: "var(--font-heading)", fontWeight: 800,
+                fontSize: "clamp(28px, 5vw, 48px)", lineHeight: 1.1,
+                letterSpacing: "-1px", color: "var(--charcoal-deep)", marginBottom: "clamp(32px, 6vw, 56px)",
+              }}
+            >
+              Common Nutrition Myths, Clarified
+            </motion.h2>
+
+            <div className="ne-myths-grid" style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: "clamp(16px, 3vw, 24px)" }}>
+              {[
+                { myth: "Carbohydrates are inherently unhealthy.", fact: "Carbohydrates include a wide range of foods and can be part of a balanced eating pattern." },
+                { myth: "All fats should be avoided.", fact: "Dietary fats have important roles and can be included in balanced nutrition." },
+                { myth: "Detox products remove toxins.", fact: "The body has natural systems that process substances. Be cautious of dramatic detoxification claims." },
+                { myth: "One food can dramatically change metabolism.", fact: "Nutrition and metabolism are complex. Be skeptical of simple dramatic claims." },
+                { myth: "Healthy eating must be perfect.", fact: "Consistency and overall dietary patterns matter more than perfection." },
+                { myth: "Healthy food must be expensive.", fact: "A balanced eating pattern can include a wide range of foods at different price points." },
+              ].map((item, i) => (
+                <motion.div
+                  key={i}
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.5, delay: i * 0.07 }}
+                  style={{ background: "var(--white)", borderRadius: "16px", border: "1px solid var(--border)", padding: "clamp(20px, 3vw, 28px)" }}
+                >
+                  <div style={{ marginBottom: "12px" }}>
+                    <span style={{ fontFamily: "var(--font-body)", fontWeight: 700, fontSize: "11px", letterSpacing: "0.06em", textTransform: "uppercase", color: "#c0392b", background: "rgba(192,57,43,0.1)", padding: "3px 10px", borderRadius: "100px" }}>Myth</span>
+                  </div>
+                  <p style={{ fontFamily: "var(--font-body)", fontSize: "clamp(13px, 1.6vw, 15px)", lineHeight: 1.65, color: "var(--charcoal)", marginBottom: "16px" }}>{item.myth}</p>
+                  <div style={{ marginBottom: "10px" }}>
+                    <span style={{ fontFamily: "var(--font-body)", fontWeight: 700, fontSize: "11px", letterSpacing: "0.06em", textTransform: "uppercase", color: "#27ae60", background: "rgba(39,174,96,0.1)", padding: "3px 10px", borderRadius: "100px" }}>Fact</span>
+                  </div>
+                  <p style={{ fontFamily: "var(--font-body)", fontSize: "clamp(13px, 1.6vw, 15px)", lineHeight: 1.65, color: "var(--gray-muted)" }}>{item.fact}</p>
+                </motion.div>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        {/* NE Section C — Evaluating Nutrition Information */}
+        <section style={{ background: "var(--off-white)", padding: "clamp(60px, 10vw, 120px) clamp(16px, 5vw, 64px)" }}>
+          <div style={{ maxWidth: "1280px", margin: "0 auto" }}>
+            <div style={{ display: "flex", alignItems: "center", gap: "10px", marginBottom: "16px" }}>
+              <div style={{ width: "24px", height: "1px", background: "var(--orange)" }} />
+              <span style={{ fontFamily: "var(--font-body)", fontSize: "11px", fontWeight: 600, letterSpacing: "0.12em", textTransform: "uppercase", color: "var(--orange)" }}>
+                Critical Thinking
+              </span>
+            </div>
+            <motion.h2
+              initial={{ opacity: 0, y: 16 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6 }}
+              style={{
+                fontFamily: "var(--font-heading)", fontWeight: 800,
+                fontSize: "clamp(28px, 5vw, 48px)", lineHeight: 1.1,
+                letterSpacing: "-1px", color: "var(--charcoal-deep)", marginBottom: "20px",
+              }}
+            >
+              How to Evaluate Nutrition Claims
+            </motion.h2>
+            <motion.p
+              initial={{ opacity: 0, y: 12 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6, delay: 0.1 }}
+              style={{ fontFamily: "var(--font-body)", fontSize: "clamp(15px, 2vw, 17px)", lineHeight: 1.75, color: "var(--charcoal)", maxWidth: "680px", marginBottom: "clamp(32px, 6vw, 56px)" }}
+            >
+              Before accepting a nutrition claim, these questions can help you become a more informed nutrition consumer.
+            </motion.p>
+
+            <div style={{ maxWidth: "820px" }}>
+              {[
+                "Who is making the claim?",
+                "What evidence supports it?",
+                "Is the information based on research?",
+                "Is the source selling a product or program?",
+                "Does the claim promise unusually fast results?",
+                "Does the information acknowledge individual differences?",
+                "Is the recommendation realistic for everyday life?",
+              ].map((item, i) => (
+                <motion.div
+                  key={i}
+                  initial={{ opacity: 0, x: -16 }}
+                  whileInView={{ opacity: 1, x: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.4, delay: i * 0.07 }}
+                  style={{ display: "flex", alignItems: "flex-start", gap: "clamp(16px, 3vw, 28px)", borderBottom: "1px solid var(--border)", padding: "clamp(16px, 2.5vw, 24px) 0" }}
+                >
+                  <span style={{ fontFamily: "var(--font-heading)", fontWeight: 800, fontSize: "32px", color: "var(--charcoal-deep)", lineHeight: 1, flexShrink: 0, minWidth: "40px" }}>{i + 1}</span>
+                  <p style={{ fontFamily: "var(--font-body)", fontSize: "clamp(15px, 2vw, 17px)", lineHeight: 1.75, color: "var(--charcoal)", paddingTop: "6px" }}>{item}</p>
+                </motion.div>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        {/* NE Section D — FAQ */}
+        <section style={{ background: "var(--white)", padding: "clamp(60px, 10vw, 120px) clamp(16px, 5vw, 64px)" }}>
+          <div style={{ maxWidth: "1280px", margin: "0 auto" }}>
+            <div style={{ display: "flex", alignItems: "center", gap: "10px", marginBottom: "16px" }}>
+              <div style={{ width: "24px", height: "1px", background: "var(--orange)" }} />
+              <span style={{ fontFamily: "var(--font-body)", fontSize: "11px", fontWeight: 600, letterSpacing: "0.12em", textTransform: "uppercase", color: "var(--orange)" }}>
+                FAQ
+              </span>
+            </div>
+            <motion.h2
+              initial={{ opacity: 0, y: 16 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6 }}
+              style={{
+                fontFamily: "var(--font-heading)", fontWeight: 800,
+                fontSize: "clamp(28px, 5vw, 48px)", lineHeight: 1.1,
+                letterSpacing: "-1px", color: "var(--charcoal-deep)", marginBottom: "clamp(32px, 6vw, 56px)",
+              }}
+            >
+              Frequently Asked Questions About Nutrition
+            </motion.h2>
+
+            <div style={{ maxWidth: "820px" }}>
+              {[
+                { q: "What is evidence based nutrition?", a: "Evidence based nutrition uses the best available scientific evidence alongside professional knowledge and individual circumstances." },
+                { q: "Are carbohydrates part of healthy eating?", a: "Carbohydrates can absolutely be part of a balanced eating pattern. The type and overall dietary context matter." },
+                { q: "Do I need to avoid all sugar?", a: "Nutrition is more complex than labeling foods as good or bad. Amount and overall dietary pattern are important considerations." },
+                { q: "How important is hydration?", a: "Adequate hydration supports normal body function, although individual fluid needs vary." },
+                { q: "Is meal planning necessary?", a: "No. Meal planning is a tool that may make eating well easier, particularly during busy periods." },
+                { q: "Is there one perfect diet?", a: "No. Nutrition needs and preferences vary from person to person." },
+              ].map((item, i) => (
+                <motion.div
+                  key={i}
+                  initial={{ opacity: 0, y: 10 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.4, delay: i * 0.07 }}
+                  style={{ borderBottom: "1px solid var(--border)" }}
+                >
+                  <button
+                    onClick={() => setOpenFaqNE(openFaqNE === i ? null : i)}
+                    style={{
+                      width: "100%", display: "flex", alignItems: "center", justifyContent: "space-between",
+                      padding: "clamp(20px, 3vw, 28px) 0", background: "none", border: "none", cursor: "pointer", textAlign: "left", gap: "16px",
+                    }}
+                  >
+                    <span style={{ fontFamily: "var(--font-heading)", fontWeight: 700, fontSize: "clamp(15px, 2vw, 17px)", color: "var(--charcoal-deep)" }}>{item.q}</span>
+                    <motion.span
+                      animate={{ rotate: openFaqNE === i ? 45 : 0 }}
+                      transition={{ duration: 0.25 }}
+                      style={{ flexShrink: 0, width: "24px", height: "24px", borderRadius: "50%", background: "var(--charcoal-deep)", display: "flex", alignItems: "center", justifyContent: "center" }}
+                    >
+                      <svg width="12" height="12" viewBox="0 0 12 12" fill="none">
+                        <path d="M6 1v10M1 6h10" stroke="white" strokeWidth="1.5" strokeLinecap="round"/>
+                      </svg>
+                    </motion.span>
+                  </button>
+                  <AnimatePresence initial={false}>
+                    {openFaqNE === i && (
+                      <motion.div
+                        key="answer"
+                        initial={{ height: 0, opacity: 0 }}
+                        animate={{ height: "auto", opacity: 1 }}
+                        exit={{ height: 0, opacity: 0 }}
+                        transition={{ duration: 0.3, ease: [0.22, 1, 0.36, 1] }}
+                        style={{ overflow: "hidden" }}
+                      >
+                        <p style={{ fontFamily: "var(--font-body)", fontSize: "clamp(14px, 1.8vw, 16px)", lineHeight: 1.75, color: "var(--gray-muted)", paddingBottom: "clamp(20px, 3vw, 28px)" }}>{item.a}</p>
+                      </motion.div>
+                    )}
+                  </AnimatePresence>
+                </motion.div>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        {/* NE Section E — Continue Learning */}
+        <section style={{ background: "var(--charcoal-deep)", padding: "clamp(60px, 10vw, 120px) clamp(16px, 5vw, 64px)" }}>
+          <div style={{ maxWidth: "1280px", margin: "0 auto", textAlign: "center" }}>
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6 }}
+            >
+              <h2 style={{
+                fontFamily: "var(--font-heading)", fontWeight: 800,
+                fontSize: "clamp(28px, 5vw, 48px)", lineHeight: 1.1,
+                letterSpacing: "-1px", color: "#ffffff", marginBottom: "20px",
+              }}>
+                Nutrition Knowledge Becomes More Valuable When You Apply It
+              </h2>
+              <p style={{ fontFamily: "var(--font-body)", fontSize: "clamp(15px, 2vw, 17px)", lineHeight: 1.75, color: "rgba(255,255,255,0.65)", marginBottom: "40px", maxWidth: "600px", margin: "0 auto 40px" }}>
+                Explore TrueDiet&apos;s practical resources to build your understanding of food, nutrition, balanced eating, and sustainable habits.
+              </p>
+              <div style={{ display: "flex", gap: "16px", justifyContent: "center", flexWrap: "wrap" }}>
+                <a href="/resources" style={{
+                  display: "inline-flex", alignItems: "center", justifyContent: "center",
+                  padding: "14px 32px", borderRadius: "100px",
+                  background: "var(--orange)", color: "#fff", textDecoration: "none",
+                  fontFamily: "var(--font-body)", fontWeight: 600, fontSize: "15px",
+                  transition: "opacity 0.2s, transform 0.2s",
+                }}
+                onMouseEnter={e => { (e.currentTarget as HTMLElement).style.opacity = "0.87"; (e.currentTarget as HTMLElement).style.transform = "translateY(-1px)"; }}
+                onMouseLeave={e => { (e.currentTarget as HTMLElement).style.opacity = "1"; (e.currentTarget as HTMLElement).style.transform = "translateY(0)"; }}
+                >
+                  View Resources
+                </a>
+                <a href="/contact" style={{
+                  display: "inline-flex", alignItems: "center", justifyContent: "center",
+                  padding: "14px 32px", borderRadius: "100px",
+                  background: "transparent", color: "#fff", textDecoration: "none",
+                  border: "1.5px solid rgba(255,255,255,0.5)",
+                  fontFamily: "var(--font-body)", fontWeight: 600, fontSize: "15px",
+                  transition: "border-color 0.2s, transform 0.2s",
+                }}
+                onMouseEnter={e => { (e.currentTarget as HTMLElement).style.borderColor = "#fff"; (e.currentTarget as HTMLElement).style.transform = "translateY(-1px)"; }}
+                onMouseLeave={e => { (e.currentTarget as HTMLElement).style.borderColor = "rgba(255,255,255,0.5)"; (e.currentTarget as HTMLElement).style.transform = "translateY(0)"; }}
+                >
+                  Contact Maureen
+                </a>
+              </div>
             </motion.div>
           </div>
         </section>
@@ -300,6 +600,8 @@ export default function NutritionEducationPage() {
           .intro-grid { grid-template-columns: 1fr !important; }
           .approach-grid { grid-template-columns: 1fr 1fr !important; }
           .qa-grid { grid-template-columns: 1fr !important; }
+          .ne-macro-grid { grid-template-columns: 1fr !important; }
+          .ne-myths-grid { grid-template-columns: 1fr !important; }
         }
         @media (max-width: 480px) {
           .approach-grid { grid-template-columns: 1fr !important; }

@@ -1,6 +1,7 @@
 "use client";
 
-import { motion } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
+import { useState } from "react";
 import Header from "@/components/Header";
 import PageHero from "@/components/PageHero";
 import Footer from "@/components/sections/Footer";
@@ -54,6 +55,8 @@ const differentiators = [
 ];
 
 export default function AboutPage() {
+  const [openFaq, setOpenFaq] = useState<number | null>(null);
+
   return (
     <>
       <Header />
@@ -402,6 +405,243 @@ export default function AboutPage() {
             </motion.div>
           </div>
         </section>
+
+        {/* Section A — What 23 Years Has Taught Me */}
+        <section style={{ background: "var(--off-white)", padding: "clamp(60px, 10vw, 120px) clamp(16px, 5vw, 64px)" }}>
+          <div style={{ maxWidth: "1280px", margin: "0 auto" }}>
+            <div style={{ display: "flex", alignItems: "center", gap: "10px", marginBottom: "16px" }}>
+              <div style={{ width: "24px", height: "1px", background: "var(--orange)" }} />
+              <span style={{ fontFamily: "var(--font-body)", fontSize: "11px", fontWeight: 600, letterSpacing: "0.12em", textTransform: "uppercase", color: "var(--orange)" }}>
+                23 Years of Experience
+              </span>
+            </div>
+            <motion.h2
+              initial={{ opacity: 0, y: 16 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6 }}
+              style={{
+                fontFamily: "var(--font-heading)", fontWeight: 800,
+                fontSize: "clamp(28px, 5vw, 48px)", lineHeight: 1.1,
+                letterSpacing: "-1px", color: "var(--charcoal-deep)", marginBottom: "24px",
+              }}
+            >
+              What 23 Years Has Taught Me
+            </motion.h2>
+            <motion.p
+              initial={{ opacity: 0, y: 12 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6, delay: 0.1 }}
+              style={{ fontFamily: "var(--font-body)", fontSize: "clamp(15px, 2vw, 17px)", lineHeight: 1.75, color: "var(--charcoal)", maxWidth: "780px", marginBottom: "clamp(40px, 7vw, 64px)" }}
+            >
+              Experience has taught Maureen that there is no single approach to nutrition that works perfectly for everyone. People have different lifestyles, schedules, preferences, cultures, experiences, goals, and relationships with food. That is why TrueDiet places education and individual understanding at the center of the nutrition journey.
+            </motion.p>
+
+            <div className="about-three-col" style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: "clamp(16px, 3vw, 28px)" }}>
+              {[
+                { title: "Science", desc: "Nutrition information grounded in credible scientific evidence rather than passing trends or unsupported promises." },
+                { title: "Practicality", desc: "Real life includes busy schedules, restaurants, travel, family meals, celebrations, and unexpected days. Nutrition advice needs to work in real life." },
+                { title: "Sustainability", desc: "A nutrition approach should be realistic enough to maintain long term through consistent habits and informed choices." },
+              ].map((card, i) => (
+                <motion.div
+                  key={i}
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.5, delay: i * 0.1 }}
+                  whileHover={{ y: -6, boxShadow: "0 24px 64px rgba(0,80,96,0.14)" }}
+                  style={{ background: "var(--white)", borderRadius: "16px", border: "1px solid var(--border)", padding: "clamp(20px, 4vw, 36px)", cursor: "default" }}
+                >
+                  <div style={{ width: "32px", height: "2px", background: "var(--orange)", borderRadius: "2px", marginBottom: "16px" }} />
+                  <h3 style={{ fontFamily: "var(--font-heading)", fontWeight: 700, fontSize: "clamp(16px, 2vw, 20px)", color: "var(--charcoal-deep)", marginBottom: "12px" }}>{card.title}</h3>
+                  <p style={{ fontFamily: "var(--font-body)", fontSize: "clamp(13px, 1.6vw, 15px)", lineHeight: 1.75, color: "var(--gray-muted)" }}>{card.desc}</p>
+                </motion.div>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        {/* Section B — Beyond Diets and Restrictions */}
+        <section style={{ background: "var(--white)", padding: "clamp(60px, 10vw, 120px) clamp(16px, 5vw, 64px)" }}>
+          <div style={{ maxWidth: "1280px", margin: "0 auto" }}>
+            <div style={{ display: "flex", alignItems: "center", gap: "10px", marginBottom: "16px" }}>
+              <div style={{ width: "24px", height: "1px", background: "var(--orange)" }} />
+              <span style={{ fontFamily: "var(--font-body)", fontSize: "11px", fontWeight: 600, letterSpacing: "0.12em", textTransform: "uppercase", color: "var(--orange)" }}>
+                A Different Perspective
+              </span>
+            </div>
+            <motion.h2
+              initial={{ opacity: 0, y: 16 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6 }}
+              style={{
+                fontFamily: "var(--font-heading)", fontWeight: 800,
+                fontSize: "clamp(28px, 5vw, 48px)", lineHeight: 1.1,
+                letterSpacing: "-1px", color: "var(--charcoal-deep)", marginBottom: "clamp(32px, 6vw, 56px)",
+              }}
+            >
+              Beyond Diets and Restrictions
+            </motion.h2>
+
+            <div className="about-two-col" style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "clamp(32px, 6vw, 80px)", alignItems: "start" }}>
+              <motion.div
+                initial={{ opacity: 0, x: -20 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.6 }}
+              >
+                <p style={{ fontFamily: "var(--font-body)", fontSize: "clamp(15px, 2vw, 17px)", lineHeight: 1.75, color: "var(--charcoal)" }}>
+                  At TrueDiet, nutrition is viewed as more than a list of foods to avoid. Healthy eating can include variety, flexibility, enjoyment, balance, and nourishment. There is room for real life within a healthy lifestyle.
+                </p>
+              </motion.div>
+
+              <motion.div
+                initial={{ opacity: 0, x: 20 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.6 }}
+                style={{
+                  background: "var(--charcoal-deep)", borderRadius: "16px",
+                  padding: "clamp(20px, 4vw, 36px)", borderLeft: "4px solid var(--orange)",
+                }}
+              >
+                <p style={{ fontFamily: "var(--font-heading)", fontWeight: 700, fontSize: "clamp(15px, 2.2vw, 20px)", color: "#ffffff", lineHeight: 1.5 }}>
+                  "Nutrition should not be about following every new trend. It should be about understanding your individual needs, developing realistic habits, and having the knowledge to make confident choices."
+                </p>
+              </motion.div>
+            </div>
+          </div>
+        </section>
+
+        {/* Section C — FAQ */}
+        <section style={{ background: "var(--off-white)", padding: "clamp(60px, 10vw, 120px) clamp(16px, 5vw, 64px)" }}>
+          <div style={{ maxWidth: "1280px", margin: "0 auto" }}>
+            <div style={{ display: "flex", alignItems: "center", gap: "10px", marginBottom: "16px" }}>
+              <div style={{ width: "24px", height: "1px", background: "var(--orange)" }} />
+              <span style={{ fontFamily: "var(--font-body)", fontSize: "11px", fontWeight: 600, letterSpacing: "0.12em", textTransform: "uppercase", color: "var(--orange)" }}>
+                FAQ
+              </span>
+            </div>
+            <motion.h2
+              initial={{ opacity: 0, y: 16 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6 }}
+              style={{
+                fontFamily: "var(--font-heading)", fontWeight: 800,
+                fontSize: "clamp(28px, 5vw, 48px)", lineHeight: 1.1,
+                letterSpacing: "-1px", color: "var(--charcoal-deep)", marginBottom: "clamp(32px, 6vw, 56px)",
+              }}
+            >
+              Frequently Asked Questions
+            </motion.h2>
+
+            <div style={{ maxWidth: "820px" }}>
+              {[
+                { q: "How long has Maureen worked in nutrition?", a: "More than 23 years of professional experience." },
+                { q: "Is TrueDiet based on nutrition trends?", a: "TrueDiet focuses on evidence based nutrition rather than following every new trend." },
+                { q: "Does TrueDiet believe in one perfect diet?", a: "No. Individual nutrition needs and circumstances vary, which is why a personalized approach is important." },
+                { q: "Is healthy eating about eliminating foods?", a: "Healthy eating is more complex than labeling foods as good or bad. Overall patterns, balance, variety, and individual needs all matter." },
+                { q: "Why does nutrition education matter?", a: "Understanding nutrition can help people make more informed decisions and develop greater confidence in everyday food choices." },
+                { q: "Can nutrition advice work for busy lifestyles?", a: "Practical nutrition considers the realities of everyday life including busy schedules, travel, eating out, and changing routines." },
+              ].map((item, i) => (
+                <motion.div
+                  key={i}
+                  initial={{ opacity: 0, y: 10 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.4, delay: i * 0.07 }}
+                  style={{ borderBottom: "1px solid var(--border)" }}
+                >
+                  <button
+                    onClick={() => setOpenFaq(openFaq === i ? null : i)}
+                    style={{
+                      width: "100%", display: "flex", alignItems: "center", justifyContent: "space-between",
+                      padding: "clamp(20px, 3vw, 28px) 0", background: "none", border: "none", cursor: "pointer", textAlign: "left", gap: "16px",
+                    }}
+                  >
+                    <span style={{ fontFamily: "var(--font-heading)", fontWeight: 700, fontSize: "clamp(15px, 2vw, 17px)", color: "var(--charcoal-deep)" }}>{item.q}</span>
+                    <motion.span
+                      animate={{ rotate: openFaq === i ? 45 : 0 }}
+                      transition={{ duration: 0.25 }}
+                      style={{ flexShrink: 0, width: "24px", height: "24px", borderRadius: "50%", background: "var(--charcoal-deep)", display: "flex", alignItems: "center", justifyContent: "center" }}
+                    >
+                      <svg width="12" height="12" viewBox="0 0 12 12" fill="none">
+                        <path d="M6 1v10M1 6h10" stroke="white" strokeWidth="1.5" strokeLinecap="round"/>
+                      </svg>
+                    </motion.span>
+                  </button>
+                  <AnimatePresence initial={false}>
+                    {openFaq === i && (
+                      <motion.div
+                        key="answer"
+                        initial={{ height: 0, opacity: 0 }}
+                        animate={{ height: "auto", opacity: 1 }}
+                        exit={{ height: 0, opacity: 0 }}
+                        transition={{ duration: 0.3, ease: [0.22, 1, 0.36, 1] }}
+                        style={{ overflow: "hidden" }}
+                      >
+                        <p style={{ fontFamily: "var(--font-body)", fontSize: "clamp(14px, 1.8vw, 16px)", lineHeight: 1.75, color: "var(--gray-muted)", paddingBottom: "clamp(20px, 3vw, 28px)" }}>{item.a}</p>
+                      </motion.div>
+                    )}
+                  </AnimatePresence>
+                </motion.div>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        {/* Section D — Continue Your TrueDiet Journey */}
+        <section style={{ background: "var(--charcoal-deep)", padding: "clamp(60px, 10vw, 120px) clamp(16px, 5vw, 64px)" }}>
+          <div style={{ maxWidth: "1280px", margin: "0 auto", textAlign: "center" }}>
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6 }}
+            >
+              <h2 style={{
+                fontFamily: "var(--font-heading)", fontWeight: 800,
+                fontSize: "clamp(28px, 5vw, 48px)", lineHeight: 1.1,
+                letterSpacing: "-1px", color: "#ffffff", marginBottom: "20px",
+              }}>
+                Better Nutrition Begins With Better Understanding
+              </h2>
+              <p style={{ fontFamily: "var(--font-body)", fontSize: "clamp(15px, 2vw, 17px)", lineHeight: 1.75, color: "rgba(255,255,255,0.65)", marginBottom: "40px", maxWidth: "600px", margin: "0 auto 40px" }}>
+                Explore TrueDiet&apos;s nutrition education and resources to learn more about food, nutrients, balanced eating, and practical nutrition strategies.
+              </p>
+              <div style={{ display: "flex", gap: "16px", justifyContent: "center", flexWrap: "wrap" }}>
+                <a href="/nutrition-education" style={{
+                  display: "inline-flex", alignItems: "center", justifyContent: "center",
+                  padding: "14px 32px", borderRadius: "100px",
+                  background: "var(--orange)", color: "#fff", textDecoration: "none",
+                  fontFamily: "var(--font-body)", fontWeight: 600, fontSize: "15px",
+                  transition: "opacity 0.2s, transform 0.2s",
+                }}
+                onMouseEnter={e => { (e.currentTarget as HTMLElement).style.opacity = "0.87"; (e.currentTarget as HTMLElement).style.transform = "translateY(-1px)"; }}
+                onMouseLeave={e => { (e.currentTarget as HTMLElement).style.opacity = "1"; (e.currentTarget as HTMLElement).style.transform = "translateY(0)"; }}
+                >
+                  Nutrition Education
+                </a>
+                <a href="/resources" style={{
+                  display: "inline-flex", alignItems: "center", justifyContent: "center",
+                  padding: "14px 32px", borderRadius: "100px",
+                  background: "transparent", color: "#fff", textDecoration: "none",
+                  border: "1.5px solid rgba(255,255,255,0.5)",
+                  fontFamily: "var(--font-body)", fontWeight: 600, fontSize: "15px",
+                  transition: "border-color 0.2s, transform 0.2s",
+                }}
+                onMouseEnter={e => { (e.currentTarget as HTMLElement).style.borderColor = "#fff"; (e.currentTarget as HTMLElement).style.transform = "translateY(-1px)"; }}
+                onMouseLeave={e => { (e.currentTarget as HTMLElement).style.borderColor = "rgba(255,255,255,0.5)"; (e.currentTarget as HTMLElement).style.transform = "translateY(0)"; }}
+                >
+                  View Resources
+                </a>
+              </div>
+            </motion.div>
+          </div>
+        </section>
       </main>
       <Footer />
 
@@ -410,6 +650,8 @@ export default function AboutPage() {
           .bio-grid { grid-template-columns: 1fr !important; }
           .three-col-grid { grid-template-columns: 1fr !important; }
           .stat-boxes { grid-template-columns: repeat(3, 1fr) !important; }
+          .about-three-col { grid-template-columns: 1fr !important; }
+          .about-two-col { grid-template-columns: 1fr !important; }
         }
       `}</style>
     </>

@@ -1,6 +1,7 @@
 "use client";
 
-import { motion } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
+import { useState } from "react";
 import Header from "@/components/Header";
 import PageHero from "@/components/PageHero";
 import Footer from "@/components/sections/Footer";
@@ -55,6 +56,8 @@ export default function ResourcesPage() {
     { title: "Nutrition Myth Library", desc: "Explore common nutrition claims and learn how to separate popular beliefs from what the evidence actually supports." },
     { title: "Balanced Eating Guide", desc: "A practical framework for creating balanced meals and making sustainable nutrition choices in everyday life." },
   ];
+
+  const [openFaqRes, setOpenFaqRes] = useState<number | null>(null);
 
   return (
     <>
@@ -325,7 +328,7 @@ export default function ResourcesPage() {
                 Keep Learning. Keep Questioning.
               </h2>
               <p style={{ fontFamily: "var(--font-body)", fontSize: "clamp(15px, 2vw, 18px)", lineHeight: 1.7, color: "rgba(255,255,255,0.6)", marginBottom: "16px" }}>
-                Nutrition doesn't have to be perfect to be meaningful.
+                Nutrition doesn&apos;t have to be perfect to be meaningful.
               </p>
               <p style={{ fontFamily: "var(--font-body)", fontSize: "clamp(15px, 2vw, 18px)", lineHeight: 1.7, color: "rgba(255,255,255,0.6)", marginBottom: "40px" }}>
                 Join the TrueDiet waitlist and be the first to know when new guides, tools, and resources become available.
@@ -348,6 +351,356 @@ export default function ResourcesPage() {
             </motion.div>
           </div>
         </section>
+
+        {/* RES Section A — Practical Guides */}
+        <section style={{ background: "var(--off-white)", padding: "clamp(60px, 10vw, 120px) clamp(16px, 5vw, 64px)" }}>
+          <div style={{ maxWidth: "1280px", margin: "0 auto" }}>
+            <div style={{ display: "flex", alignItems: "center", gap: "10px", marginBottom: "16px" }}>
+              <div style={{ width: "24px", height: "1px", background: "var(--orange)" }} />
+              <span style={{ fontFamily: "var(--font-body)", fontSize: "11px", fontWeight: 600, letterSpacing: "0.12em", textTransform: "uppercase", color: "var(--orange)" }}>
+                Guides
+              </span>
+            </div>
+            <motion.h2
+              initial={{ opacity: 0, y: 16 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6 }}
+              style={{
+                fontFamily: "var(--font-heading)", fontWeight: 800,
+                fontSize: "clamp(28px, 5vw, 48px)", lineHeight: 1.1,
+                letterSpacing: "-1px", color: "var(--charcoal-deep)", marginBottom: "20px",
+              }}
+            >
+              Practical Nutrition Guides
+            </motion.h2>
+            <motion.p
+              initial={{ opacity: 0, y: 12 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6, delay: 0.1 }}
+              style={{ fontFamily: "var(--font-body)", fontSize: "clamp(15px, 2vw, 17px)", lineHeight: 1.75, color: "var(--charcoal)", maxWidth: "680px", marginBottom: "clamp(40px, 7vw, 64px)" }}
+            >
+              Finding reliable nutrition information should not feel overwhelming. These practical guides are designed to turn nutrition knowledge into everyday decisions.
+            </motion.p>
+
+            <div className="res-guides-grid" style={{ display: "grid", gridTemplateColumns: "repeat(2, 1fr)", gap: "clamp(16px, 3vw, 24px)" }}>
+              {[
+                {
+                  icon: (
+                    <svg width="22" height="22" viewBox="0 0 22 22" fill="none">
+                      <rect x="3" y="2" width="16" height="18" rx="2" stroke="white" strokeWidth="1.5"/>
+                      <path d="M7 7h8M7 11h8M7 15h5" stroke="white" strokeWidth="1.5" strokeLinecap="round"/>
+                    </svg>
+                  ),
+                  title: "Meal Planning Guide",
+                  desc: "Plan your week without requiring every meal to be perfect. Start with familiar meals, choose versatile ingredients, and stay flexible.",
+                },
+                {
+                  icon: (
+                    <svg width="22" height="22" viewBox="0 0 22 22" fill="none">
+                      <path d="M6 2h10l2 4H4L6 2z" stroke="white" strokeWidth="1.5" strokeLinejoin="round"/>
+                      <path d="M4 6v13a1 1 0 001 1h12a1 1 0 001-1V6" stroke="white" strokeWidth="1.5"/>
+                      <path d="M9 11h4" stroke="white" strokeWidth="1.5" strokeLinecap="round"/>
+                    </svg>
+                  ),
+                  title: "Healthy Grocery Shopping",
+                  desc: "A practical guide to building a grocery list that supports meals you will actually prepare and enjoy.",
+                },
+                {
+                  icon: (
+                    <svg width="22" height="22" viewBox="0 0 22 22" fill="none">
+                      <rect x="4" y="2" width="14" height="18" rx="2" stroke="white" strokeWidth="1.5"/>
+                      <path d="M8 7h6M8 11h6M8 15h4" stroke="white" strokeWidth="1.5" strokeLinecap="round"/>
+                      <path d="M14 2v4" stroke="white" strokeWidth="1.5" strokeLinecap="round"/>
+                    </svg>
+                  ),
+                  title: "Nutrition Label Guide",
+                  desc: "Understand what nutrition labels really tell you and how to use them to make more informed choices.",
+                },
+                {
+                  icon: (
+                    <svg width="22" height="22" viewBox="0 0 22 22" fill="none">
+                      <circle cx="11" cy="11" r="8" stroke="white" strokeWidth="1.5"/>
+                      <path d="M11 7v4l3 3" stroke="white" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+                    </svg>
+                  ),
+                  title: "Balanced Plate Guide",
+                  desc: "Build meals that provide nourishment and variety without trying to achieve mathematical perfection.",
+                },
+                {
+                  icon: (
+                    <svg width="22" height="22" viewBox="0 0 22 22" fill="none">
+                      <path d="M11 3c-2 4-6 5-6 9a6 6 0 0012 0c0-4-4-5-6-9z" stroke="white" strokeWidth="1.5" strokeLinejoin="round"/>
+                      <path d="M11 12v4" stroke="white" strokeWidth="1.5" strokeLinecap="round"/>
+                    </svg>
+                  ),
+                  title: "Fiber Rich Foods Guide",
+                  desc: "Discover fiber-containing foods and practical ways to include more variety in your eating pattern.",
+                },
+              ].map((card, i) => (
+                <motion.div
+                  key={i}
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.5, delay: i * 0.08 }}
+                  whileHover={{ y: -6, boxShadow: "0 24px 64px rgba(0,80,96,0.14)" }}
+                  style={{ background: "var(--white)", borderRadius: "16px", border: "1px solid var(--border)", padding: "clamp(20px, 4vw, 32px)", cursor: "default" }}
+                >
+                  <div style={{ width: "40px", height: "40px", borderRadius: "10px", background: "var(--charcoal-deep)", display: "flex", alignItems: "center", justifyContent: "center", marginBottom: "16px" }}>
+                    {card.icon}
+                  </div>
+                  <h3 style={{ fontFamily: "var(--font-heading)", fontWeight: 700, fontSize: "clamp(15px, 2vw, 18px)", color: "var(--charcoal-deep)", marginBottom: "10px" }}>{card.title}</h3>
+                  <p style={{ fontFamily: "var(--font-body)", fontSize: "clamp(13px, 1.6vw, 15px)", lineHeight: 1.75, color: "var(--gray-muted)", marginBottom: "16px" }}>{card.desc}</p>
+                  <span style={{ fontFamily: "var(--font-body)", fontSize: "11px", fontWeight: 600, letterSpacing: "0.04em", textTransform: "uppercase", color: "var(--orange)", background: "rgba(240,128,0,0.1)", padding: "4px 12px", borderRadius: "100px" }}>
+                    Coming with App
+                  </span>
+                </motion.div>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        {/* RES Section B — Nutrition Glossary */}
+        <section style={{ background: "var(--white)", padding: "clamp(60px, 10vw, 120px) clamp(16px, 5vw, 64px)" }}>
+          <div style={{ maxWidth: "1280px", margin: "0 auto" }}>
+            <div style={{ display: "flex", alignItems: "center", gap: "10px", marginBottom: "16px" }}>
+              <div style={{ width: "24px", height: "1px", background: "var(--orange)" }} />
+              <span style={{ fontFamily: "var(--font-body)", fontSize: "11px", fontWeight: 600, letterSpacing: "0.12em", textTransform: "uppercase", color: "var(--orange)" }}>
+                Glossary
+              </span>
+            </div>
+            <motion.h2
+              initial={{ opacity: 0, y: 16 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6 }}
+              style={{
+                fontFamily: "var(--font-heading)", fontWeight: 800,
+                fontSize: "clamp(28px, 5vw, 48px)", lineHeight: 1.1,
+                letterSpacing: "-1px", color: "var(--charcoal-deep)", marginBottom: "20px",
+              }}
+            >
+              Nutrition Glossary
+            </motion.h2>
+            <motion.p
+              initial={{ opacity: 0, y: 12 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6, delay: 0.1 }}
+              style={{ fontFamily: "var(--font-body)", fontSize: "clamp(15px, 2vw, 17px)", lineHeight: 1.75, color: "var(--charcoal)", maxWidth: "680px", marginBottom: "clamp(40px, 7vw, 64px)" }}
+            >
+              Understanding common nutrition terms can make it easier to evaluate information and make informed decisions.
+            </motion.p>
+
+            <div className="res-glossary-grid" style={{ display: "grid", gridTemplateColumns: "repeat(2, 1fr)", gap: "clamp(16px, 3vw, 24px)" }}>
+              {[
+                { term: "Macronutrients", def: "Nutrients needed in larger amounts: carbohydrates, proteins, and fats." },
+                { term: "Micronutrients", def: "Vitamins and minerals needed in smaller amounts to support many body functions." },
+                { term: "Fiber", def: "A type of carbohydrate found naturally in fruits, vegetables, whole grains, beans, lentils, nuts, and seeds." },
+                { term: "Protein", def: "A nutrient that contributes to many important functions and is found in a wide variety of foods." },
+                { term: "Carbohydrates", def: "A major source of energy found in grains, fruits, vegetables, beans, and other foods." },
+                { term: "Dietary Fat", def: "A nutrient involved in many important functions and found in a wide variety of foods." },
+                { term: "Added Sugar", def: "Sugars added to foods or beverages during processing or preparation." },
+                { term: "Serving Size", def: "The standardized amount used on a nutrition label to provide nutritional information." },
+              ].map((item, i) => (
+                <motion.div
+                  key={i}
+                  initial={{ opacity: 0, y: 16 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.4, delay: i * 0.06 }}
+                  style={{ borderLeft: "3px solid var(--terracotta)", paddingLeft: "16px", paddingTop: "4px", paddingBottom: "4px" }}
+                >
+                  <p style={{ fontFamily: "var(--font-heading)", fontWeight: 700, fontSize: "clamp(14px, 1.8vw, 16px)", color: "var(--charcoal-deep)", marginBottom: "6px" }}>{item.term}</p>
+                  <p style={{ fontFamily: "var(--font-body)", fontSize: "clamp(13px, 1.6vw, 15px)", lineHeight: 1.7, color: "var(--gray-muted)" }}>{item.def}</p>
+                </motion.div>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        {/* RES Section C — Questions to Ask */}
+        <section style={{ background: "var(--off-white)", padding: "clamp(60px, 10vw, 120px) clamp(16px, 5vw, 64px)" }}>
+          <div style={{ maxWidth: "1280px", margin: "0 auto" }}>
+            <div style={{ display: "flex", alignItems: "center", gap: "10px", marginBottom: "16px" }}>
+              <div style={{ width: "24px", height: "1px", background: "var(--orange)" }} />
+              <span style={{ fontFamily: "var(--font-body)", fontSize: "11px", fontWeight: 600, letterSpacing: "0.12em", textTransform: "uppercase", color: "var(--orange)" }}>
+                Critical Thinking
+              </span>
+            </div>
+            <motion.h2
+              initial={{ opacity: 0, y: 16 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6 }}
+              style={{
+                fontFamily: "var(--font-heading)", fontWeight: 800,
+                fontSize: "clamp(28px, 5vw, 48px)", lineHeight: 1.1,
+                letterSpacing: "-1px", color: "var(--charcoal-deep)", marginBottom: "20px",
+              }}
+            >
+              Questions to Ask Before Trusting Nutrition Advice
+            </motion.h2>
+            <motion.p
+              initial={{ opacity: 0, y: 12 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6, delay: 0.1 }}
+              style={{ fontFamily: "var(--font-body)", fontSize: "clamp(15px, 2vw, 17px)", lineHeight: 1.75, color: "var(--charcoal)", maxWidth: "680px", marginBottom: "clamp(32px, 6vw, 56px)" }}
+            >
+              These questions can help you evaluate nutrition claims and become a more informed consumer.
+            </motion.p>
+
+            <div style={{ maxWidth: "820px" }}>
+              {[
+                "Where did this information come from?",
+                "Is the source credible?",
+                "Is there scientific evidence supporting the claim?",
+                "Is someone selling a product or program?",
+                "Does the claim promise unusually fast results?",
+                "Does it recognize individual differences?",
+                "Is the recommendation realistic for everyday life?",
+              ].map((item, i) => (
+                <motion.div
+                  key={i}
+                  initial={{ opacity: 0, x: -16 }}
+                  whileInView={{ opacity: 1, x: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.4, delay: i * 0.07 }}
+                  style={{ display: "flex", alignItems: "flex-start", gap: "clamp(16px, 3vw, 28px)", borderBottom: "1px solid var(--border)", padding: "clamp(16px, 2.5vw, 24px) 0" }}
+                >
+                  <span style={{ fontFamily: "var(--font-heading)", fontWeight: 800, fontSize: "32px", color: "var(--charcoal-deep)", lineHeight: 1, flexShrink: 0, minWidth: "40px" }}>{i + 1}</span>
+                  <p style={{ fontFamily: "var(--font-body)", fontSize: "clamp(15px, 2vw, 17px)", lineHeight: 1.75, color: "var(--charcoal)", paddingTop: "6px" }}>{item}</p>
+                </motion.div>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        {/* RES Section D — FAQ */}
+        <section style={{ background: "var(--white)", padding: "clamp(60px, 10vw, 120px) clamp(16px, 5vw, 64px)" }}>
+          <div style={{ maxWidth: "1280px", margin: "0 auto" }}>
+            <div style={{ display: "flex", alignItems: "center", gap: "10px", marginBottom: "16px" }}>
+              <div style={{ width: "24px", height: "1px", background: "var(--orange)" }} />
+              <span style={{ fontFamily: "var(--font-body)", fontSize: "11px", fontWeight: 600, letterSpacing: "0.12em", textTransform: "uppercase", color: "var(--orange)" }}>
+                FAQ
+              </span>
+            </div>
+            <motion.h2
+              initial={{ opacity: 0, y: 16 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6 }}
+              style={{
+                fontFamily: "var(--font-heading)", fontWeight: 800,
+                fontSize: "clamp(28px, 5vw, 48px)", lineHeight: 1.1,
+                letterSpacing: "-1px", color: "var(--charcoal-deep)", marginBottom: "clamp(32px, 6vw, 56px)",
+              }}
+            >
+              Frequently Asked Questions
+            </motion.h2>
+
+            <div style={{ maxWidth: "820px" }}>
+              {[
+                { q: "Are these resources a substitute for individualized advice?", a: "General resources provide useful information, but individual needs can vary significantly. These resources are educational." },
+                { q: "Where should I start?", a: "Start with the topic most relevant to your current questions. You do not need to read everything at once." },
+                { q: "How can I tell if nutrition information is reliable?", a: "Look at the source, evidence, qualifications, date, and whether claims are supported by credible research." },
+                { q: "Should I follow advice from influencers?", a: "Personal experience is not necessarily evidence that a nutrition approach will work for everyone." },
+                { q: "Can healthy eating include convenience foods?", a: "Yes. Convenience foods can be part of a balanced eating pattern depending on the product and individual needs." },
+                { q: "Is meal preparation necessary?", a: "No. Meal preparation is simply one strategy that can make eating well easier." },
+                { q: "Do I need to count every calorie?", a: "Not necessarily. Different people use different approaches. Individual needs and goals matter." },
+                { q: "Can I eat at restaurants while maintaining healthy habits?", a: "Yes. Eating at restaurants can fit within an overall balanced eating pattern." },
+                { q: "What if nutrition information online contradicts itself?", a: "Look for credible sources and consider speaking with a qualified nutrition professional." },
+                { q: "How often should I change my diet?", a: "Sustainable nutrition is generally about building appropriate habits rather than constantly changing your diet." },
+              ].map((item, i) => (
+                <motion.div
+                  key={i}
+                  initial={{ opacity: 0, y: 10 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.4, delay: i * 0.05 }}
+                  style={{ borderBottom: "1px solid var(--border)" }}
+                >
+                  <button
+                    onClick={() => setOpenFaqRes(openFaqRes === i ? null : i)}
+                    style={{
+                      width: "100%", display: "flex", alignItems: "center", justifyContent: "space-between",
+                      padding: "clamp(20px, 3vw, 28px) 0", background: "none", border: "none", cursor: "pointer", textAlign: "left", gap: "16px",
+                    }}
+                  >
+                    <span style={{ fontFamily: "var(--font-heading)", fontWeight: 700, fontSize: "clamp(15px, 2vw, 17px)", color: "var(--charcoal-deep)" }}>{item.q}</span>
+                    <motion.span
+                      animate={{ rotate: openFaqRes === i ? 45 : 0 }}
+                      transition={{ duration: 0.25 }}
+                      style={{ flexShrink: 0, width: "24px", height: "24px", borderRadius: "50%", background: "var(--charcoal-deep)", display: "flex", alignItems: "center", justifyContent: "center" }}
+                    >
+                      <svg width="12" height="12" viewBox="0 0 12 12" fill="none">
+                        <path d="M6 1v10M1 6h10" stroke="white" strokeWidth="1.5" strokeLinecap="round"/>
+                      </svg>
+                    </motion.span>
+                  </button>
+                  <AnimatePresence initial={false}>
+                    {openFaqRes === i && (
+                      <motion.div
+                        key="answer"
+                        initial={{ height: 0, opacity: 0 }}
+                        animate={{ height: "auto", opacity: 1 }}
+                        exit={{ height: 0, opacity: 0 }}
+                        transition={{ duration: 0.3, ease: [0.22, 1, 0.36, 1] }}
+                        style={{ overflow: "hidden" }}
+                      >
+                        <p style={{ fontFamily: "var(--font-body)", fontSize: "clamp(14px, 1.8vw, 16px)", lineHeight: 1.75, color: "var(--gray-muted)", paddingBottom: "clamp(20px, 3vw, 28px)" }}>{item.a}</p>
+                      </motion.div>
+                    )}
+                  </AnimatePresence>
+                </motion.div>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        {/* RES Section E — Keep Learning */}
+        <section style={{ background: "var(--charcoal-deep)", padding: "clamp(60px, 10vw, 120px) clamp(16px, 5vw, 64px)" }}>
+          <div style={{ maxWidth: "1280px", margin: "0 auto", textAlign: "center" }}>
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6 }}
+            >
+              <h2 style={{
+                fontFamily: "var(--font-heading)", fontWeight: 800,
+                fontSize: "clamp(28px, 5vw, 48px)", lineHeight: 1.1,
+                letterSpacing: "-1px", color: "#ffffff", marginBottom: "20px",
+              }}>
+                Keep Learning With TrueDiet
+              </h2>
+              <p style={{ fontFamily: "var(--font-body)", fontSize: "clamp(15px, 2vw, 17px)", lineHeight: 1.75, color: "rgba(255,255,255,0.65)", marginBottom: "20px", maxWidth: "600px", margin: "0 auto 20px" }}>
+                Nutrition knowledge becomes more valuable when you can apply it to everyday life. Continue exploring to build your understanding.
+              </p>
+              <p style={{ fontFamily: "var(--font-heading)", fontWeight: 800, fontSize: "clamp(20px, 3vw, 28px)", color: "var(--orange)", marginBottom: "40px" }}>
+                Learn. Understand. Apply.
+              </p>
+              <a href="/nutrition-education" style={{
+                display: "inline-flex", alignItems: "center", justifyContent: "center", gap: "10px",
+                padding: "16px 36px", borderRadius: "100px",
+                background: "var(--orange)", color: "#fff", textDecoration: "none",
+                fontFamily: "var(--font-body)", fontWeight: 600, fontSize: "15px",
+                transition: "opacity 0.2s, transform 0.2s",
+              }}
+              onMouseEnter={e => { (e.currentTarget as HTMLElement).style.opacity = "0.87"; (e.currentTarget as HTMLElement).style.transform = "translateY(-1px)"; }}
+              onMouseLeave={e => { (e.currentTarget as HTMLElement).style.opacity = "1"; (e.currentTarget as HTMLElement).style.transform = "translateY(0)"; }}
+              >
+                Nutrition Education
+                <svg width="13" height="13" viewBox="0 0 13 13" fill="none">
+                  <path d="M1 6.5h11M7 2.5l4.5 4-4.5 4" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+                </svg>
+              </a>
+            </motion.div>
+          </div>
+        </section>
       </main>
       <Footer />
 
@@ -357,6 +710,8 @@ export default function ResourcesPage() {
           .categories-grid { grid-template-columns: 1fr 1fr !important; }
           .help-grid { grid-template-columns: 1fr !important; }
           .soon-grid { grid-template-columns: 1fr !important; }
+          .res-guides-grid { grid-template-columns: 1fr !important; }
+          .res-glossary-grid { grid-template-columns: 1fr !important; }
         }
         @media (max-width: 480px) {
           .categories-grid { grid-template-columns: 1fr !important; }
