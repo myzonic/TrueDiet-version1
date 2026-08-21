@@ -113,7 +113,7 @@ export default function About() {
               style={{ borderRadius: "20px", overflow: "hidden", aspectRatio: "3/4" }}
             >
               <motion.img
-                src="https://images.unsplash.com/photo-1559839734-2b71ea197ec2?w=900&q=90&auto=format"
+                src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=800&h=900&auto=format&fit=crop&q=80"
                 alt="Maureen Ashbarry, Registered Dietitian"
                 style={{ width: "100%", height: "115%", objectFit: "cover", objectPosition: "top" }}
                 whileHover={{ scale: 1.04 } as any}
