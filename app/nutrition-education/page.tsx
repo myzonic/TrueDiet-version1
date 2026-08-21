@@ -53,6 +53,22 @@ export default function NutritionEducationPage() {
     },
   ];
 
+  const qaItems = [
+    { q: "Are carbohydrates really bad for you?", a: "Carbohydrates are an important source of energy, but the type, amount, and overall dietary pattern matter." },
+    { q: "Do I need to avoid processed foods?", a: "Food processing exists on a spectrum. Understanding the difference between different types of processed foods can be more useful than labeling every processed food as unhealthy." },
+    { q: "Do I need supplements?", a: "Supplements can have a role in certain situations, but more isn't automatically better. Understanding individual needs and the available evidence matters." },
+    { q: "Is \"clean eating\" actually healthier?", a: "Healthy eating doesn't require perfection or fear of individual ingredients. A sustainable overall dietary pattern matters more than chasing a perfect food list." },
+    { q: "Are nutrition trends based on science?", a: "Some trends may have evidence behind them. Others may rely primarily on anecdotes, marketing, or selective interpretation of research." },
+    { q: "How can I tell whether a nutrition claim is credible?", a: "Look beyond the person making the claim. Consider the source, quality of evidence, research design, consistency of findings, and whether the claim goes beyond what the evidence supports." },
+  ];
+
+  const approachSteps = [
+    { num: "01", step: "Ask the Question", desc: "Start with the nutrition question you're actually trying to answer." },
+    { num: "02", step: "Examine the Evidence", desc: "Look beyond headlines, influencers, and marketing." },
+    { num: "03", step: "Understand the Science", desc: "Translate complicated research into understandable information." },
+    { num: "04", step: "Apply It to Real Life", desc: "Turn knowledge into practical decisions that work for you." },
+  ];
+
   return (
     <>
       <Header />
@@ -63,475 +79,211 @@ export default function NutritionEducationPage() {
           subtitle="Real Nutrition. Real Science. Real Understanding."
         />
 
-        {/* Introduction */}
-        <section style={{ background: "var(--white)", padding: "clamp(24px, 6vw, 80px) clamp(16px, 4vw, 48px)" }}>
+        {/* Introduction — text left, bullets right */}
+        <section style={{ background: "var(--white)", padding: "clamp(60px, 10vw, 120px) clamp(16px, 5vw, 64px)" }}>
           <div style={{ maxWidth: "1280px", margin: "0 auto" }}>
-            <style>{`
-              @media (max-width: 768px) {
-                .nutrition-grid { grid-template-columns: 1fr !important; gap: 16px !important; }
-                .nutrition-section { margin-bottom: 32px !important; }
-                .nutrition-grid-qa { grid-template-columns: 1fr !important; gap: 16px !important; }
-                .nutrition-heading { font-size: clamp(24px, 5vw, 32px) !important; margin-bottom: 24px !important; }
-                .nutrition-card { padding: 16px !important; }
-              }
-            `}</style>
+            <div className="intro-grid" style={{
+              display: "grid", gridTemplateColumns: "1fr 1fr", gap: "clamp(32px, 7vw, 96px)", alignItems: "center",
+            }}>
+              <motion.div
+                initial={{ opacity: 0, x: -20 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.6 }}
+              >
+                <div style={{ display: "flex", alignItems: "center", gap: "10px", marginBottom: "20px" }}>
+                  <div style={{ width: "24px", height: "1px", background: "var(--orange)" }} />
+                  <span style={{ fontFamily: "var(--font-body)", fontSize: "11px", fontWeight: 600, letterSpacing: "0.12em", textTransform: "uppercase", color: "var(--orange)" }}>
+                    Our Approach
+                  </span>
+                </div>
+                <h2 style={{
+                  fontFamily: "var(--font-heading)", fontWeight: 800,
+                  fontSize: "clamp(28px, 4vw, 52px)", lineHeight: 1.1,
+                  letterSpacing: "-1px", color: "var(--charcoal-deep)", marginBottom: "24px",
+                }}>
+                  Nutrition Shouldn't Be Complicated
+                </h2>
+                <p style={{ fontFamily: "var(--font-body)", fontSize: "clamp(15px, 2vw, 18px)", lineHeight: 1.75, color: "var(--charcoal)", marginBottom: "16px" }}>
+                  You shouldn't need to become a nutrition scientist to understand what you're eating.
+                </p>
+                <p style={{ fontFamily: "var(--font-body)", fontSize: "clamp(15px, 2vw, 18px)", lineHeight: 1.75, color: "var(--charcoal)" }}>
+                  TrueDiet takes complex nutrition topics and breaks them down into clear, practical information grounded in evidence.
+                </p>
+              </motion.div>
+
+              <motion.div
+                initial={{ opacity: 0, x: 20 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.6 }}
+              >
+                <div style={{
+                  background: "var(--off-white)", borderRadius: "20px", padding: "clamp(24px, 4vw, 40px)",
+                  border: "1px solid var(--border)",
+                }}>
+                  <p style={{ fontFamily: "var(--font-heading)", fontWeight: 700, fontSize: "15px", color: "var(--charcoal-deep)", marginBottom: "20px" }}>
+                    What you can expect from TrueDiet:
+                  </p>
+                  {[
+                    "No unnecessary jargon.",
+                    "No miracle claims.",
+                    "No fear-based nutrition.",
+                    "Just credible information you can understand and use.",
+                  ].map((item, i) => (
+                    <div key={i} style={{
+                      display: "flex", alignItems: "flex-start", gap: "14px", marginBottom: i < 3 ? "16px" : "0",
+                    }}>
+                      <div style={{ width: "20px", height: "20px", borderRadius: "50%", background: "rgba(240,128,0,0.12)", flexShrink: 0, display: "flex", alignItems: "center", justifyContent: "center", marginTop: "2px" }}>
+                        <svg width="10" height="10" viewBox="0 0 10 10" fill="none">
+                          <path d="M1.5 5l2.5 2.5 4.5-4.5" stroke="var(--orange)" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+                        </svg>
+                      </div>
+                      <p style={{ fontFamily: "var(--font-body)", fontSize: "clamp(14px, 1.8vw, 16px)", lineHeight: 1.65, color: "var(--charcoal)" }}>
+                        {item}
+                      </p>
+                    </div>
+                  ))}
+                </div>
+              </motion.div>
+            </div>
+          </div>
+        </section>
+
+        {/* Topics with Tabs */}
+        <section style={{ background: "var(--off-white)", padding: "clamp(60px, 10vw, 120px) clamp(16px, 5vw, 64px)" }}>
+          <div style={{ maxWidth: "1280px", margin: "0 auto" }}>
+            <div style={{ display: "flex", alignItems: "center", gap: "10px", marginBottom: "16px" }}>
+              <div style={{ width: "24px", height: "1px", background: "var(--orange)" }} />
+              <span style={{ fontFamily: "var(--font-body)", fontSize: "11px", fontWeight: 600, letterSpacing: "0.12em", textTransform: "uppercase", color: "var(--orange)" }}>
+                Topic Library
+              </span>
+            </div>
+            <h2 style={{
+              fontFamily: "var(--font-heading)", fontWeight: 800,
+              fontSize: "clamp(28px, 4vw, 52px)", lineHeight: 1.1,
+              letterSpacing: "-1px", color: "var(--charcoal-deep)", marginBottom: "clamp(32px, 6vw, 56px)",
+            }}>
+              Explore Nutrition Topics
+            </h2>
+            <NutritionTabs topics={topics.map((t, i) => ({ id: String(i), ...t }))} />
+          </div>
+        </section>
+
+        {/* Philosophy cards — numbered */}
+        <section style={{ background: "var(--white)", padding: "clamp(60px, 10vw, 120px) clamp(16px, 5vw, 64px)" }}>
+          <div style={{ maxWidth: "1280px", margin: "0 auto" }}>
+            <div style={{ textAlign: "center", marginBottom: "clamp(40px, 7vw, 72px)" }}>
+              <div style={{ display: "flex", alignItems: "center", justifyContent: "center", gap: "10px", marginBottom: "16px" }}>
+                <div style={{ width: "24px", height: "1px", background: "var(--orange)" }} />
+                <span style={{ fontFamily: "var(--font-body)", fontSize: "11px", fontWeight: 600, letterSpacing: "0.12em", textTransform: "uppercase", color: "var(--orange)" }}>
+                  Our Method
+                </span>
+                <div style={{ width: "24px", height: "1px", background: "var(--orange)" }} />
+              </div>
+              <h2 style={{
+                fontFamily: "var(--font-heading)", fontWeight: 800,
+                fontSize: "clamp(28px, 4vw, 52px)", lineHeight: 1.1,
+                letterSpacing: "-1px", color: "var(--charcoal-deep)",
+              }}>
+                The TrueDiet Approach
+              </h2>
+            </div>
+
+            <div className="approach-grid" style={{
+              display: "grid", gridTemplateColumns: "repeat(4, 1fr)", gap: "clamp(16px, 3vw, 24px)",
+            }}>
+              {approachSteps.map((item, i) => (
+                <motion.div
+                  key={i}
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.5, delay: i * 0.1 }}
+                  style={{
+                    background: "var(--off-white)", padding: "clamp(24px, 4vw, 36px)", borderRadius: "20px",
+                    border: "1px solid var(--border)",
+                  }}
+                >
+                  <p style={{ fontFamily: "var(--font-heading)", fontWeight: 800, fontSize: "clamp(32px, 4vw, 44px)", color: "var(--orange)", marginBottom: "16px", lineHeight: 1 }}>
+                    {item.num}
+                  </p>
+                  <h4 style={{ fontFamily: "var(--font-heading)", fontWeight: 700, fontSize: "clamp(15px, 2vw, 18px)", color: "var(--charcoal-deep)", marginBottom: "10px" }}>
+                    {item.step}
+                  </h4>
+                  <p style={{ fontFamily: "var(--font-body)", fontSize: "clamp(13px, 1.6vw, 15px)", lineHeight: 1.65, color: "var(--gray-muted)" }}>
+                    {item.desc}
+                  </p>
+                </motion.div>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        {/* Questions worth asking */}
+        <section style={{ background: "var(--off-white)", padding: "clamp(60px, 10vw, 120px) clamp(16px, 5vw, 64px)" }}>
+          <div style={{ maxWidth: "1280px", margin: "0 auto" }}>
+            <div style={{ display: "flex", alignItems: "center", gap: "10px", marginBottom: "16px" }}>
+              <div style={{ width: "24px", height: "1px", background: "var(--orange)" }} />
+              <span style={{ fontFamily: "var(--font-body)", fontSize: "11px", fontWeight: 600, letterSpacing: "0.12em", textTransform: "uppercase", color: "var(--orange)" }}>
+                Let's Look Beyond the Headlines
+              </span>
+            </div>
+            <h2 style={{
+              fontFamily: "var(--font-heading)", fontWeight: 800,
+              fontSize: "clamp(28px, 4vw, 52px)", lineHeight: 1.1,
+              letterSpacing: "-1px", color: "var(--charcoal-deep)", marginBottom: "clamp(32px, 6vw, 56px)",
+            }}>
+              Nutrition Questions Worth Asking
+            </h2>
+
+            <div className="qa-grid" style={{
+              display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(280px, 1fr))", gap: "clamp(16px, 3vw, 24px)",
+            }}>
+              {qaItems.map((item, i) => (
+                <motion.div
+                  key={i}
+                  initial={{ opacity: 0, scale: 0.96 }}
+                  whileInView={{ opacity: 1, scale: 1 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.4, delay: i * 0.06 }}
+                  style={{
+                    background: "var(--white)", padding: "clamp(20px, 3vw, 28px)", borderRadius: "16px",
+                    border: "1px solid var(--border)",
+                  }}
+                >
+                  <h4 style={{ fontFamily: "var(--font-heading)", fontWeight: 700, fontSize: "clamp(14px, 1.8vw, 16px)", color: "var(--charcoal-deep)", marginBottom: "12px" }}>
+                    {item.q}
+                  </h4>
+                  <p style={{ fontFamily: "var(--font-body)", fontSize: "clamp(13px, 1.6vw, 15px)", lineHeight: 1.7, color: "var(--gray-muted)" }}>
+                    {item.a}
+                  </p>
+                </motion.div>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        {/* Dark CTA */}
+        <section style={{ background: "var(--charcoal-deep)", padding: "clamp(60px, 10vw, 120px) clamp(16px, 5vw, 64px)" }}>
+          <div style={{ maxWidth: "1280px", margin: "0 auto", textAlign: "center" }}>
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.6 }}
-              style={{ marginBottom: "clamp(32px, 8vw, 80px)" }}
             >
               <h2 style={{
                 fontFamily: "var(--font-heading)", fontWeight: 800,
-                fontSize: "clamp(32px, 4.5vw, 56px)", lineHeight: 1.1,
-                letterSpacing: "-1.5px", color: "var(--charcoal-deep)",
-                marginBottom: "32px",
-              }}>
-                Nutrition Shouldn't Be Complicated
-              </h2>
-              <div style={{ display: "grid", gap: "clamp(12px, 3vw, 24px)", maxWidth: "700px" }} className="nutrition-grid">
-                <p style={{
-                  fontFamily: "var(--font-body)", fontSize: "18px", lineHeight: 1.75,
-                  color: "var(--charcoal)",
-                }}>
-                  You shouldn't need to become a nutrition scientist to understand what you're eating.
-                </p>
-                <p style={{
-                  fontFamily: "var(--font-body)", fontSize: "18px", lineHeight: 1.75,
-                  color: "var(--charcoal)",
-                }}>
-                  TrueDiet takes complex nutrition topics and breaks them down into clear, practical information grounded in evidence.
-                </p>
-                <div style={{
-                  background: "rgba(240,128,0,0.05)", borderRadius: "12px", padding: "24px",
-                  borderLeft: "4px solid var(--orange)",
-                }}>
-                  <ul style={{ listStyle: "none", padding: 0, margin: 0 }}>
-                    {["No unnecessary jargon.", "No miracle claims.", "No fear based nutrition."].map((item, i) => (
-                      <li key={i} style={{
-                        fontFamily: "var(--font-body)", fontSize: "15px", lineHeight: 1.8,
-                        color: "var(--charcoal)", paddingLeft: "24px", position: "relative",
-                      }}>
-                        <span style={{ position: "absolute", left: 0, color: "var(--orange)", fontWeight: 700 }}>✓</span>
-                        {item}
-                      </li>
-                    ))}
-                  </ul>
-                  <p style={{
-                    fontFamily: "var(--font-body)", fontSize: "15px", lineHeight: 1.8,
-                    color: "var(--charcoal)", marginTop: "12px", paddingLeft: "24px", position: "relative",
-                  }}>
-                    <span style={{ position: "absolute", left: 0, color: "var(--orange)", fontWeight: 700 }}>✓</span>
-                    Just credible information you can understand and use.
-                  </p>
-                </div>
-              </div>
-            </motion.div>
-
-            {/* Topics with Tabs */}
-            <div style={{ marginBottom: "80px" }}>
-              <h3 style={{
-                fontFamily: "var(--font-heading)", fontWeight: 800, fontSize: "32px",
-                color: "var(--charcoal-deep)", marginBottom: "48px",
-              }}>
-                Explore Nutrition Topics
-              </h3>
-              <NutritionTabs topics={topics.map((t, i) => ({ id: String(i), ...t }))} />
-            </div>
-
-            {/* How to Think About Nutrition */}
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.6 }}
-              style={{ marginBottom: "clamp(32px, 8vw, 80px)" }}
-            >
-              <h3 style={{
-                fontFamily: "var(--font-heading)", fontWeight: 800, fontSize: "32px",
-                color: "var(--charcoal-deep)", marginBottom: "48px",
-              }}>
-                How to Think About Nutrition
-              </h3>
-              <h4 style={{
-                fontFamily: "var(--font-heading)", fontWeight: 700, fontSize: "22px",
-                color: "var(--charcoal-deep)", marginBottom: "24px",
-              }}>
-                Start With Questions, Not Trends
-              </h4>
-              <div style={{ maxWidth: "800px" }}>
-                <p style={{
-                  fontFamily: "var(--font-body)", fontSize: "16px", lineHeight: 1.75,
-                  color: "var(--charcoal)", marginBottom: "24px",
-                }}>
-                  Good nutrition education begins with curiosity.
-                </p>
-                <p style={{
-                  fontFamily: "var(--font-body)", fontSize: "16px", lineHeight: 1.75,
-                  color: "var(--charcoal)", marginBottom: "24px",
-                }}>
-                  Instead of asking, "What diet should I follow?" start by asking better questions:
-                </p>
-                <ul style={{
-                  fontFamily: "var(--font-body)", fontSize: "16px", lineHeight: 1.75,
-                  color: "var(--charcoal)", listStyle: "none", paddingLeft: "0", marginBottom: "24px",
-                }}>
-                  {[
-                    "What does the evidence actually say?",
-                    "Why is this recommendation being made?",
-                    "Does the research apply to everyone?",
-                    "What are the potential benefits and limitations?",
-                    "How does this information fit into real life?"
-                  ].map((item, i) => (
-                    <li key={i} style={{ marginBottom: "12px", paddingLeft: "24px", position: "relative" }}>
-                      <span style={{ position: "absolute", left: "0", color: "var(--orange)", fontWeight: 700 }}>✓</span>
-                      {item}
-                    </li>
-                  ))}
-                </ul>
-                <p style={{
-                  fontFamily: "var(--font-body)", fontSize: "16px", lineHeight: 1.75,
-                  color: "var(--charcoal)", fontWeight: 600,
-                }}>
-                  Understanding how to ask better questions is one of the most useful nutrition skills you can develop.
-                </p>
-              </div>
-            </motion.div>
-
-            {/* Beyond the Nutrition Headline */}
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.6 }}
-              style={{ marginBottom: "clamp(32px, 8vw, 80px)" }}
-            >
-              <h3 style={{
-                fontFamily: "var(--font-heading)", fontWeight: 800, fontSize: "32px",
-                color: "var(--charcoal-deep)", marginBottom: "48px",
-              }}>
-                Beyond the Nutrition Headline
-              </h3>
-              <h4 style={{
-                fontFamily: "var(--font-heading)", fontWeight: 700, fontSize: "22px",
-                color: "var(--charcoal-deep)", marginBottom: "24px",
-              }}>
-                A Headline Is Not the Whole Story
-              </h4>
-              <div style={{ maxWidth: "800px" }}>
-                <p style={{
-                  fontFamily: "var(--font-body)", fontSize: "16px", lineHeight: 1.75,
-                  color: "var(--charcoal)", marginBottom: "24px",
-                }}>
-                  Nutrition research is often reduced to a headline, social media post, or short video.
-                </p>
-                <p style={{
-                  fontFamily: "var(--font-body)", fontSize: "16px", lineHeight: 1.75,
-                  color: "var(--charcoal)", marginBottom: "24px",
-                }}>
-                  But scientific evidence requires context.
-                </p>
-                <div style={{
-                  background: "rgba(240,128,0,0.05)", borderRadius: "12px", padding: "24px",
-                  borderLeft: "4px solid var(--orange)", marginBottom: "24px",
-                }}>
-                  <ul style={{
-                    fontFamily: "var(--font-body)", fontSize: "15px", lineHeight: 1.8,
-                    color: "var(--charcoal)", listStyle: "none", paddingLeft: "0", margin: "0",
-                  }}>
-                    {[
-                      "A study may receive attention online because it sounds surprising.",
-                      "A food may suddenly become a \"superfood.\"",
-                      "A supplement may be promoted as the next big breakthrough."
-                    ].map((item, i) => (
-                      <li key={i} style={{ marginBottom: i < 2 ? "12px" : "0", paddingLeft: "24px", position: "relative" }}>
-                        <span style={{ position: "absolute", left: "0", color: "var(--orange)", fontWeight: 700 }}>●</span>
-                        {item}
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-                <p style={{
-                  fontFamily: "var(--font-body)", fontSize: "16px", lineHeight: 1.75,
-                  color: "var(--charcoal)", marginBottom: "24px",
-                }}>
-                  TrueDiet encourages you to pause before accepting the claim. Look at the evidence. Understand what was actually studied. Consider who participated. Look at the limitations. Then ask what the findings actually mean for everyday life.
-                </p>
-              </div>
-            </motion.div>
-
-            {/* Nutrition Questions Worth Asking */}
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.6 }}
-              style={{ marginBottom: "clamp(32px, 8vw, 80px)" }}
-            >
-              <h3 style={{
-                fontFamily: "var(--font-heading)", fontWeight: 800, fontSize: "32px",
-                color: "var(--charcoal-deep)", marginBottom: "48px",
-              }}>
-                Nutrition Questions Worth Asking
-              </h3>
-              <p style={{
-                fontFamily: "var(--font-heading)", fontWeight: 600, fontSize: "16px",
-                color: "var(--orange)", marginBottom: "48px",
-              }}>
-                Let's Look Beyond the Headlines
-              </p>
-              <div style={{
-                display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(260px, 1fr))", gap: "clamp(16px, 4vw, 32px)",
-              }} className="nutrition-grid-qa">
-                {[
-                  {
-                    q: "Are carbohydrates really bad for you?",
-                    a: "Carbohydrates are an important source of energy, but the type, amount, and overall dietary pattern matter."
-                  },
-                  {
-                    q: "Do I need to avoid processed foods?",
-                    a: "Food processing exists on a spectrum. Understanding the difference between different types of processed foods can be more useful than labeling every processed food as unhealthy."
-                  },
-                  {
-                    q: "Do I need supplements?",
-                    a: "Supplements can have a role in certain situations, but more isn't automatically better. Understanding individual needs and the available evidence matters."
-                  },
-                  {
-                    q: "Is \"clean eating\" actually healthier?",
-                    a: "Healthy eating doesn't require perfection or fear of individual ingredients. A sustainable overall dietary pattern matters more than chasing a perfect food list."
-                  },
-                  {
-                    q: "Are nutrition trends based on science?",
-                    a: "Some trends may have evidence behind them. Others may rely primarily on anecdotes, marketing, or selective interpretation of research."
-                  },
-                  {
-                    q: "How can I tell whether a nutrition claim is credible?",
-                    a: "Look beyond the person making the claim. Consider the source, quality of evidence, research design, consistency of findings, and whether the claim goes beyond what the evidence supports."
-                  },
-                ].map((item, i) => (
-                  <motion.div
-                    key={i}
-                    initial={{ opacity: 0, scale: 0.95 }}
-                    whileInView={{ opacity: 1, scale: 1 }}
-                    viewport={{ once: true }}
-                    transition={{ duration: 0.4, delay: i * 0.05 }}
-                    style={{
-                      background: "var(--white)", padding: "clamp(16px, 3vw, 24px)", borderRadius: "16px",
-                      border: "1px solid var(--border)",
-                    }} className="nutrition-card"
-                  >
-                    <h4 style={{
-                      fontFamily: "var(--font-heading)", fontWeight: 700, fontSize: "16px",
-                      color: "var(--charcoal-deep)", marginBottom: "12px",
-                    }}>
-                      {item.q}
-                    </h4>
-                    <p style={{
-                      fontFamily: "var(--font-body)", fontSize: "14px", lineHeight: 1.7,
-                      color: "var(--gray-muted)",
-                    }}>
-                      {item.a}
-                    </p>
-                  </motion.div>
-                ))}
-              </div>
-            </motion.div>
-
-            {/* Build Nutrition Confidence */}
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.6 }}
-              style={{ marginBottom: "clamp(32px, 8vw, 80px)" }}
-            >
-              <h3 style={{
-                fontFamily: "var(--font-heading)", fontWeight: 800, fontSize: "32px",
-                color: "var(--charcoal-deep)", marginBottom: "48px",
-              }}>
-                Build Nutrition Confidence
-              </h3>
-              <h4 style={{
-                fontFamily: "var(--font-heading)", fontWeight: 700, fontSize: "20px",
-                color: "var(--charcoal-deep)", marginBottom: "32px",
-              }}>
-                The Goal Isn't to Memorize Every Nutrition Rule
-              </h4>
-              <div style={{ maxWidth: "900px", marginBottom: "40px" }}>
-                <p style={{
-                  fontFamily: "var(--font-body)", fontSize: "16px", lineHeight: 1.75,
-                  color: "var(--charcoal)", marginBottom: "24px",
-                }}>
-                  You don't need to know everything about nutrition to make informed choices. You need the right framework.
-                </p>
-                <div style={{
-                  display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(240px, 1fr))", gap: "24px",
-                }}>
-                  {[
-                    { title: "Understand the basics", desc: "Know how calories, macronutrients, food labels, and eating behaviors fit together." },
-                    { title: "Question the claim", desc: "Don't automatically accept information because it is popular, confidently presented, or repeated frequently." },
-                    { title: "Look for evidence", desc: "Learn to distinguish scientific evidence from testimonials, anecdotes, and marketing." },
-                    { title: "Consider your context", desc: "Nutrition recommendations should make sense within your individual circumstances." },
-                    { title: "Apply what you learn", desc: "Knowledge becomes useful when it helps you make practical decisions in everyday life." },
-                  ].map((item, i) => (
-                    <motion.div
-                      key={i}
-                      initial={{ opacity: 0, x: -20 }}
-                      whileInView={{ opacity: 1, x: 0 }}
-                      viewport={{ once: true }}
-                      transition={{ duration: 0.4, delay: i * 0.08 }}
-                      style={{
-                        background: "var(--off-white)", padding: "24px", borderRadius: "12px", border: "1px solid var(--border)",
-                      }}
-                    >
-                      <p style={{
-                        fontFamily: "var(--font-heading)", fontWeight: 700, fontSize: "15px",
-                        color: "var(--charcoal-deep)", marginBottom: "8px",
-                      }}>
-                        {item.title}
-                      </p>
-                      <p style={{
-                        fontFamily: "var(--font-body)", fontSize: "13px", lineHeight: 1.6,
-                        color: "var(--gray-muted)",
-                      }}>
-                        {item.desc}
-                      </p>
-                    </motion.div>
-                  ))}
-                </div>
-              </div>
-            </motion.div>
-
-            {/* Nutrition Education Should Evolve */}
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.6 }}
-              style={{
-                marginBottom: "clamp(32px, 8vw, 80px)", padding: "clamp(32px, 6vw, 60px) clamp(20px, 4vw, 48px)",
-                background: "linear-gradient(135deg, rgba(96,144,0,0.05), rgba(0,80,96,0.05))",
-                borderRadius: "24px",
-              }}
-            >
-              <h3 style={{
-                fontFamily: "var(--font-heading)", fontWeight: 800, fontSize: "32px",
-                color: "var(--charcoal-deep)", marginBottom: "48px",
-              }}>
-                Nutrition Education Should Evolve
-              </h3>
-              <div style={{ maxWidth: "800px" }}>
-                <div style={{ display: "grid", gap: "20px" }}>
-                  <p style={{
-                    fontFamily: "var(--font-body)", fontSize: "16px", lineHeight: 1.75,
-                    color: "var(--charcoal)",
-                  }}>
-                    Nutrition science continues to develop. New studies are published. Recommendations change. New products appear. Trends come and go.
-                  </p>
-                  <p style={{
-                    fontFamily: "var(--font-body)", fontSize: "16px", lineHeight: 1.75,
-                    color: "var(--charcoal)",
-                  }}>
-                    That doesn't mean everything you heard yesterday was wrong.
-                  </p>
-                  <p style={{
-                    fontFamily: "var(--font-body)", fontSize: "16px", lineHeight: 1.75,
-                    color: "var(--charcoal)", fontWeight: 600,
-                  }}>
-                    It means good nutrition education requires the ability to learn, question, evaluate, and adapt.
-                  </p>
-                  <p style={{
-                    fontFamily: "var(--font-body)", fontSize: "16px", lineHeight: 1.75,
-                    color: "var(--charcoal)",
-                  }}>
-                    TrueDiet is built around that mindset.
-                  </p>
-                </div>
-              </div>
-            </motion.div>
-
-            {/* Approach */}
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.6 }}
-              style={{ marginBottom: "60px" }}
-            >
-              <h3 style={{
-                fontFamily: "var(--font-heading)", fontWeight: 800, fontSize: "32px",
-                color: "var(--charcoal-deep)", marginBottom: "48px",
-              }}>
-                TrueDiet Approach
-              </h3>
-              <div style={{
-                display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(240px, 1fr))", gap: "24px",
-              }}>
-                {[
-                  { num: "01", step: "Ask the Question", desc: "Start with the nutrition question you're actually trying to answer." },
-                  { num: "02", step: "Examine the Evidence", desc: "Look beyond headlines, influencers, and marketing." },
-                  { num: "03", step: "Understand the Science", desc: "Translate complicated research into understandable information." },
-                  { num: "04", step: "Apply It to Real Life", desc: "Turn knowledge into practical decisions that work for you." },
-                ].map((item, i) => (
-                  <motion.div
-                    key={i}
-                    initial={{ opacity: 0, scale: 0.95 }}
-                    whileInView={{ opacity: 1, scale: 1 }}
-                    viewport={{ once: true }}
-                    transition={{ duration: 0.4, delay: i * 0.1 }}
-                    style={{
-                      background: "var(--white)", padding: "32px", borderRadius: "16px",
-                      border: "1px solid var(--border)",
-                    }}
-                  >
-                    <p style={{
-                      fontFamily: "var(--font-heading)", fontWeight: 800, fontSize: "36px",
-                      color: "var(--orange)", marginBottom: "12px",
-                    }}>
-                      {item.num}
-                    </p>
-                    <h4 style={{
-                      fontFamily: "var(--font-heading)", fontWeight: 700, fontSize: "18px",
-                      color: "var(--charcoal-deep)", marginBottom: "12px",
-                    }}>
-                      {item.step}
-                    </h4>
-                    <p style={{
-                      fontFamily: "var(--font-body)", fontSize: "14px", lineHeight: 1.6,
-                      color: "var(--gray-muted)",
-                    }}>
-                      {item.desc}
-                    </p>
-                  </motion.div>
-                ))}
-              </div>
-            </motion.div>
-
-            {/* CTA */}
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.6 }}
-              style={{
-                textAlign: "center", padding: "clamp(24px, 6vw, 60px) 0",
-                borderTop: "1px solid var(--border)",
-              }}
-            >
-              <h3 style={{
-                fontFamily: "var(--font-heading)", fontWeight: 700, fontSize: "24px",
-                color: "var(--charcoal-deep)", marginBottom: "24px",
+                fontSize: "clamp(28px, 4.5vw, 56px)", lineHeight: 1.1,
+                letterSpacing: "-1px", color: "#ffffff", marginBottom: "20px",
               }}>
                 Have a Nutrition Question?
-              </h3>
-              <p style={{
-                fontFamily: "var(--font-body)", fontSize: "16px", lineHeight: 1.6,
-                color: "var(--gray-muted)", marginBottom: "32px",
-              }}>
-                Don't let another social media trend decide what you believe.
+              </h2>
+              <p style={{ fontFamily: "var(--font-body)", fontSize: "clamp(15px, 2vw, 18px)", lineHeight: 1.7, color: "rgba(255,255,255,0.6)", marginBottom: "40px", maxWidth: "520px", margin: "0 auto 40px" }}>
+                Don't let another social media trend decide what you believe. Get in touch with us.
               </p>
-              <ShimmerButton type="button" onClick={() => document.getElementById("contact")?.scrollIntoView({ behavior: "smooth" })}>
+              <ShimmerButton type="button" onClick={() => window.location.href = "/contact"}>
                 Contact Us
                 <svg width="13" height="13" viewBox="0 0 13 13" fill="none">
                   <path d="M1 6.5h11M7 2.5l4.5 4-4.5 4" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
@@ -542,6 +294,17 @@ export default function NutritionEducationPage() {
         </section>
       </main>
       <Footer />
+
+      <style>{`
+        @media (max-width: 768px) {
+          .intro-grid { grid-template-columns: 1fr !important; }
+          .approach-grid { grid-template-columns: 1fr 1fr !important; }
+          .qa-grid { grid-template-columns: 1fr !important; }
+        }
+        @media (max-width: 480px) {
+          .approach-grid { grid-template-columns: 1fr !important; }
+        }
+      `}</style>
     </>
   );
 }

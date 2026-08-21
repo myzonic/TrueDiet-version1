@@ -6,6 +6,53 @@ import PageHero from "@/components/PageHero";
 import Footer from "@/components/sections/Footer";
 import { ShimmerButton } from "@/components/ui/shimmer-button";
 
+const timelineItems = [
+  { year: "2001", title: "Registered Dietitian", desc: "Began her professional career as a Registered Dietitian, building a foundation in clinical nutrition and patient care." },
+  { year: "~2008", title: "Medical Nutrition Therapy", desc: "Developed expertise applying nutrition science to complex health and medical needs through Medical Nutrition Therapy." },
+  { year: "~2015", title: "Clinical & Healthcare Experience", desc: "Worked across multiple healthcare environments, helping people navigate nutrition in real-world situations." },
+  { year: "~2020", title: "Nutrition Education Focus", desc: "Expanded her focus toward helping people understand nutrition information and separate evidence from misinformation." },
+  { year: "2026", title: "TrueDiet Founded", desc: "Created TrueDiet to bring credible, evidence-based nutrition education to a broader audience." },
+];
+
+const philosophyCards = [
+  {
+    icon: (
+      <svg width="28" height="28" viewBox="0 0 28 28" fill="none">
+        <path d="M14 3C9.03 3 5 7.03 5 12c0 3.5 1.9 6.56 4.75 8.22V22h8.5v-1.78C21.1 18.56 23 15.5 23 12c0-4.97-4.03-9-9-9z" stroke="var(--terracotta)" strokeWidth="1.5" strokeLinejoin="round"/>
+        <path d="M9.75 22v2h8.5v-2" stroke="var(--terracotta)" strokeWidth="1.5" strokeLinecap="round"/>
+      </svg>
+    ),
+    title: "Science Over Trends",
+    desc: "Every recommendation is grounded in peer-reviewed research, not social media cycles or influencer opinion.",
+  },
+  {
+    icon: (
+      <svg width="28" height="28" viewBox="0 0 28 28" fill="none">
+        <path d="M14 4l2 6h6l-5 3.6 2 6L14 16l-5 3.6 2-6L6 10h6z" stroke="var(--terracotta)" strokeWidth="1.5" strokeLinejoin="round"/>
+      </svg>
+    ),
+    title: "Individual Context",
+    desc: "There is no single perfect diet. Your health, goals, lifestyle, and circumstances all shape what good nutrition means for you.",
+  },
+  {
+    icon: (
+      <svg width="28" height="28" viewBox="0 0 28 28" fill="none">
+        <path d="M14 24s-8-5.5-8-12a8 8 0 0116 0c0 6.5-8 12-8 12z" stroke="var(--terracotta)" strokeWidth="1.5" strokeLinejoin="round"/>
+        <circle cx="14" cy="12" r="2.5" stroke="var(--terracotta)" strokeWidth="1.5"/>
+      </svg>
+    ),
+    title: "Sustainable Habits",
+    desc: "Short-term rules are easy to follow and hard to maintain. TrueDiet focuses on knowledge that fits into everyday life for the long haul.",
+  },
+];
+
+const differentiators = [
+  { title: "Science You Can Understand", desc: "Nutrition research can be complicated. TrueDiet translates complex concepts into clear, practical information without unnecessary jargon." },
+  { title: "Context Matters", desc: "There isn't one perfect way of eating that works for everyone. Your health, preferences, lifestyle, goals, and circumstances all matter." },
+  { title: "No Fear-Based Nutrition", desc: "Food doesn't need to be divided into \"good\" and \"bad.\" TrueDiet focuses on understanding food and making informed choices rather than creating unnecessary fear." },
+  { title: "Sustainable Thinking", desc: "Short-term rules can be easy to follow and difficult to maintain. TrueDiet focuses on knowledge and habits that can fit into everyday life." },
+];
+
 export default function AboutPage() {
   return (
     <>
@@ -18,478 +65,333 @@ export default function AboutPage() {
           subtitle="Real Experience. Real Science. Real Nutrition."
         />
 
-        {/* Hero image */}
-        <section style={{ background: "var(--off-white)", padding: "clamp(20px, 4vw, 60px) clamp(16px, 4vw, 48px)" }}>
+        {/* Bio Section — image + text */}
+        <section style={{ background: "var(--off-white)", padding: "clamp(60px, 10vw, 120px) clamp(16px, 5vw, 64px)" }}>
           <div style={{ maxWidth: "1280px", margin: "0 auto" }}>
-            <motion.img
-              initial={{ opacity: 0, scale: 1.05 }}
-              animate={{ opacity: 1, scale: 1 }}
-              transition={{ duration: 0.8 }}
-              src="https://images.unsplash.com/photo-1559839734-2b71ea197ec2?w=900&q=90&auto=format"
-              alt="Maureen Ashbarry, Registered Dietitian"
-              style={{
-                width: "100%", maxWidth: "500px", height: "clamp(280px, 70vw, 600px)",
-                objectFit: "cover", borderRadius: "clamp(12px, 3vw, 20px)", margin: "0 auto",
-                display: "block", boxShadow: "0 10px 40px rgba(0,80,96,0.12)",
-              }}
-            />
-          </div>
-        </section>
-
-        {/* Main content */}
-        <section style={{ background: "var(--off-white)", padding: "clamp(24px, 6vw, 80px) clamp(16px, 4vw, 48px)" }}>
-        <style>{`
-          @media (max-width: 768px) {
-            .about-grid { grid-template-columns: 1fr !important; gap: 16px !important; }
-            .about-creds { display: grid !important; grid-template-columns: 1fr 1fr !important; gap: 12px !important; }
-            .about-sections { margin-bottom: 24px !important; padding: 16px !important; }
-            .about-h2 { font-size: clamp(24px, 5vw, 48px) !important; margin-bottom: 16px !important; }
-            .about-h3 { font-size: clamp(20px, 4.5vw, 32px) !important; margin-bottom: 24px !important; }
-            .about-p { font-size: 15px !important; line-height: 1.6 !important; }
-            .about-section { margin-bottom: 32px !important; }
-            section > div > div:first-child > div { margin-bottom: 40px !important; }
-          }
-        `}</style>
-          <div style={{ maxWidth: "1280px", margin: "0 auto" }}>
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.6 }}
-              style={{ marginBottom: "clamp(32px, 8vw, 80px)" }}
-            >
-              <h2 style={{
-                fontFamily: "var(--font-heading)", fontWeight: 800,
-                fontSize: "clamp(32px, 4.5vw, 56px)", lineHeight: 1.1,
-                letterSpacing: "-1.5px", color: "var(--charcoal-deep)",
-                marginBottom: "32px",
-              }}>
-                Nutrition Expertise Built on Real Clinical Experience
-              </h2>
-              <p style={{
-                fontFamily: "var(--font-body)", fontSize: "18px", lineHeight: 1.75,
-                color: "var(--charcoal)", marginBottom: "20px",
-              }}>
-                Maureen Ashbarry is a Registered Dietitian with extensive experience across healthcare and nutrition settings. Her professional background includes clinical nutrition, Medical Nutrition Therapy, healthcare, and nutrition education.
-              </p>
-              <p style={{
-                fontFamily: "var(--font-body)", fontSize: "18px", lineHeight: 1.75,
-                color: "var(--charcoal)", marginBottom: "20px",
-              }}>
-                Her approach is centered around one simple idea:
-              </p>
-              <div style={{
-                background: "var(--white)", borderRadius: "16px", padding: "32px",
-                borderLeft: "4px solid var(--terracotta)", marginBottom: "40px",
-              }}>
-                <p style={{
-                  fontFamily: "var(--font-heading)", fontWeight: 700,
-                  fontSize: "22px", color: "var(--charcoal-deep)",
+            <div className="bio-grid" style={{
+              display: "grid",
+              gridTemplateColumns: "40% 1fr",
+              gap: "clamp(32px, 6vw, 80px)",
+              alignItems: "start",
+            }}>
+              {/* Image column */}
+              <motion.div
+                initial={{ opacity: 0, x: -24 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
+              >
+                <img
+                  src="https://images.unsplash.com/photo-1559839734-2b71ea197ec2?w=800&q=90&auto=format"
+                  alt="Maureen Ashbarry, Registered Dietitian"
+                  style={{
+                    width: "100%", aspectRatio: "4/5", objectFit: "cover",
+                    borderRadius: "20px", display: "block",
+                    boxShadow: "0 24px 80px rgba(0,80,96,0.18)",
+                  }}
+                />
+                {/* Stat boxes */}
+                <div className="stat-boxes" style={{
+                  display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: "12px", marginTop: "16px",
                 }}>
-                  Nutrition should be understandable, practical, and grounded in science.
-                </p>
-              </div>
-              <p style={{
-                fontFamily: "var(--font-body)", fontSize: "18px", lineHeight: 1.75,
-                color: "var(--charcoal)",
-              }}>
-                Rather than promoting restrictive diets, quick fixes, or the latest social media trend, Maureen focuses on evidence based nutrition education and helping people make informed decisions that fit their individual lives.
-              </p>
-            </motion.div>
-
-            {/* Career Timeline */}
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.6 }}
-              style={{ marginBottom: "clamp(32px, 8vw, 80px)" }}
-            >
-              <h3 style={{
-                fontFamily: "var(--font-heading)", fontWeight: 800,
-                fontSize: "clamp(28px, 3.5vw, 48px)", letterSpacing: "-1px",
-                color: "var(--charcoal-deep)", marginBottom: "48px",
-              }}>
-                A Career Built Around Nutrition
-              </h3>
-              <div style={{ display: "grid", gap: "clamp(16px, 4vw, 32px)" }}>
-                {[
-                  { year: "2001", title: "Registered Dietitian", desc: "Began her professional career as a Registered Dietitian, developing a foundation in clinical nutrition and patient care." },
-                  { year: "", title: "Medical Nutrition Therapy", desc: "Developed experience applying nutrition science to complex health and medical needs through Medical Nutrition Therapy." },
-                  { year: "", title: "Clinical & Healthcare Experience", desc: "Worked across multiple healthcare environments and gained experience helping people navigate nutrition in real world situations." },
-                  { year: "", title: "Nutrition Education", desc: "Expanded her focus toward helping people understand nutrition information and separate evidence from misinformation." },
-                  { year: "2026", title: "TrueDiet", desc: "Created TrueDiet to bring credible, evidence based nutrition education to a broader audience." },
-                ].map((item, i) => (
-                  <motion.div
-                    key={i}
-                    initial={{ opacity: 0, x: -20 }}
-                    whileInView={{ opacity: 1, x: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ duration: 0.5, delay: i * 0.1 }}
-                    style={{
-                      display: "flex", gap: "24px", padding: "24px 0",
-                      borderBottom: i < 4 ? "1px solid var(--border)" : "none",
-                    }}
-                  >
-                    {item.year && (
-                      <span style={{
-                        fontFamily: "var(--font-heading)", fontWeight: 700, fontSize: "14px",
-                        color: "var(--terracotta)", minWidth: "60px",
-                      }}>
-                        {item.year}
-                      </span>
-                    )}
-                    <div>
-                      <h4 style={{
-                        fontFamily: "var(--font-heading)", fontWeight: 700, fontSize: "18px",
-                        color: "var(--charcoal-deep)", marginBottom: "8px",
-                      }}>
-                        {item.title}
-                      </h4>
-                      <p style={{
-                        fontFamily: "var(--font-body)", fontSize: "15px", lineHeight: 1.6,
-                        color: "var(--gray-muted)",
-                      }}>
-                        {item.desc}
-                      </p>
-                    </div>
-                  </motion.div>
-                ))}
-              </div>
-            </motion.div>
-
-            {/* Philosophy */}
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.6 }}
-              style={{ marginBottom: "clamp(32px, 8vw, 80px)", textAlign: "center", padding: "clamp(32px, 6vw, 60px) 0" }}
-            >
-              <h3 style={{
-                fontFamily: "var(--font-heading)", fontWeight: 800,
-                fontSize: "clamp(32px, 4vw, 56px)", lineHeight: 1.1,
-                letterSpacing: "-1.5px", color: "var(--charcoal-deep)",
-                marginBottom: "32px",
-              }}>
-                Her Philosophy
-              </h3>
-              <p style={{
-                fontFamily: "var(--font-heading)", fontWeight: 700, fontSize: "28px",
-                color: "var(--charcoal-deep)", maxWidth: "600px", margin: "0 auto",
-              }}>
-                It's About You.
-              </p>
-              <p style={{
-                fontFamily: "var(--font-body)", fontSize: "16px", lineHeight: 1.7,
-                color: "var(--gray-muted)", maxWidth: "700px", margin: "24px auto 0",
-              }}>
-                Maureen's publicly listed care philosophy emphasizes a patient centered approach: meeting people where they are, listening to their goals, providing education, and using evidence based nutrition information rather than one size fits all recommendations.
-              </p>
-            </motion.div>
-
-            {/* Credentials */}
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.6 }}
-              style={{ marginBottom: "60px" }}
-            >
-              <h3 style={{
-                fontFamily: "var(--font-heading)", fontWeight: 800,
-                fontSize: "clamp(28px, 3.5vw, 48px)", letterSpacing: "-1px",
-                color: "var(--charcoal-deep)", marginBottom: "48px",
-              }}>
-                Credentials & Professional Background
-              </h3>
-              <div className="about-creds" style={{
-                display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(200px, 1fr))", gap: "clamp(12px, 3vw, 24px)",
-              }}>
-                {[
-                  { abbr: "MS", title: "Master's level education" },
-                  { abbr: "RD", title: "Registered Dietitian" },
-                  { abbr: "CDN", title: "Certified Dietitian Nutritionist" },
-                  { abbr: "CNPR", title: "Certified National Pharmaceutical Representative" },
-                ].map((cred, i) => (
-                  <motion.div
-                    key={i}
-                    initial={{ opacity: 0, scale: 0.9 }}
-                    whileInView={{ opacity: 1, scale: 1 }}
-                    viewport={{ once: true }}
-                    transition={{ duration: 0.4, delay: i * 0.1 }}
-                    style={{
-                      background: "var(--white)", padding: "32px 24px", borderRadius: "16px",
-                      textAlign: "center", boxShadow: "0 4px 12px rgba(0,80,96,0.08)",
-                    }}
-                  >
-                    <p style={{
-                      fontFamily: "var(--font-heading)", fontWeight: 800, fontSize: "28px",
-                      color: "var(--orange)", marginBottom: "12px",
-                    }}>
-                      {cred.abbr}
-                    </p>
-                    <p style={{
-                      fontFamily: "var(--font-body)", fontSize: "14px", lineHeight: 1.6,
-                      color: "var(--charcoal-deep)",
-                    }}>
-                      {cred.title}
-                    </p>
-                  </motion.div>
-                ))}
-              </div>
-            </motion.div>
-
-            {/* Why I Created TrueDiet */}
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.6 }}
-              style={{ marginBottom: "clamp(32px, 8vw, 80px)" }}
-            >
-              <h3 style={{
-                fontFamily: "var(--font-heading)", fontWeight: 800,
-                fontSize: "clamp(28px, 3.5vw, 48px)", letterSpacing: "-1px",
-                color: "var(--charcoal-deep)", marginBottom: "48px",
-              }}>
-                Why I Created TrueDiet
-              </h3>
-              <div style={{ maxWidth: "800px" }}>
-                <h4 style={{
-                  fontFamily: "var(--font-heading)", fontWeight: 700, fontSize: "20px",
-                  color: "var(--charcoal-deep)", marginBottom: "24px",
-                }}>
-                  Nutrition Information Should Help You Feel More Confident, Not More Confused
-                </h4>
-                <div style={{ display: "grid", gap: "20px" }}>
-                  <p style={{
-                    fontFamily: "var(--font-body)", fontSize: "16px", lineHeight: 1.75,
-                    color: "var(--charcoal)",
-                  }}>
-                    Nutrition advice is everywhere. Social media, advertisements, podcasts, news articles, influencers, and wellness trends are constantly telling us what we should or shouldn't eat.
-                  </p>
-                  <p style={{
-                    fontFamily: "var(--font-body)", fontSize: "16px", lineHeight: 1.75,
-                    color: "var(--charcoal)",
-                  }}>
-                    But more information doesn't always mean better information.
-                  </p>
-                  <p style={{
-                    fontFamily: "var(--font-body)", fontSize: "16px", lineHeight: 1.75,
-                    color: "var(--charcoal)",
-                  }}>
-                    After years of working in clinical and healthcare settings, I've seen firsthand how difficult it can be to separate helpful nutrition guidance from oversimplified advice, marketing claims, and constantly changing trends.
-                  </p>
-                  <p style={{
-                    fontFamily: "var(--font-body)", fontSize: "16px", lineHeight: 1.75,
-                    color: "var(--charcoal)", fontWeight: 600,
-                  }}>
-                    TrueDiet was created to make that process easier.
-                  </p>
-                </div>
-                <div style={{
-                  background: "var(--white)", borderRadius: "16px", padding: "32px",
-                  borderLeft: "4px solid var(--orange)", marginTop: "32px",
-                }}>
-                  <p style={{
-                    fontFamily: "var(--font-body)", fontSize: "16px", lineHeight: 1.75,
-                    color: "var(--charcoal)", marginBottom: "16px",
-                  }}>
-                    The goal isn't to tell you what to eat through another set of rigid rules. It's to help you understand why nutrition matters, what the evidence actually says, and how to apply that knowledge to your own life.
-                  </p>
-                  <p style={{
-                    fontFamily: "var(--font-body)", fontSize: "16px", lineHeight: 1.75,
-                    color: "var(--charcoal)",
-                  }}>
-                    TrueDiet brings together professional nutrition experience, evidence based education, and practical tools designed to make nutrition easier to understand and easier to use.
-                  </p>
-                </div>
-              </div>
-            </motion.div>
-
-            {/* What Makes the Approach Different */}
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.6 }}
-              style={{ marginBottom: "clamp(32px, 8vw, 80px)" }}
-            >
-              <h3 style={{
-                fontFamily: "var(--font-heading)", fontWeight: 800,
-                fontSize: "clamp(28px, 3.5vw, 48px)", letterSpacing: "-1px",
-                color: "var(--charcoal-deep)", marginBottom: "20px",
-              }}>
-                What Makes the TrueDiet Approach Different?
-              </h3>
-              <p style={{
-                fontFamily: "var(--font-heading)", fontWeight: 600, fontSize: "16px",
-                color: "var(--orange)", marginBottom: "48px",
-              }}>
-                Less Noise. More Understanding.
-              </p>
-              <div style={{
-                display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(260px, 1fr))", gap: "clamp(16px, 4vw, 32px)",
-              }} className="about-grid">
-                {[
-                  {
-                    title: "Science You Can Understand",
-                    desc: "Nutrition research can be complicated. TrueDiet translates complex concepts into clear, understandable information without unnecessary jargon."
-                  },
-                  {
-                    title: "Context Matters",
-                    desc: "There isn't one perfect way of eating that works for everyone. Your health, preferences, lifestyle, goals, and circumstances all matter."
-                  },
-                  {
-                    title: "No Fear Based Nutrition",
-                    desc: "Food doesn't need to be divided into \"good\" and \"bad.\" TrueDiet focuses on understanding food and making informed choices rather than creating unnecessary fear."
-                  },
-                  {
-                    title: "Sustainable Thinking",
-                    desc: "Short term rules can be easy to follow and difficult to maintain. TrueDiet focuses on knowledge and habits that can fit into everyday life."
-                  },
-                ].map((item, i) => (
-                  <motion.div
-                    key={i}
-                    initial={{ opacity: 0, scale: 0.95 }}
-                    whileInView={{ opacity: 1, scale: 1 }}
-                    viewport={{ once: true }}
-                    transition={{ duration: 0.4, delay: i * 0.1 }}
-                    style={{
-                      background: "var(--white)", padding: "clamp(16px, 4vw, 32px)", borderRadius: "16px",
-                      border: "1px solid var(--border)",
-                    }}
-                  >
-                    <h4 style={{
-                      fontFamily: "var(--font-heading)", fontWeight: 700, fontSize: "18px",
-                      color: "var(--charcoal-deep)", marginBottom: "16px",
-                    }}>
-                      {item.title}
-                    </h4>
-                    <p style={{
-                      fontFamily: "var(--font-body)", fontSize: "14px", lineHeight: 1.7,
-                      color: "var(--gray-muted)",
-                    }}>
-                      {item.desc}
-                    </p>
-                  </motion.div>
-                ))}
-              </div>
-            </motion.div>
-
-            {/* From Clinical Experience to TrueDiet */}
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.6 }}
-              style={{ marginBottom: "clamp(32px, 8vw, 80px)" }}
-            >
-              <h3 style={{
-                fontFamily: "var(--font-heading)", fontWeight: 800,
-                fontSize: "clamp(28px, 3.5vw, 48px)", letterSpacing: "-1px",
-                color: "var(--charcoal-deep)", marginBottom: "48px",
-              }}>
-                From Clinical Experience to TrueDiet
-              </h3>
-              <div style={{ maxWidth: "800px" }}>
-                <p style={{
-                  fontFamily: "var(--font-heading)", fontWeight: 600, fontSize: "16px",
-                  color: "var(--orange)", marginBottom: "48px",
-                }}>
-                  Years of Experience. One Clear Mission.
-                </p>
-                <div style={{ display: "grid", gap: "24px" }}>
                   {[
-                    { step: "Clinical Nutrition", desc: "Building a strong foundation in nutrition science and patient care." },
-                    { step: "Medical Nutrition Therapy", desc: "Applying nutrition knowledge to complex health and medical needs." },
-                    { step: "Healthcare Experience", desc: "Understanding the challenges people face when trying to apply nutrition guidance in real life." },
-                    { step: "Nutrition Education", desc: "Helping people understand nutrition and distinguish credible information from misinformation." },
-                    { step: "TrueDiet", desc: "Bringing evidence based nutrition education, practical resources, and tools to a broader audience." },
-                  ].map((item, i) => (
-                    <div key={i}>
-                      <p style={{
-                        fontFamily: "var(--font-heading)", fontWeight: 700, fontSize: "16px",
-                        color: "var(--charcoal-deep)", marginBottom: "8px",
-                      }}>
-                        {item.step}
-                      </p>
-                      <p style={{
-                        fontFamily: "var(--font-body)", fontSize: "14px", lineHeight: 1.6,
-                        color: "var(--gray-muted)", marginBottom: i < 4 ? "12px" : "0",
-                      }}>
-                        {item.desc}
-                      </p>
-                      {i < 4 && (
-                        <p style={{
-                          fontFamily: "var(--font-heading)", fontWeight: 700, fontSize: "16px",
-                          color: "var(--terracotta)", textAlign: "center", marginBottom: "12px",
-                        }}>
-                          ↓
-                        </p>
-                      )}
+                    { num: "23+", label: "Years Experience" },
+                    { num: "RD", label: "Registered Dietitian" },
+                    { num: "EB", label: "Evidence-Based" },
+                  ].map((s, i) => (
+                    <div key={i} style={{
+                      border: "1px solid var(--border)", borderRadius: "12px",
+                      padding: "16px 12px", textAlign: "center", background: "var(--white)",
+                    }}>
+                      <p style={{ fontFamily: "var(--font-heading)", fontWeight: 800, fontSize: "22px", color: "var(--charcoal-deep)", lineHeight: 1 }}>{s.num}</p>
+                      <p style={{ fontFamily: "var(--font-body)", fontSize: "11px", color: "var(--gray-muted)", marginTop: "6px", lineHeight: 1.4 }}>{s.label}</p>
                     </div>
                   ))}
                 </div>
+              </motion.div>
+
+              {/* Text column */}
+              <motion.div
+                initial={{ opacity: 0, x: 24 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
+              >
+                <div style={{ display: "flex", alignItems: "center", gap: "10px", marginBottom: "20px" }}>
+                  <div style={{ width: "24px", height: "1px", background: "var(--orange)" }} />
+                  <span style={{ fontFamily: "var(--font-body)", fontSize: "11px", fontWeight: 600, letterSpacing: "0.12em", textTransform: "uppercase", color: "var(--orange)" }}>
+                    About Maureen
+                  </span>
+                </div>
+                <h2 style={{
+                  fontFamily: "var(--font-heading)", fontWeight: 800,
+                  fontSize: "clamp(28px, 4vw, 48px)", lineHeight: 1.1,
+                  letterSpacing: "-1px", color: "var(--charcoal-deep)", marginBottom: "24px",
+                }}>
+                  Nutrition Expertise Built on Real Clinical Experience
+                </h2>
+                <p style={{ fontFamily: "var(--font-body)", fontSize: "clamp(15px, 2vw, 18px)", lineHeight: 1.75, color: "var(--charcoal)", marginBottom: "20px" }}>
+                  Maureen Ashbarry is a Registered Dietitian with extensive experience across healthcare and nutrition settings. Her professional background includes clinical nutrition, Medical Nutrition Therapy, healthcare, and nutrition education.
+                </p>
+                <p style={{ fontFamily: "var(--font-body)", fontSize: "clamp(15px, 2vw, 18px)", lineHeight: 1.75, color: "var(--charcoal)", marginBottom: "28px" }}>
+                  Her approach is centered around one simple idea:
+                </p>
+                <div style={{
+                  background: "var(--white)", borderRadius: "16px", padding: "clamp(20px, 4vw, 32px)",
+                  borderLeft: "4px solid var(--orange)", marginBottom: "28px",
+                }}>
+                  <p style={{ fontFamily: "var(--font-heading)", fontWeight: 700, fontSize: "clamp(17px, 2.5vw, 22px)", color: "var(--charcoal-deep)", lineHeight: 1.4 }}>
+                    "Nutrition should be understandable, practical, and grounded in science."
+                  </p>
+                </div>
+                <p style={{ fontFamily: "var(--font-body)", fontSize: "clamp(15px, 2vw, 18px)", lineHeight: 1.75, color: "var(--charcoal)" }}>
+                  Rather than promoting restrictive diets, quick fixes, or the latest social media trend, Maureen focuses on evidence-based nutrition education and helping people make informed decisions that fit their individual lives.
+                </p>
+              </motion.div>
+            </div>
+          </div>
+        </section>
+
+        {/* Timeline section */}
+        <section style={{ background: "var(--white)", padding: "clamp(60px, 10vw, 120px) clamp(16px, 5vw, 64px)" }}>
+          <div style={{ maxWidth: "1280px", margin: "0 auto" }}>
+            <div style={{ display: "flex", alignItems: "center", gap: "10px", marginBottom: "16px" }}>
+              <div style={{ width: "24px", height: "1px", background: "var(--orange)" }} />
+              <span style={{ fontFamily: "var(--font-body)", fontSize: "11px", fontWeight: 600, letterSpacing: "0.12em", textTransform: "uppercase", color: "var(--orange)" }}>
+                Career Journey
+              </span>
+            </div>
+            <h2 style={{
+              fontFamily: "var(--font-heading)", fontWeight: 800,
+              fontSize: "clamp(28px, 4vw, 52px)", lineHeight: 1.1,
+              letterSpacing: "-1px", color: "var(--charcoal-deep)", marginBottom: "clamp(40px, 7vw, 72px)",
+            }}>
+              A Career Built Around Nutrition
+            </h2>
+
+            <div style={{ position: "relative", maxWidth: "760px" }}>
+              {/* Vertical line */}
+              <div style={{
+                position: "absolute", left: "20px", top: "8px", bottom: "8px",
+                width: "1px", background: "var(--border)",
+              }} />
+
+              {timelineItems.map((item, i) => (
+                <motion.div
+                  key={i}
+                  initial={{ opacity: 0, x: -20 }}
+                  whileInView={{ opacity: 1, x: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.5, delay: i * 0.1 }}
+                  style={{ display: "flex", gap: "clamp(20px, 4vw, 36px)", alignItems: "flex-start", marginBottom: i < timelineItems.length - 1 ? "clamp(28px, 5vw, 48px)" : "0", position: "relative" }}
+                >
+                  {/* Dot */}
+                  <div style={{
+                    width: "14px", height: "14px", borderRadius: "50%",
+                    background: i === timelineItems.length - 1 ? "var(--orange)" : "var(--charcoal-deep)",
+                    border: "2px solid var(--white)",
+                    boxShadow: i === timelineItems.length - 1 ? "0 0 0 4px rgba(240,128,0,0.18)" : "0 0 0 2px var(--border)",
+                    flexShrink: 0, marginTop: "4px", position: "relative", zIndex: 1,
+                  }} />
+
+                  {/* Content */}
+                  <div>
+                    <span style={{
+                      display: "inline-block",
+                      fontFamily: "var(--font-body)", fontWeight: 700, fontSize: "11px",
+                      letterSpacing: "0.08em", color: "var(--white)",
+                      background: i === timelineItems.length - 1 ? "var(--orange)" : "var(--charcoal-deep)",
+                      borderRadius: "100px", padding: "4px 12px", marginBottom: "10px",
+                    }}>
+                      {item.year}
+                    </span>
+                    <h3 style={{ fontFamily: "var(--font-heading)", fontWeight: 700, fontSize: "clamp(16px, 2.5vw, 20px)", color: "var(--charcoal-deep)", marginBottom: "8px" }}>
+                      {item.title}
+                    </h3>
+                    <p style={{ fontFamily: "var(--font-body)", fontSize: "clamp(14px, 1.8vw, 16px)", lineHeight: 1.65, color: "var(--gray-muted)" }}>
+                      {item.desc}
+                    </p>
+                  </div>
+                </motion.div>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        {/* Philosophy cards — 3 col */}
+        <section style={{ background: "var(--off-white)", padding: "clamp(60px, 10vw, 120px) clamp(16px, 5vw, 64px)" }}>
+          <div style={{ maxWidth: "1280px", margin: "0 auto" }}>
+            <div style={{ textAlign: "center", marginBottom: "clamp(40px, 7vw, 72px)" }}>
+              <div style={{ display: "flex", alignItems: "center", justifyContent: "center", gap: "10px", marginBottom: "16px" }}>
+                <div style={{ width: "24px", height: "1px", background: "var(--orange)" }} />
+                <span style={{ fontFamily: "var(--font-body)", fontSize: "11px", fontWeight: 600, letterSpacing: "0.12em", textTransform: "uppercase", color: "var(--orange)" }}>
+                  Why TrueDiet
+                </span>
+                <div style={{ width: "24px", height: "1px", background: "var(--orange)" }} />
               </div>
-            </motion.div>
-
-            {/* The Mission */}
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.6 }}
-              style={{
-                textAlign: "center", padding: "clamp(32px, 6vw, 60px) clamp(20px, 4vw, 48px)", marginBottom: "clamp(24px, 6vw, 60px)",
-                background: "linear-gradient(135deg, rgba(0,80,96,0.05), rgba(96,144,0,0.05))",
-                borderRadius: "24px",
-              }}
-            >
-              <h3 style={{
+              <h2 style={{
                 fontFamily: "var(--font-heading)", fontWeight: 800,
-                fontSize: "clamp(28px, 3.5vw, 48px)", letterSpacing: "-1px",
-                color: "var(--charcoal-deep)", marginBottom: "24px",
+                fontSize: "clamp(28px, 4vw, 52px)", lineHeight: 1.1,
+                letterSpacing: "-1px", color: "var(--charcoal-deep)", marginBottom: "16px",
               }}>
-                The Mission
-              </h3>
-              <p style={{
-                fontFamily: "var(--font-heading)", fontWeight: 700, fontSize: "24px",
-                color: "var(--charcoal-deep)", maxWidth: "600px", margin: "0 auto 24px",
-              }}>
-                Make nutrition easier to understand.
+                Her Philosophy
+              </h2>
+              <p style={{ fontFamily: "var(--font-body)", fontSize: "clamp(15px, 2vw, 18px)", lineHeight: 1.7, color: "var(--gray-muted)", maxWidth: "560px", margin: "0 auto" }}>
+                Three core beliefs that guide every piece of content, tool, and resource within TrueDiet.
               </p>
-              <p style={{
-                fontFamily: "var(--font-body)", fontSize: "16px", lineHeight: 1.7,
-                color: "var(--gray-muted)", maxWidth: "700px", margin: "0 auto",
-              }}>
-                TrueDiet exists to help people become more informed about nutrition without becoming overwhelmed by it.
-              </p>
-            </motion.div>
+            </div>
 
-            {/* CTA */}
+            <div className="three-col-grid" style={{
+              display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: "clamp(16px, 3vw, 28px)",
+            }}>
+              {philosophyCards.map((card, i) => (
+                <motion.div
+                  key={i}
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.5, delay: i * 0.1 }}
+                  style={{
+                    background: "var(--white)", borderRadius: "20px", padding: "clamp(24px, 4vw, 40px)",
+                    border: "1px solid var(--border)", transition: "transform 0.3s ease, box-shadow 0.3s ease",
+                  }}
+                  onMouseEnter={e => {
+                    (e.currentTarget as HTMLElement).style.transform = "translateY(-4px)";
+                    (e.currentTarget as HTMLElement).style.boxShadow = "0 20px 60px rgba(0,80,96,0.12)";
+                  }}
+                  onMouseLeave={e => {
+                    (e.currentTarget as HTMLElement).style.transform = "translateY(0)";
+                    (e.currentTarget as HTMLElement).style.boxShadow = "none";
+                  }}
+                >
+                  <div style={{ marginBottom: "20px" }}>{card.icon}</div>
+                  <h3 style={{ fontFamily: "var(--font-heading)", fontWeight: 700, fontSize: "clamp(16px, 2vw, 20px)", color: "var(--charcoal-deep)", marginBottom: "12px" }}>
+                    {card.title}
+                  </h3>
+                  <p style={{ fontFamily: "var(--font-body)", fontSize: "clamp(13px, 1.6vw, 15px)", lineHeight: 1.7, color: "var(--gray-muted)" }}>
+                    {card.desc}
+                  </p>
+                </motion.div>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        {/* Credentials */}
+        <section style={{ background: "var(--white)", padding: "clamp(60px, 10vw, 120px) clamp(16px, 5vw, 64px)" }}>
+          <div style={{ maxWidth: "1280px", margin: "0 auto" }}>
+            <div style={{ display: "flex", alignItems: "center", gap: "10px", marginBottom: "16px" }}>
+              <div style={{ width: "24px", height: "1px", background: "var(--orange)" }} />
+              <span style={{ fontFamily: "var(--font-body)", fontSize: "11px", fontWeight: 600, letterSpacing: "0.12em", textTransform: "uppercase", color: "var(--orange)" }}>
+                Credentials
+              </span>
+            </div>
+            <h2 style={{
+              fontFamily: "var(--font-heading)", fontWeight: 800,
+              fontSize: "clamp(28px, 4vw, 52px)", lineHeight: 1.1,
+              letterSpacing: "-1px", color: "var(--charcoal-deep)", marginBottom: "clamp(32px, 6vw, 56px)",
+            }}>
+              Professional Background
+            </h2>
+            <div className="creds-grid" style={{
+              display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(220px, 1fr))", gap: "clamp(16px, 3vw, 24px)",
+              marginBottom: "clamp(48px, 8vw, 80px)",
+            }}>
+              {[
+                { abbr: "MS", title: "Master's Level Education", detail: "Advanced graduate-level nutrition science training." },
+                { abbr: "RD", title: "Registered Dietitian", detail: "Fully credentialed by the Commission on Dietetic Registration." },
+                { abbr: "CDN", title: "Certified Dietitian Nutritionist", detail: "State-level nutrition licensure and certification." },
+                { abbr: "CNPR", title: "Certified Pharmaceutical Rep", detail: "Formal pharmaceutical and clinical nutrition training." },
+              ].map((cred, i) => (
+                <motion.div
+                  key={i}
+                  initial={{ opacity: 0, scale: 0.92 }}
+                  whileInView={{ opacity: 1, scale: 1 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.4, delay: i * 0.08 }}
+                  style={{
+                    background: "var(--off-white)", padding: "clamp(24px, 4vw, 36px) clamp(20px, 3vw, 28px)",
+                    borderRadius: "16px", border: "1px solid var(--border)",
+                  }}
+                >
+                  <p style={{ fontFamily: "var(--font-heading)", fontWeight: 800, fontSize: "32px", color: "var(--orange)", marginBottom: "10px", lineHeight: 1 }}>
+                    {cred.abbr}
+                  </p>
+                  <p style={{ fontFamily: "var(--font-heading)", fontWeight: 700, fontSize: "15px", color: "var(--charcoal-deep)", marginBottom: "8px" }}>
+                    {cred.title}
+                  </p>
+                  <p style={{ fontFamily: "var(--font-body)", fontSize: "13px", lineHeight: 1.6, color: "var(--gray-muted)" }}>
+                    {cred.detail}
+                  </p>
+                </motion.div>
+              ))}
+            </div>
+
+            {/* What Makes the Approach Different */}
+            <div style={{ display: "flex", alignItems: "center", gap: "10px", marginBottom: "16px" }}>
+              <div style={{ width: "24px", height: "1px", background: "var(--orange)" }} />
+              <span style={{ fontFamily: "var(--font-body)", fontSize: "11px", fontWeight: 600, letterSpacing: "0.12em", textTransform: "uppercase", color: "var(--orange)" }}>
+                Less Noise. More Understanding.
+              </span>
+            </div>
+            <h2 style={{
+              fontFamily: "var(--font-heading)", fontWeight: 800,
+              fontSize: "clamp(28px, 4vw, 52px)", lineHeight: 1.1,
+              letterSpacing: "-1px", color: "var(--charcoal-deep)", marginBottom: "clamp(32px, 6vw, 56px)",
+            }}>
+              What Makes TrueDiet Different?
+            </h2>
+            <div className="diff-grid" style={{
+              display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(260px, 1fr))", gap: "clamp(16px, 3vw, 24px)",
+            }}>
+              {differentiators.map((item, i) => (
+                <motion.div
+                  key={i}
+                  initial={{ opacity: 0, y: 16 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.45, delay: i * 0.1 }}
+                  style={{
+                    background: "var(--off-white)", padding: "clamp(20px, 3vw, 32px)", borderRadius: "16px", border: "1px solid var(--border)",
+                  }}
+                >
+                  <div style={{ width: "32px", height: "2px", background: "var(--orange)", borderRadius: "2px", marginBottom: "16px" }} />
+                  <h4 style={{ fontFamily: "var(--font-heading)", fontWeight: 700, fontSize: "clamp(15px, 2vw, 18px)", color: "var(--charcoal-deep)", marginBottom: "10px" }}>
+                    {item.title}
+                  </h4>
+                  <p style={{ fontFamily: "var(--font-body)", fontSize: "clamp(13px, 1.6vw, 15px)", lineHeight: 1.7, color: "var(--gray-muted)" }}>
+                    {item.desc}
+                  </p>
+                </motion.div>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        {/* Credentials CTA — dark strip */}
+        <section style={{
+          background: "var(--charcoal-deep)",
+          padding: "clamp(60px, 10vw, 120px) clamp(16px, 5vw, 64px)",
+        }}>
+          <div style={{ maxWidth: "1280px", margin: "0 auto", textAlign: "center" }}>
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.6 }}
-              style={{
-                textAlign: "center", padding: "clamp(24px, 6vw, 60px) 0",
-                borderTop: "1px solid var(--border)", borderBottom: "1px solid var(--border)",
-              }}
             >
-              <h3 style={{
-                fontFamily: "var(--font-heading)", fontWeight: 700, fontSize: "24px",
-                color: "var(--charcoal-deep)", marginBottom: "24px",
+              <p style={{ fontFamily: "var(--font-body)", fontSize: "11px", fontWeight: 600, letterSpacing: "0.12em", textTransform: "uppercase", color: "rgba(255,255,255,0.4)", marginBottom: "20px" }}>
+                Get Started
+              </p>
+              <h2 style={{
+                fontFamily: "var(--font-heading)", fontWeight: 800,
+                fontSize: "clamp(28px, 4.5vw, 56px)", lineHeight: 1.1,
+                letterSpacing: "-1px", color: "#ffffff", marginBottom: "20px",
               }}>
                 Nutrition doesn't have to be confusing.
-              </h3>
-              <p style={{
-                fontFamily: "var(--font-body)", fontSize: "16px", lineHeight: 1.6,
-                color: "var(--gray-muted)", marginBottom: "32px",
-              }}>
-                Get evidence based nutrition guidance from an experienced Registered Dietitian.
+              </h2>
+              <p style={{ fontFamily: "var(--font-body)", fontSize: "clamp(15px, 2vw, 18px)", lineHeight: 1.7, color: "rgba(255,255,255,0.6)", marginBottom: "40px", maxWidth: "520px", margin: "0 auto 40px" }}>
+                Get evidence-based nutrition guidance from an experienced Registered Dietitian.
               </p>
               <ShimmerButton type="button" onClick={() => document.getElementById("waitlist")?.scrollIntoView({ behavior: "smooth" })}>
                 Join the Waitlist
@@ -502,6 +404,14 @@ export default function AboutPage() {
         </section>
       </main>
       <Footer />
+
+      <style>{`
+        @media (max-width: 768px) {
+          .bio-grid { grid-template-columns: 1fr !important; }
+          .three-col-grid { grid-template-columns: 1fr !important; }
+          .stat-boxes { grid-template-columns: repeat(3, 1fr) !important; }
+        }
+      `}</style>
     </>
   );
 }

@@ -298,6 +298,8 @@ export default function About() {
           .about-header { gap: 16px !important; }
           .about-split { gap: 24px !important; }
           .orbiting-wrap { display: none !important; }
+          #about > div:first-of-type { padding: clamp(32px, 8vw, 96px) clamp(16px, 5vw, 48px) !important; }
+          #about > div:last-of-type { padding: 0 clamp(16px, 5vw, 48px) clamp(40px, 8vw, 96px) !important; }
         }
       `}</style>
     </section>
