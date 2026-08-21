@@ -108,7 +108,7 @@ export default function ResourcesPage() {
                     src={res.image}
                     alt={res.title}
                     style={{
-                      width: "100%", height: "200px", objectFit: "cover",
+                      width: "100%", height: "auto", minHeight: "250px", objectFit: "contain", padding: "16px", background: "var(--off-white)",
                     }}
                   />
                   <div style={{ padding: "24px", display: "flex", flexDirection: "column", flex: 1 }}>
