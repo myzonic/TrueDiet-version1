@@ -1,5 +1,7 @@
 "use client";
 
+import SocialLinks from "@/components/SocialLinks";
+
 export default function Footer() {
   return (
     <footer style={{ background: "var(--charcoal-deep)", padding: "clamp(48px, 8vw, 80px) clamp(16px, 5vw, 64px) clamp(24px, 4vw, 40px)" }}>
@@ -23,6 +25,9 @@ export default function Footer() {
             }}>
               Real Nutrition. Real Science. Real Results. Evidence-based guidance from Maureen Ashbarry, Registered Dietitian.
             </p>
+            <div style={{ marginTop: "24px" }}>
+              <SocialLinks variant="dark" iconSize={18} />
+            </div>
           </div>
 
           {/* Nav links */}

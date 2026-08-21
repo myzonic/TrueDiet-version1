@@ -2,18 +2,13 @@
 
 import { motion } from "framer-motion";
 
-interface SocialLink {
-  name: string;
-  href: string;
-  icon: React.ReactNode;
-}
-
-const socialLinks: SocialLink[] = [
+const socialLinks = [
   {
     name: "Facebook",
     href: "#",
+    color: "#1877F2",
     icon: (
-      <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
         <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z" />
       </svg>
     ),
@@ -21,18 +16,20 @@ const socialLinks: SocialLink[] = [
   {
     name: "Instagram",
     href: "#",
+    color: "#E1306C",
+    gradient: "linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%)",
     icon: (
-      <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
-        <path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm0 2.163c2.782 0 3.112.01 4.207.06 1.016.046 1.567.215 1.933.357.486.188.835.413 1.2.778.365.365.59.714.778 1.2.142.366.311.917.357 1.933.05 1.095.06 1.425.06 4.207s-.01 3.112-.06 4.207c-.046 1.016-.215 1.567-.357 1.933-.188.486-.413.835-.778 1.2-.365.365-.714.59-1.2.778-.366.142-.917.311-1.933.357-1.095.05-1.425.06-4.207.06s-3.112-.01-4.207-.06c-1.016-.046-1.567-.215-1.933-.357-.486-.188-.835-.413-1.2-.778-.365-.365-.59-.714-.778-1.2-.142-.366-.311-.917-.357-1.933-.05-1.095-.06-1.425-.06-4.207s.01-3.112.06-4.207c.046-1.016.215-1.567.357-1.933.188-.486.413-.835.778-1.2.365-.365.714-.59 1.2-.778.366-.142.917-.311 1.933-.357 1.095-.05 1.425-.06 4.207-.06zm0-2.163c-2.812 0-3.162.012-4.267.062-1.101.05-1.853.228-2.511.487-.68.263-1.256.615-1.827 1.186-.571.571-.923 1.147-1.186 1.827-.259.658-.437 1.41-.487 2.511C2.012 8.838 2 9.188 2 12s.012 3.162.062 4.267c.05 1.101.228 1.853.487 2.511.263.68.615 1.256 1.186 1.827.571.571 1.147.923 1.827 1.186.658.259 1.41.437 2.511.487 1.105.05 1.455.062 4.267.062s3.162-.012 4.267-.062c1.101-.05 1.853-.228 2.511-.487.68-.263 1.256-.615 1.827-1.186.571-.571.923-1.147 1.186-1.827.259-.658.437-1.41.487-2.511.05-1.105.062-1.455.062-4.267s-.012-3.162-.062-4.267c-.05-1.101-.228-1.853-.487-2.511-.263-.68-.615-1.256-1.186-1.827-.571-.571-1.147-.923-1.827-1.186-.658-.259-1.41-.437-2.511-.487C15.162 2.012 14.812 2 12 2z" />
-        <circle cx="12" cy="12" r="3.5" fill="currentColor" />
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+        <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
       </svg>
     ),
   },
   {
     name: "LinkedIn",
     href: "#",
+    color: "#0A66C2",
     icon: (
-      <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
         <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.475-2.236-1.986-2.236-1.081 0-1.722.722-2.004 1.424-.103.249-.129.597-.129.946v5.435h-3.554s.047-8.814 0-9.722h3.554v1.375c.427-.659 1.19-1.597 2.898-1.597 2.117 0 3.704 1.384 3.704 4.363v5.581zM5.337 8.855c-1.144 0-1.915-.759-1.915-1.71 0-.955.77-1.71 1.955-1.71 1.187 0 1.918.755 1.933 1.71 0 .951-.746 1.71-1.973 1.71zm1.581 11.597H3.714V9.505h3.204v10.947zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.225 0z" />
       </svg>
     ),
@@ -40,8 +37,9 @@ const socialLinks: SocialLink[] = [
   {
     name: "X",
     href: "#",
+    color: "#000000",
     icon: (
-      <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
         <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24h-6.657l-5.22-6.817-5.974 6.817H2.066l7.755-8.876L1.154 2.25h6.837l4.716 6.231 5.441-6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z" />
       </svg>
     ),
@@ -49,9 +47,10 @@ const socialLinks: SocialLink[] = [
   {
     name: "TikTok",
     href: "#",
+    color: "#000000",
     icon: (
-      <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
-        <path d="M19.498 3.534c-1.293-.824-2.699-1.27-4.158-1.27-6.627 0-12.004 5.377-12.004 12.004 0 6.627 5.377 12.004 12.004 12.004 6.627 0 12.004-5.377 12.004-12.004 0-.677-.058-1.34-.17-1.985h-3.703v8.006c0 1.467-1.191 2.658-2.658 2.658-1.466 0-2.657-1.191-2.657-2.658v-5.983c0-1.466-1.19-2.657-2.657-2.657-.586 0-1.132.197-1.57.527v9.113c0 3.313 2.686 6 6 6 3.313 0 6-2.687 6-6V8.36c1.174.834 2.558 1.33 4.047 1.33v-3.35c-1.224 0-2.375-.35-3.358-.96z" />
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+        <path d="M19.59 6.69a4.83 4.83 0 01-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 01-2.88 2.5 2.89 2.89 0 01-2.89-2.89 2.89 2.89 0 012.89-2.89c.28 0 .54.04.79.1V9.01a6.27 6.27 0 00-.79-.05 6.34 6.34 0 00-6.34 6.34 6.34 6.34 0 006.34 6.34 6.34 6.34 0 006.33-6.34V8.79a8.18 8.18 0 004.79 1.52V6.86a4.85 4.85 0 01-1.02-.17z"/>
       </svg>
     ),
   },
@@ -60,44 +59,67 @@ const socialLinks: SocialLink[] = [
 interface SocialLinksProps {
   className?: string;
   iconSize?: number;
+  variant?: "default" | "dark" | "branded";
 }
 
-export default function SocialLinks({ className = "", iconSize = 24 }: SocialLinksProps) {
+export default function SocialLinks({ className = "", iconSize = 20, variant = "default" }: SocialLinksProps) {
+  const isDark = variant === "dark";
+  const isBranded = variant === "branded";
+
   return (
-    <div className={`flex items-center gap-6 ${className}`}>
+    <div style={{ display: "flex", alignItems: "center", gap: "10px" }} className={className}>
       {socialLinks.map((link, i) => (
         <motion.a
           key={link.name}
           href={link.href}
           aria-label={link.name}
-          initial={{ opacity: 0, y: 8 }}
-          whileInView={{ opacity: 1, y: 0 }}
+          initial={{ opacity: 0, scale: 0.8 }}
+          whileInView={{ opacity: 1, scale: 1 }}
           viewport={{ once: true }}
-          transition={{ duration: 0.5, delay: i * 0.1 }}
-          whileHover={{ scale: 1.15, y: -4 }}
-          whileTap={{ scale: 0.95 }}
+          transition={{ duration: 0.35, delay: i * 0.07 }}
+          whileHover={{ scale: 1.12, y: -3 }}
+          whileTap={{ scale: 0.92 }}
           style={{
             display: "inline-flex",
             alignItems: "center",
             justifyContent: "center",
-            width: iconSize + 12,
-            height: iconSize + 12,
+            width: "44px",
+            height: "44px",
             borderRadius: "12px",
-            transition: "all 0.3s ease",
-            color: "var(--charcoal-deep)",
+            border: isDark
+              ? "1px solid rgba(255,255,255,0.12)"
+              : "1px solid var(--border)",
+            background: isDark ? "rgba(255,255,255,0.06)" : "var(--white)",
+            color: isDark ? "rgba(255,255,255,0.7)" : "var(--charcoal)",
+            textDecoration: "none",
+            transition: "all 0.25s ease",
+            cursor: "pointer",
+            flexShrink: 0,
           }}
           onMouseEnter={(e) => {
-            e.currentTarget.style.background = "rgba(0,80,96,0.08)";
-            e.currentTarget.style.color = "var(--orange)";
+            const el = e.currentTarget as HTMLElement;
+            if (isBranded) {
+              el.style.background = link.gradient || link.color;
+              el.style.color = "#fff";
+              el.style.border = `1px solid transparent`;
+            } else if (isDark) {
+              el.style.background = "rgba(255,255,255,0.15)";
+              el.style.color = "#fff";
+              el.style.border = "1px solid rgba(255,255,255,0.25)";
+            } else {
+              el.style.background = "var(--charcoal-deep)";
+              el.style.color = "#fff";
+              el.style.border = "1px solid var(--charcoal-deep)";
+            }
           }}
           onMouseLeave={(e) => {
-            e.currentTarget.style.background = "transparent";
-            e.currentTarget.style.color = "var(--charcoal-deep)";
+            const el = e.currentTarget as HTMLElement;
+            el.style.background = isDark ? "rgba(255,255,255,0.06)" : "var(--white)";
+            el.style.color = isDark ? "rgba(255,255,255,0.7)" : "var(--charcoal)";
+            el.style.border = isDark ? "1px solid rgba(255,255,255,0.12)" : "1px solid var(--border)";
           }}
         >
-          <span style={{ width: iconSize, height: iconSize, display: "flex", alignItems: "center", justifyContent: "center" }}>
-            {link.icon}
-          </span>
+          {link.icon}
         </motion.a>
       ))}
     </div>

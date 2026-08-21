@@ -5,6 +5,7 @@ import { motion, useInView, useScroll, useTransform } from "framer-motion";
 import { MovingBorder } from "@/components/ui/moving-border";
 import { GlowingEffect } from "@/components/ui/glowing-effect";
 import { SparklesCore } from "@/components/ui/sparkles";
+import SocialLinks from "@/components/SocialLinks";
 
 export default function FinalCTA() {
   const ref = useRef<HTMLDivElement>(null);
@@ -150,6 +151,19 @@ export default function FinalCTA() {
               </GlowingEffect>
             </form>
           )}
+        </motion.div>
+
+        {/* Social icons */}
+        <motion.div
+          initial={{ opacity: 0, y: 16 }}
+          animate={inView ? { opacity: 1, y: 0 } : {}}
+          transition={{ duration: 0.6, delay: 0.7 }}
+          style={{ marginTop: "40px", display: "flex", flexDirection: "column", alignItems: "center", gap: "14px" }}
+        >
+          <p style={{ fontFamily: "var(--font-body)", fontSize: "11px", fontWeight: 600, letterSpacing: "0.12em", textTransform: "uppercase", color: "rgba(255,255,255,0.35)" }}>
+            Follow TrueDiet
+          </p>
+          <SocialLinks variant="dark" iconSize={18} />
         </motion.div>
       </div>
 
