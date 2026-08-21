@@ -51,8 +51,8 @@ export default function ContactPage() {
                 }}>
                   Send us a Message
                 </h2>
-                <form onSubmit={handleSubmit} style={{ display: "grid", gap: "24px" }}>
-                    <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "16px" }}>
+                <form onSubmit={handleSubmit} className="contact-form" style={{ display: "grid", gap: "24px" }}>
+                    <div className="contact-name-row" style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "16px" }}>
                       <input
                         type="text"
                         placeholder="First Name"
@@ -230,6 +230,7 @@ export default function ContactPage() {
                 -webkit-appearance: none !important;
                 border-radius: 8px !important;
               }
+              .contact-name-row { grid-template-columns: 1fr !important; }
             }
           `}</style>
         </section>
