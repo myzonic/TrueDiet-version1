@@ -64,8 +64,19 @@ export default function ResourcesPage() {
         />
 
         {/* Intro */}
-        <section style={{ background: "var(--white)", padding: "80px 48px" }}>
-          <div style={{ maxWidth: "1280px", margin: "0 auto", marginBottom: "80px" }}>
+        <section style={{ background: "var(--white)", padding: "clamp(24px, 6vw, 80px) clamp(16px, 4vw, 48px)" }}>
+          <div style={{ maxWidth: "1280px", margin: "0 auto", marginBottom: "clamp(24px, 6vw, 80px)" }}>
+            <style>{`
+              @media (max-width: 768px) {
+                .resources-grid { grid-template-columns: 1fr !important; gap: 16px !important; }
+                .resource-card { padding: 16px !important; }
+                .resource-card img { min-height: 200px !important; padding: 12px !important; }
+                .resource-card h3 { font-size: clamp(16px, 4vw, 18px) !important; }
+                .resource-categories { grid-template-columns: 1fr 1fr !important; gap: 12px !important; }
+                .resource-cat { padding: 16px 12px !important; font-size: 13px !important; }
+                .resources-section { margin-bottom: 32px !important; }
+              }
+            `}</style>
             <motion.p
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
@@ -89,7 +100,7 @@ export default function ResourcesPage() {
               Featured Resources
             </h2>
             <div className="resources-grid" style={{
-              display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(320px, 1fr))", gap: "32px",
+              display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(280px, 1fr))", gap: "clamp(16px, 4vw, 32px)",
             }}>
               {resources.map((res, i) => (
                 <motion.div
@@ -111,7 +122,7 @@ export default function ResourcesPage() {
                       width: "100%", height: "auto", minHeight: "250px", objectFit: "contain", padding: "16px", background: "var(--off-white)",
                     }}
                   />
-                  <div style={{ padding: "24px", display: "flex", flexDirection: "column", flex: 1 }}>
+                  <div style={{ padding: "clamp(12px, 3vw, 24px)", display: "flex", flexDirection: "column", flex: 1 }} className="resource-card">
                     <h3 style={{
                       fontFamily: "var(--font-heading)", fontWeight: 700, fontSize: "18px",
                       color: "var(--charcoal-deep)", marginBottom: "8px",
@@ -149,7 +160,7 @@ export default function ResourcesPage() {
         </section>
 
         {/* Categories */}
-        <section style={{ background: "var(--off-white)", padding: "80px 48px" }}>
+        <section style={{ background: "var(--off-white)", padding: "clamp(24px, 6vw, 80px) clamp(16px, 4vw, 48px)" }} className="resources-section">
           <div style={{ maxWidth: "1280px", margin: "0 auto" }}>
             <h2 style={{
               fontFamily: "var(--font-heading)", fontWeight: 800, fontSize: "32px",
@@ -158,8 +169,8 @@ export default function ResourcesPage() {
               Resource Categories
             </h2>
             <div style={{
-              display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(200px, 1fr))", gap: "16px",
-            }}>
+              display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(180px, 1fr))", gap: "clamp(12px, 3vw, 16px)",
+            }} className="resource-categories">
               {categories.map((cat, i) => (
                 <motion.div
                   key={i}
@@ -168,10 +179,10 @@ export default function ResourcesPage() {
                   viewport={{ once: true }}
                   transition={{ duration: 0.4, delay: i * 0.06 }}
                   style={{
-                    background: "var(--white)", padding: "24px", borderRadius: "12px",
+                    background: "var(--white)", padding: "clamp(14px, 3vw, 24px)", borderRadius: "12px",
                     border: "1px solid var(--border)", textAlign: "center", cursor: "pointer",
                     transition: "all 0.3s ease",
-                  }}
+                  }} className="resource-cat"
                   onMouseEnter={e => {
                     const el = e.currentTarget as HTMLElement;
                     el.style.borderColor = "var(--orange)";
@@ -196,14 +207,14 @@ export default function ResourcesPage() {
         </section>
 
         {/* More Than Information */}
-        <section style={{ background: "var(--white)", padding: "80px 48px" }}>
+        <section style={{ background: "var(--white)", padding: "clamp(24px, 6vw, 80px) clamp(16px, 4vw, 48px)" }} className="resources-section">
           <div style={{ maxWidth: "1280px", margin: "0 auto" }}>
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.6 }}
-              style={{ marginBottom: "80px" }}
+              style={{ marginBottom: "clamp(32px, 8vw, 80px)" }}
             >
               <h2 style={{
                 fontFamily: "var(--font-heading)", fontWeight: 800, fontSize: "32px",
@@ -231,7 +242,7 @@ export default function ResourcesPage() {
                   TrueDiet resources are designed to bridge that gap.
                 </p>
                 <div style={{
-                  display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(220px, 1fr))", gap: "24px",
+                  display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(200px, 1fr))", gap: "clamp(12px, 3vw, 24px)",
                 }}>
                   {[
                     { title: "Understand", desc: "Break complicated nutrition topics into clear, practical concepts." },
@@ -273,7 +284,7 @@ export default function ResourcesPage() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.6 }}
-              style={{ marginBottom: "80px" }}
+              style={{ marginBottom: "clamp(32px, 8vw, 80px)" }}
             >
               <h2 style={{
                 fontFamily: "var(--font-heading)", fontWeight: 800, fontSize: "32px",
@@ -296,7 +307,7 @@ export default function ResourcesPage() {
                 </p>
               </div>
               <div style={{
-                display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(240px, 1fr))", gap: "24px",
+                display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(220px, 1fr))", gap: "clamp(12px, 3vw, 24px)",
               }}>
                 {[
                   { title: "Quick Guides", desc: "Short, focused resources designed to help you understand a specific nutrition topic without information overload." },
@@ -338,7 +349,7 @@ export default function ResourcesPage() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.6 }}
-              style={{ marginBottom: "80px" }}
+              style={{ marginBottom: "clamp(32px, 8vw, 80px)" }}
             >
               <h2 style={{
                 fontFamily: "var(--font-heading)", fontWeight: 800, fontSize: "32px",
@@ -347,7 +358,7 @@ export default function ResourcesPage() {
                 What You'll Find Inside TrueDiet Resources
               </h2>
               <div style={{
-                display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(260px, 1fr))", gap: "32px",
+                display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(240px, 1fr))", gap: "clamp(16px, 4vw, 32px)",
               }}>
                 {[
                   { title: "Real Questions", desc: "Resources built around the questions people actually ask about food, nutrition, health, and wellness." },
@@ -386,14 +397,14 @@ export default function ResourcesPage() {
         </section>
 
         {/* More Resources Coming */}
-        <section style={{ background: "var(--off-white)", padding: "80px 48px" }}>
+        <section style={{ background: "var(--off-white)", padding: "clamp(24px, 6vw, 80px) clamp(16px, 4vw, 48px)" }} className="resources-section">
           <div style={{ maxWidth: "1280px", margin: "0 auto" }}>
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.6 }}
-              style={{ marginBottom: "80px" }}
+              style={{ marginBottom: "clamp(32px, 8vw, 80px)" }}
             >
               <h2 style={{
                 fontFamily: "var(--font-heading)", fontWeight: 800, fontSize: "32px",
@@ -459,7 +470,7 @@ export default function ResourcesPage() {
         </section>
 
         {/* Final CTA */}
-        <section style={{ background: "var(--white)", padding: "80px 48px" }}>
+        <section style={{ background: "var(--white)", padding: "clamp(24px, 6vw, 80px) clamp(16px, 4vw, 48px)" }} className="resources-section">
           <div style={{ maxWidth: "700px", margin: "0 auto", textAlign: "center" }}>
             <motion.div
               initial={{ opacity: 0, y: 20 }}
@@ -507,17 +518,6 @@ export default function ResourcesPage() {
         </section>
       </main>
       <Footer />
-      <style>{`
-        @media (max-width: 768px) {
-          .resources-grid { grid-template-columns: 1fr !important; gap: 20px !important; }
-          .resource-card { border-radius: 12px !important; }
-          .resource-card img { min-height: 200px !important; padding: 12px !important; }
-          .resource-card h3 { font-size: clamp(16px, 4vw, 18px) !important; }
-          .resource-card p { font-size: 13px !important; }
-          .resource-categories { grid-template-columns: 1fr 1fr !important; gap: 12px !important; }
-          .resource-cat { padding: 16px 12px !important; font-size: 13px !important; }
-        }
-      `}</style>
     </>
   );
 }

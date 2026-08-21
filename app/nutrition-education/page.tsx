@@ -64,14 +64,23 @@ export default function NutritionEducationPage() {
         />
 
         {/* Introduction */}
-        <section style={{ background: "var(--white)", padding: "80px 48px" }}>
+        <section style={{ background: "var(--white)", padding: "clamp(24px, 6vw, 80px) clamp(16px, 4vw, 48px)" }}>
           <div style={{ maxWidth: "1280px", margin: "0 auto" }}>
+            <style>{`
+              @media (max-width: 768px) {
+                .nutrition-grid { grid-template-columns: 1fr !important; gap: 16px !important; }
+                .nutrition-section { margin-bottom: 32px !important; }
+                .nutrition-grid-qa { grid-template-columns: 1fr !important; gap: 16px !important; }
+                .nutrition-heading { font-size: clamp(24px, 5vw, 32px) !important; margin-bottom: 24px !important; }
+                .nutrition-card { padding: 16px !important; }
+              }
+            `}</style>
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.6 }}
-              style={{ marginBottom: "80px" }}
+              style={{ marginBottom: "clamp(32px, 8vw, 80px)" }}
             >
               <h2 style={{
                 fontFamily: "var(--font-heading)", fontWeight: 800,
@@ -81,7 +90,7 @@ export default function NutritionEducationPage() {
               }}>
                 Nutrition Shouldn't Be Complicated
               </h2>
-              <div style={{ display: "grid", gap: "24px", maxWidth: "700px" }}>
+              <div style={{ display: "grid", gap: "clamp(12px, 3vw, 24px)", maxWidth: "700px" }} className="nutrition-grid">
                 <p style={{
                   fontFamily: "var(--font-body)", fontSize: "18px", lineHeight: 1.75,
                   color: "var(--charcoal)",
@@ -137,7 +146,7 @@ export default function NutritionEducationPage() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.6 }}
-              style={{ marginBottom: "80px" }}
+              style={{ marginBottom: "clamp(32px, 8vw, 80px)" }}
             >
               <h3 style={{
                 fontFamily: "var(--font-heading)", fontWeight: 800, fontSize: "32px",
@@ -196,7 +205,7 @@ export default function NutritionEducationPage() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.6 }}
-              style={{ marginBottom: "80px" }}
+              style={{ marginBottom: "clamp(32px, 8vw, 80px)" }}
             >
               <h3 style={{
                 fontFamily: "var(--font-heading)", fontWeight: 800, fontSize: "32px",
@@ -258,7 +267,7 @@ export default function NutritionEducationPage() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.6 }}
-              style={{ marginBottom: "80px" }}
+              style={{ marginBottom: "clamp(32px, 8vw, 80px)" }}
             >
               <h3 style={{
                 fontFamily: "var(--font-heading)", fontWeight: 800, fontSize: "32px",
@@ -273,8 +282,8 @@ export default function NutritionEducationPage() {
                 Let's Look Beyond the Headlines
               </p>
               <div style={{
-                display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(280px, 1fr))", gap: "32px",
-              }}>
+                display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(260px, 1fr))", gap: "clamp(16px, 4vw, 32px)",
+              }} className="nutrition-grid-qa">
                 {[
                   {
                     q: "Are carbohydrates really bad for you?",
@@ -308,9 +317,9 @@ export default function NutritionEducationPage() {
                     viewport={{ once: true }}
                     transition={{ duration: 0.4, delay: i * 0.05 }}
                     style={{
-                      background: "var(--white)", padding: "24px", borderRadius: "16px",
+                      background: "var(--white)", padding: "clamp(16px, 3vw, 24px)", borderRadius: "16px",
                       border: "1px solid var(--border)",
-                    }}
+                    }} className="nutrition-card"
                   >
                     <h4 style={{
                       fontFamily: "var(--font-heading)", fontWeight: 700, fontSize: "16px",
@@ -335,7 +344,7 @@ export default function NutritionEducationPage() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.6 }}
-              style={{ marginBottom: "80px" }}
+              style={{ marginBottom: "clamp(32px, 8vw, 80px)" }}
             >
               <h3 style={{
                 fontFamily: "var(--font-heading)", fontWeight: 800, fontSize: "32px",
@@ -401,7 +410,7 @@ export default function NutritionEducationPage() {
               viewport={{ once: true }}
               transition={{ duration: 0.6 }}
               style={{
-                marginBottom: "80px", padding: "60px 48px",
+                marginBottom: "clamp(32px, 8vw, 80px)", padding: "clamp(32px, 6vw, 60px) clamp(20px, 4vw, 48px)",
                 background: "linear-gradient(135deg, rgba(96,144,0,0.05), rgba(0,80,96,0.05))",
                 borderRadius: "24px",
               }}
@@ -506,7 +515,7 @@ export default function NutritionEducationPage() {
               viewport={{ once: true }}
               transition={{ duration: 0.6 }}
               style={{
-                textAlign: "center", padding: "60px 0",
+                textAlign: "center", padding: "clamp(24px, 6vw, 60px) 0",
                 borderTop: "1px solid var(--border)",
               }}
             >

@@ -17,10 +17,17 @@ export default function AppPage() {
           subtitle="Evidence Based Nutrition. Built for Real Life."
         />
 
-        <section style={{ background: "var(--white)", padding: "80px 48px" }}>
+        <section style={{ background: "var(--white)", padding: "clamp(24px, 6vw, 80px) clamp(16px, 4vw, 48px)" }}>
           <div style={{ maxWidth: "1280px", margin: "0 auto" }}>
+            <style>{`
+              @media (max-width: 768px) {
+                .app-feature-grid { grid-template-columns: 1fr !important; gap: 16px !important; }
+                .app-pill { padding: 16px !important; font-size: 15px !important; }
+                .app-card { padding: 20px !important; }
+              }
+            `}</style>
             {/* App mockup image */}
-            <div style={{ marginBottom: "80px", textAlign: "center" }}>
+            <div style={{ marginBottom: "clamp(32px, 8vw, 80px)", textAlign: "center" }}>
               <motion.img
                 initial={{ opacity: 0, scale: 0.95 }}
                 animate={{ opacity: 1, scale: 1 }}
@@ -41,7 +48,7 @@ export default function AppPage() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.6 }}
-              style={{ marginBottom: "80px" }}
+              style={{ marginBottom: "clamp(32px, 8vw, 80px)" }}
             >
               <h2 style={{
                 fontFamily: "var(--font-heading)", fontWeight: 800, fontSize: "36px",
@@ -56,7 +63,7 @@ export default function AppPage() {
                 Nutrition information shouldn't be controlled by algorithms. The TrueDiet app is being designed to help you move beyond conflicting advice, social media trends, nutrition misinformation, extreme diets, and quick fixes.
               </p>
               <div style={{
-                display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(200px, 1fr))", gap: "24px",
+                display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(180px, 1fr))", gap: "clamp(12px, 3vw, 24px)",
                 marginTop: "40px",
               }}>
                 {["Evidence", "Clarity", "Practical Guidance", "Sustainable Habits"].map((item, i) => (
@@ -88,7 +95,7 @@ export default function AppPage() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.6 }}
-              style={{ marginBottom: "80px" }}
+              style={{ marginBottom: "clamp(32px, 8vw, 80px)" }}
             >
               <h2 style={{
                 fontFamily: "var(--font-heading)", fontWeight: 800, fontSize: "36px",
@@ -97,8 +104,8 @@ export default function AppPage() {
                 What You Can Expect
               </h2>
               <div style={{
-                display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(280px, 1fr))", gap: "32px",
-              }}>
+                display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(260px, 1fr))", gap: "clamp(16px, 4vw, 32px)",
+              }} className="app-feature-grid">
                 {[
                   { title: "Evidence Based Education", desc: "Nutrition information grounded in scientific evidence and presented in a way that's understandable." },
                   { title: "Practical Tools", desc: "Resources and frameworks designed to help you apply nutrition knowledge to everyday decisions." },
@@ -112,9 +119,9 @@ export default function AppPage() {
                     viewport={{ once: true }}
                     transition={{ duration: 0.4, delay: i * 0.1 }}
                     style={{
-                      background: "var(--off-white)", padding: "32px", borderRadius: "16px",
+                      background: "var(--off-white)", padding: "clamp(16px, 4vw, 32px)", borderRadius: "16px",
                       border: "1px solid var(--border)",
-                    }}
+                    }} className="app-card"
                   >
                     <h3 style={{
                       fontFamily: "var(--font-heading)", fontWeight: 700, fontSize: "18px",
@@ -141,7 +148,7 @@ export default function AppPage() {
               transition={{ duration: 0.6 }}
               style={{
                 background: "linear-gradient(135deg, rgba(0,80,96,0.05), rgba(240,128,0,0.05))",
-                borderRadius: "24px", padding: "60px 48px", textAlign: "center", marginBottom: "80px",
+                borderRadius: "24px", padding: "clamp(32px, 6vw, 60px) clamp(20px, 4vw, 48px)", textAlign: "center", marginBottom: "clamp(32px, 8vw, 80px)",
               }}
             >
               <h2 style={{
@@ -171,7 +178,7 @@ export default function AppPage() {
               viewport={{ once: true }}
               transition={{ duration: 0.6 }}
               style={{
-                textAlign: "center", padding: "60px 0",
+                textAlign: "center", padding: "clamp(24px, 6vw, 60px) 0",
                 borderTop: "1px solid var(--border)",
               }}
             >

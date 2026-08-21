@@ -19,7 +19,7 @@ export default function AboutPage() {
         />
 
         {/* Hero image */}
-        <section style={{ background: "var(--off-white)", padding: "clamp(30px, 5vw, 60px) clamp(20px, 4vw, 48px)" }}>
+        <section style={{ background: "var(--off-white)", padding: "clamp(20px, 4vw, 60px) clamp(16px, 4vw, 48px)" }}>
           <div style={{ maxWidth: "1280px", margin: "0 auto" }}>
             <motion.img
               initial={{ opacity: 0, scale: 1.05 }}
@@ -28,7 +28,7 @@ export default function AboutPage() {
               src="https://images.unsplash.com/photo-1559839734-2b71ea197ec2?w=900&q=90&auto=format"
               alt="Maureen Ashbarry, Registered Dietitian"
               style={{
-                width: "100%", maxWidth: "500px", height: "clamp(350px, 80vw, 600px)",
+                width: "100%", maxWidth: "500px", height: "clamp(280px, 70vw, 600px)",
                 objectFit: "cover", borderRadius: "clamp(12px, 3vw, 20px)", margin: "0 auto",
                 display: "block", boxShadow: "0 10px 40px rgba(0,80,96,0.12)",
               }}
@@ -37,15 +37,17 @@ export default function AboutPage() {
         </section>
 
         {/* Main content */}
-        <section style={{ background: "var(--off-white)", padding: "clamp(40px, 8vw, 80px) clamp(20px, 4vw, 48px)" }}>
+        <section style={{ background: "var(--off-white)", padding: "clamp(24px, 6vw, 80px) clamp(16px, 4vw, 48px)" }}>
         <style>{`
           @media (max-width: 768px) {
-            .about-grid { grid-template-columns: 1fr !important; gap: 24px !important; }
-            .about-creds { display: grid !important; grid-template-columns: 1fr 1fr !important; gap: 16px !important; }
-            .about-sections { margin-bottom: 40px !important; padding: 24px !important; }
-            .about-h2 { font-size: clamp(24px, 6vw, 48px) !important; }
-            .about-h3 { font-size: clamp(20px, 5vw, 32px) !important; }
-            .about-p { font-size: 15px !important; line-height: 1.7 !important; }
+            .about-grid { grid-template-columns: 1fr !important; gap: 16px !important; }
+            .about-creds { display: grid !important; grid-template-columns: 1fr 1fr !important; gap: 12px !important; }
+            .about-sections { margin-bottom: 24px !important; padding: 16px !important; }
+            .about-h2 { font-size: clamp(24px, 5vw, 48px) !important; margin-bottom: 16px !important; }
+            .about-h3 { font-size: clamp(20px, 4.5vw, 32px) !important; margin-bottom: 24px !important; }
+            .about-p { font-size: 15px !important; line-height: 1.6 !important; }
+            .about-section { margin-bottom: 32px !important; }
+            section > div > div:first-child > div { margin-bottom: 40px !important; }
           }
         `}</style>
           <div style={{ maxWidth: "1280px", margin: "0 auto" }}>
@@ -54,7 +56,7 @@ export default function AboutPage() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.6 }}
-              style={{ marginBottom: "80px" }}
+              style={{ marginBottom: "clamp(32px, 8vw, 80px)" }}
             >
               <h2 style={{
                 fontFamily: "var(--font-heading)", fontWeight: 800,
@@ -101,7 +103,7 @@ export default function AboutPage() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.6 }}
-              style={{ marginBottom: "80px" }}
+              style={{ marginBottom: "clamp(32px, 8vw, 80px)" }}
             >
               <h3 style={{
                 fontFamily: "var(--font-heading)", fontWeight: 800,
@@ -110,7 +112,7 @@ export default function AboutPage() {
               }}>
                 A Career Built Around Nutrition
               </h3>
-              <div style={{ display: "grid", gap: "32px" }}>
+              <div style={{ display: "grid", gap: "clamp(16px, 4vw, 32px)" }}>
                 {[
                   { year: "2001", title: "Registered Dietitian", desc: "Began her professional career as a Registered Dietitian, developing a foundation in clinical nutrition and patient care." },
                   { year: "", title: "Medical Nutrition Therapy", desc: "Developed experience applying nutrition science to complex health and medical needs through Medical Nutrition Therapy." },
@@ -162,7 +164,7 @@ export default function AboutPage() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.6 }}
-              style={{ marginBottom: "80px", textAlign: "center", padding: "60px 0" }}
+              style={{ marginBottom: "clamp(32px, 8vw, 80px)", textAlign: "center", padding: "clamp(32px, 6vw, 60px) 0" }}
             >
               <h3 style={{
                 fontFamily: "var(--font-heading)", fontWeight: 800,
@@ -202,7 +204,7 @@ export default function AboutPage() {
                 Credentials & Professional Background
               </h3>
               <div className="about-creds" style={{
-                display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(200px, 1fr))", gap: "24px",
+                display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(200px, 1fr))", gap: "clamp(12px, 3vw, 24px)",
               }}>
                 {[
                   { abbr: "MS", title: "Master's level education" },
@@ -244,7 +246,7 @@ export default function AboutPage() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.6 }}
-              style={{ marginBottom: "80px" }}
+              style={{ marginBottom: "clamp(32px, 8vw, 80px)" }}
             >
               <h3 style={{
                 fontFamily: "var(--font-heading)", fontWeight: 800,
@@ -312,7 +314,7 @@ export default function AboutPage() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.6 }}
-              style={{ marginBottom: "80px" }}
+              style={{ marginBottom: "clamp(32px, 8vw, 80px)" }}
             >
               <h3 style={{
                 fontFamily: "var(--font-heading)", fontWeight: 800,
@@ -328,8 +330,8 @@ export default function AboutPage() {
                 Less Noise. More Understanding.
               </p>
               <div style={{
-                display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(280px, 1fr))", gap: "32px",
-              }}>
+                display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(260px, 1fr))", gap: "clamp(16px, 4vw, 32px)",
+              }} className="about-grid">
                 {[
                   {
                     title: "Science You Can Understand",
@@ -355,7 +357,7 @@ export default function AboutPage() {
                     viewport={{ once: true }}
                     transition={{ duration: 0.4, delay: i * 0.1 }}
                     style={{
-                      background: "var(--white)", padding: "32px", borderRadius: "16px",
+                      background: "var(--white)", padding: "clamp(16px, 4vw, 32px)", borderRadius: "16px",
                       border: "1px solid var(--border)",
                     }}
                   >
@@ -382,7 +384,7 @@ export default function AboutPage() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.6 }}
-              style={{ marginBottom: "80px" }}
+              style={{ marginBottom: "clamp(32px, 8vw, 80px)" }}
             >
               <h3 style={{
                 fontFamily: "var(--font-heading)", fontWeight: 800,
@@ -440,7 +442,7 @@ export default function AboutPage() {
               viewport={{ once: true }}
               transition={{ duration: 0.6 }}
               style={{
-                textAlign: "center", padding: "60px 48px", marginBottom: "60px",
+                textAlign: "center", padding: "clamp(32px, 6vw, 60px) clamp(20px, 4vw, 48px)", marginBottom: "clamp(24px, 6vw, 60px)",
                 background: "linear-gradient(135deg, rgba(0,80,96,0.05), rgba(96,144,0,0.05))",
                 borderRadius: "24px",
               }}
@@ -473,7 +475,7 @@ export default function AboutPage() {
               viewport={{ once: true }}
               transition={{ duration: 0.6 }}
               style={{
-                textAlign: "center", padding: "60px 0",
+                textAlign: "center", padding: "clamp(24px, 6vw, 60px) 0",
                 borderTop: "1px solid var(--border)", borderBottom: "1px solid var(--border)",
               }}
             >

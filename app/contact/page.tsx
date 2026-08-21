@@ -35,9 +35,9 @@ export default function ContactPage() {
           subtitle="Have a Nutrition Question? Whether you have a question about TrueDiet, the upcoming app, nutrition education, or available resources, we'd love to hear from you."
         />
 
-        <section style={{ background: "var(--white)", padding: "80px 48px" }}>
+        <section style={{ background: "var(--white)", padding: "clamp(24px, 6vw, 80px) clamp(16px, 4vw, 48px)" }}>
           <div style={{ maxWidth: "1200px", margin: "0 auto" }}>
-            <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "80px", alignItems: "start" }} className="contact-grid">
+            <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "clamp(32px, 8vw, 80px)", alignItems: "start" }} className="contact-grid">
               {/* Form */}
               <motion.div
                 initial={{ opacity: 0, x: -20 }}
@@ -60,10 +60,10 @@ export default function ContactPage() {
                         onChange={(e) => setFormData({ ...formData, firstName: e.target.value })}
                         required
                         style={{
-                          fontFamily: "var(--font-body)", fontSize: "14px",
-                          padding: "12px 16px", borderRadius: "8px",
+                          fontFamily: "var(--font-body)", fontSize: "16px",
+                          padding: "14px 16px", borderRadius: "8px", minHeight: "44px",
                           border: "1px solid var(--border)", background: "var(--white)",
-                          color: "var(--charcoal)",
+                          color: "var(--charcoal)", boxSizing: "border-box",
                         }}
                       />
                       <input
@@ -73,10 +73,10 @@ export default function ContactPage() {
                         onChange={(e) => setFormData({ ...formData, lastName: e.target.value })}
                         required
                         style={{
-                          fontFamily: "var(--font-body)", fontSize: "14px",
-                          padding: "12px 16px", borderRadius: "8px",
+                          fontFamily: "var(--font-body)", fontSize: "16px",
+                          padding: "14px 16px", borderRadius: "8px", minHeight: "44px",
                           border: "1px solid var(--border)", background: "var(--white)",
-                          color: "var(--charcoal)",
+                          color: "var(--charcoal)", boxSizing: "border-box",
                         }}
                       />
                     </div>
@@ -113,19 +113,19 @@ export default function ContactPage() {
                       required
                       rows={5}
                       style={{
-                        fontFamily: "var(--font-body)", fontSize: "14px",
-                        padding: "12px 16px", borderRadius: "8px",
+                        fontFamily: "var(--font-body)", fontSize: "16px",
+                        padding: "14px 16px", borderRadius: "8px", minHeight: "120px",
                         border: "1px solid var(--border)", background: "var(--white)",
-                        color: "var(--charcoal)", resize: "none",
+                        color: "var(--charcoal)", resize: "none", boxSizing: "border-box",
                       }}
                     />
                     <button
                       type="submit"
                       style={{
-                        padding: "14px 32px", borderRadius: "8px",
+                        padding: "14px 32px", borderRadius: "8px", minHeight: "44px",
                         background: "var(--orange)", color: "#fff", border: "none",
-                        fontFamily: "var(--font-body)", fontWeight: 600, fontSize: "14px",
-                        cursor: "pointer", transition: "all 0.3s ease",
+                        fontFamily: "var(--font-body)", fontWeight: 600, fontSize: "16px",
+                        cursor: "pointer", transition: "all 0.3s ease", boxSizing: "border-box",
                       }}
                       onMouseEnter={(e) => {
                         (e.currentTarget as HTMLButtonElement).style.background = "var(--charcoal-deep)";
@@ -218,12 +218,19 @@ export default function ContactPage() {
               .contact-form input,
               .contact-form textarea {
                 font-size: 16px !important;
-                padding: 12px 14px !important;
+                padding: 14px 16px !important;
+                min-height: 44px !important;
+                box-sizing: border-box !important;
+              }
+              .contact-form textarea {
+                min-height: 120px !important;
               }
               .contact-form button {
-                padding: 14px 20px !important;
-                font-size: 14px !important;
+                padding: 14px 24px !important;
+                font-size: 16px !important;
                 width: 100% !important;
+                min-height: 44px !important;
+                box-sizing: border-box !important;
               }
               .contact-form input[type="text"],
               .contact-form input[type="email"] {
@@ -236,7 +243,7 @@ export default function ContactPage() {
         </section>
 
         {/* Disclaimer */}
-        <section style={{ background: "var(--off-white)", padding: "60px 48px" }}>
+        <section style={{ background: "var(--off-white)", padding: "clamp(24px, 5vw, 60px) clamp(16px, 4vw, 48px)" }}>
           <div style={{ maxWidth: "1200px", margin: "0 auto" }}>
             <div style={{
               background: "var(--white)", padding: "32px", borderRadius: "12px",

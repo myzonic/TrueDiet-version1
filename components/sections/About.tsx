@@ -67,12 +67,12 @@ export default function About() {
         style={{ height: "1px", background: "var(--border)", transformOrigin: "left" }}
       />
 
-      <div style={{ maxWidth: "1280px", margin: "0 auto", padding: "96px 48px" }}>
+      <div style={{ maxWidth: "1280px", margin: "0 auto", padding: "clamp(32px, 8vw, 96px) clamp(16px, 4vw, 48px)" }}>
 
         {/* Top row */}
         <div style={{
-          display: "grid", gridTemplateColumns: "200px 1fr", gap: "48px",
-          marginBottom: "80px", alignItems: "start",
+          display: "grid", gridTemplateColumns: "200px 1fr", gap: "clamp(24px, 6vw, 48px)",
+          marginBottom: "clamp(32px, 8vw, 80px)", alignItems: "start",
         }} className="about-header">
           <motion.div
             initial={{ opacity: 0, x: -20 }}
@@ -102,7 +102,7 @@ export default function About() {
         </div>
 
         {/* Main content */}
-        <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "64px", alignItems: "center" }} className="about-split">
+        <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "clamp(32px, 8vw, 64px)", alignItems: "center" }} className="about-split">
 
           {/* Left — image */}
           <motion.div style={{ y: imgY, position: "relative" }}>
@@ -229,7 +229,7 @@ export default function About() {
       </div>
 
       {/* Career Timeline */}
-      <div style={{ maxWidth: "1280px", margin: "0 auto", padding: "0 48px 96px" }}>
+      <div style={{ maxWidth: "1280px", margin: "0 auto", padding: "0 clamp(16px, 4vw, 48px) clamp(32px, 8vw, 96px)" }}>
         <motion.div
           initial={{ opacity: 0, y: 24 }}
           animate={inView ? { opacity: 1, y: 0 } : {}}
@@ -291,8 +291,13 @@ export default function About() {
 
       <style>{`
         @media (max-width: 900px) {
-          .about-header { grid-template-columns: 1fr !important; }
-          .about-split { grid-template-columns: 1fr !important; gap: 48px !important; }
+          .about-header { grid-template-columns: 1fr !important; gap: 24px !important; }
+          .about-split { grid-template-columns: 1fr !important; gap: 32px !important; }
+        }
+        @media (max-width: 768px) {
+          .about-header { gap: 16px !important; }
+          .about-split { gap: 24px !important; }
+          .orbiting-wrap { display: none !important; }
         }
       `}</style>
     </section>
