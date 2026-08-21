@@ -211,9 +211,9 @@ export default function NutritionEducationPage() {
                   <p style={{ fontFamily: "var(--font-heading)", fontWeight: 800, fontSize: "clamp(32px, 4vw, 44px)", color: "var(--orange)", marginBottom: "16px", lineHeight: 1 }}>
                     {item.num}
                   </p>
-                  <h4 style={{ fontFamily: "var(--font-heading)", fontWeight: 700, fontSize: "clamp(15px, 2vw, 18px)", color: "var(--charcoal-deep)", marginBottom: "10px" }}>
+                  <h3 style={{ fontFamily: "var(--font-heading)", fontWeight: 700, fontSize: "clamp(15px, 2vw, 18px)", color: "var(--charcoal-deep)", marginBottom: "10px" }}>
                     {item.step}
-                  </h4>
+                  </h3>
                   <p style={{ fontFamily: "var(--font-body)", fontSize: "clamp(13px, 1.6vw, 15px)", lineHeight: 1.65, color: "var(--gray-muted)" }}>
                     {item.desc}
                   </p>
@@ -255,9 +255,9 @@ export default function NutritionEducationPage() {
                     border: "1px solid var(--border)",
                   }}
                 >
-                  <h4 style={{ fontFamily: "var(--font-heading)", fontWeight: 700, fontSize: "clamp(14px, 1.8vw, 16px)", color: "var(--charcoal-deep)", marginBottom: "12px" }}>
+                  <h3 style={{ fontFamily: "var(--font-heading)", fontWeight: 700, fontSize: "clamp(14px, 1.8vw, 16px)", color: "var(--charcoal-deep)", marginBottom: "12px" }}>
                     {item.q}
-                  </h4>
+                  </h3>
                   <p style={{ fontFamily: "var(--font-body)", fontSize: "clamp(13px, 1.6vw, 15px)", lineHeight: 1.7, color: "var(--gray-muted)" }}>
                     {item.a}
                   </p>

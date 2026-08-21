@@ -248,9 +248,9 @@ export default function ResourcesPage() {
                   }}
                 >
                   <div style={{ width: "32px", height: "2px", background: "var(--orange)", borderRadius: "2px", marginBottom: "16px" }} />
-                  <h4 style={{ fontFamily: "var(--font-heading)", fontWeight: 700, fontSize: "clamp(16px, 2vw, 20px)", color: "var(--charcoal-deep)", marginBottom: "10px" }}>
+                  <h3 style={{ fontFamily: "var(--font-heading)", fontWeight: 700, fontSize: "clamp(16px, 2vw, 20px)", color: "var(--charcoal-deep)", marginBottom: "10px" }}>
                     {item.title}
-                  </h4>
+                  </h3>
                   <p style={{ fontFamily: "var(--font-body)", fontSize: "clamp(13px, 1.6vw, 15px)", lineHeight: 1.7, color: "var(--gray-muted)" }}>
                     {item.desc}
                   </p>
@@ -293,9 +293,9 @@ export default function ResourcesPage() {
                     background: "var(--white)", padding: "clamp(20px, 3vw, 28px)", borderRadius: "16px", border: "1px solid var(--border)",
                   }}
                 >
-                  <h4 style={{ fontFamily: "var(--font-heading)", fontWeight: 700, fontSize: "clamp(14px, 1.8vw, 16px)", color: "var(--charcoal-deep)", marginBottom: "10px" }}>
+                  <h3 style={{ fontFamily: "var(--font-heading)", fontWeight: 700, fontSize: "clamp(14px, 1.8vw, 16px)", color: "var(--charcoal-deep)", marginBottom: "10px" }}>
                     {item.title}
-                  </h4>
+                  </h3>
                   <p style={{ fontFamily: "var(--font-body)", fontSize: "clamp(13px, 1.5vw, 14px)", lineHeight: 1.65, color: "var(--gray-muted)", marginBottom: "16px" }}>
                     {item.desc}
                   </p>
