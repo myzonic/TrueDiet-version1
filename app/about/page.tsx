@@ -228,6 +228,234 @@ export default function AboutPage() {
               </div>
             </motion.div>
 
+            {/* Why I Created TrueDiet */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6 }}
+              style={{ marginBottom: "80px" }}
+            >
+              <h3 style={{
+                fontFamily: "var(--font-heading)", fontWeight: 800,
+                fontSize: "clamp(28px, 3.5vw, 48px)", letterSpacing: "-1px",
+                color: "var(--charcoal-deep)", marginBottom: "48px",
+              }}>
+                Why I Created TrueDiet
+              </h3>
+              <div style={{ maxWidth: "800px" }}>
+                <h4 style={{
+                  fontFamily: "var(--font-heading)", fontWeight: 700, fontSize: "20px",
+                  color: "var(--charcoal-deep)", marginBottom: "24px",
+                }}>
+                  Nutrition Information Should Help You Feel More Confident, Not More Confused
+                </h4>
+                <div style={{ display: "grid", gap: "20px" }}>
+                  <p style={{
+                    fontFamily: "var(--font-body)", fontSize: "16px", lineHeight: 1.75,
+                    color: "var(--charcoal)",
+                  }}>
+                    Nutrition advice is everywhere. Social media, advertisements, podcasts, news articles, influencers, and wellness trends are constantly telling us what we should or shouldn't eat.
+                  </p>
+                  <p style={{
+                    fontFamily: "var(--font-body)", fontSize: "16px", lineHeight: 1.75,
+                    color: "var(--charcoal)",
+                  }}>
+                    But more information doesn't always mean better information.
+                  </p>
+                  <p style={{
+                    fontFamily: "var(--font-body)", fontSize: "16px", lineHeight: 1.75,
+                    color: "var(--charcoal)",
+                  }}>
+                    After years of working in clinical and healthcare settings, I've seen firsthand how difficult it can be to separate helpful nutrition guidance from oversimplified advice, marketing claims, and constantly changing trends.
+                  </p>
+                  <p style={{
+                    fontFamily: "var(--font-body)", fontSize: "16px", lineHeight: 1.75,
+                    color: "var(--charcoal)", fontWeight: 600,
+                  }}>
+                    TrueDiet was created to make that process easier.
+                  </p>
+                </div>
+                <div style={{
+                  background: "var(--white)", borderRadius: "16px", padding: "32px",
+                  borderLeft: "4px solid var(--orange)", marginTop: "32px",
+                }}>
+                  <p style={{
+                    fontFamily: "var(--font-body)", fontSize: "16px", lineHeight: 1.75,
+                    color: "var(--charcoal)", marginBottom: "16px",
+                  }}>
+                    The goal isn't to tell you what to eat through another set of rigid rules. It's to help you understand why nutrition matters, what the evidence actually says, and how to apply that knowledge to your own life.
+                  </p>
+                  <p style={{
+                    fontFamily: "var(--font-body)", fontSize: "16px", lineHeight: 1.75,
+                    color: "var(--charcoal)",
+                  }}>
+                    TrueDiet brings together professional nutrition experience, evidence based education, and practical tools designed to make nutrition easier to understand and easier to use.
+                  </p>
+                </div>
+              </div>
+            </motion.div>
+
+            {/* What Makes the Approach Different */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6 }}
+              style={{ marginBottom: "80px" }}
+            >
+              <h3 style={{
+                fontFamily: "var(--font-heading)", fontWeight: 800,
+                fontSize: "clamp(28px, 3.5vw, 48px)", letterSpacing: "-1px",
+                color: "var(--charcoal-deep)", marginBottom: "20px",
+              }}>
+                What Makes the TrueDiet Approach Different?
+              </h3>
+              <p style={{
+                fontFamily: "var(--font-heading)", fontWeight: 600, fontSize: "16px",
+                color: "var(--orange)", marginBottom: "48px",
+              }}>
+                Less Noise. More Understanding.
+              </p>
+              <div style={{
+                display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(280px, 1fr))", gap: "32px",
+              }}>
+                {[
+                  {
+                    title: "Science You Can Understand",
+                    desc: "Nutrition research can be complicated. TrueDiet translates complex concepts into clear, understandable information without unnecessary jargon."
+                  },
+                  {
+                    title: "Context Matters",
+                    desc: "There isn't one perfect way of eating that works for everyone. Your health, preferences, lifestyle, goals, and circumstances all matter."
+                  },
+                  {
+                    title: "No Fear Based Nutrition",
+                    desc: "Food doesn't need to be divided into \"good\" and \"bad.\" TrueDiet focuses on understanding food and making informed choices rather than creating unnecessary fear."
+                  },
+                  {
+                    title: "Sustainable Thinking",
+                    desc: "Short term rules can be easy to follow and difficult to maintain. TrueDiet focuses on knowledge and habits that can fit into everyday life."
+                  },
+                ].map((item, i) => (
+                  <motion.div
+                    key={i}
+                    initial={{ opacity: 0, scale: 0.95 }}
+                    whileInView={{ opacity: 1, scale: 1 }}
+                    viewport={{ once: true }}
+                    transition={{ duration: 0.4, delay: i * 0.1 }}
+                    style={{
+                      background: "var(--white)", padding: "32px", borderRadius: "16px",
+                      border: "1px solid var(--border)",
+                    }}
+                  >
+                    <h4 style={{
+                      fontFamily: "var(--font-heading)", fontWeight: 700, fontSize: "18px",
+                      color: "var(--charcoal-deep)", marginBottom: "16px",
+                    }}>
+                      {item.title}
+                    </h4>
+                    <p style={{
+                      fontFamily: "var(--font-body)", fontSize: "14px", lineHeight: 1.7,
+                      color: "var(--gray-muted)",
+                    }}>
+                      {item.desc}
+                    </p>
+                  </motion.div>
+                ))}
+              </div>
+            </motion.div>
+
+            {/* From Clinical Experience to TrueDiet */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6 }}
+              style={{ marginBottom: "80px" }}
+            >
+              <h3 style={{
+                fontFamily: "var(--font-heading)", fontWeight: 800,
+                fontSize: "clamp(28px, 3.5vw, 48px)", letterSpacing: "-1px",
+                color: "var(--charcoal-deep)", marginBottom: "48px",
+              }}>
+                From Clinical Experience to TrueDiet
+              </h3>
+              <div style={{ maxWidth: "800px" }}>
+                <p style={{
+                  fontFamily: "var(--font-heading)", fontWeight: 600, fontSize: "16px",
+                  color: "var(--orange)", marginBottom: "48px",
+                }}>
+                  Years of Experience. One Clear Mission.
+                </p>
+                <div style={{ display: "grid", gap: "24px" }}>
+                  {[
+                    { step: "Clinical Nutrition", desc: "Building a strong foundation in nutrition science and patient care." },
+                    { step: "Medical Nutrition Therapy", desc: "Applying nutrition knowledge to complex health and medical needs." },
+                    { step: "Healthcare Experience", desc: "Understanding the challenges people face when trying to apply nutrition guidance in real life." },
+                    { step: "Nutrition Education", desc: "Helping people understand nutrition and distinguish credible information from misinformation." },
+                    { step: "TrueDiet", desc: "Bringing evidence based nutrition education, practical resources, and tools to a broader audience." },
+                  ].map((item, i) => (
+                    <div key={i}>
+                      <p style={{
+                        fontFamily: "var(--font-heading)", fontWeight: 700, fontSize: "16px",
+                        color: "var(--charcoal-deep)", marginBottom: "8px",
+                      }}>
+                        {item.step}
+                      </p>
+                      <p style={{
+                        fontFamily: "var(--font-body)", fontSize: "14px", lineHeight: 1.6,
+                        color: "var(--gray-muted)", marginBottom: i < 4 ? "12px" : "0",
+                      }}>
+                        {item.desc}
+                      </p>
+                      {i < 4 && (
+                        <p style={{
+                          fontFamily: "var(--font-heading)", fontWeight: 700, fontSize: "16px",
+                          color: "var(--terracotta)", textAlign: "center", marginBottom: "12px",
+                        }}>
+                          ↓
+                        </p>
+                      )}
+                    </div>
+                  ))}
+                </div>
+              </div>
+            </motion.div>
+
+            {/* The Mission */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6 }}
+              style={{
+                textAlign: "center", padding: "60px 0", marginBottom: "60px",
+                background: "linear-gradient(135deg, rgba(0,80,96,0.05), rgba(96,144,0,0.05))",
+                borderRadius: "24px", padding: "60px 48px",
+              }}
+            >
+              <h3 style={{
+                fontFamily: "var(--font-heading)", fontWeight: 800,
+                fontSize: "clamp(28px, 3.5vw, 48px)", letterSpacing: "-1px",
+                color: "var(--charcoal-deep)", marginBottom: "24px",
+              }}>
+                The Mission
+              </h3>
+              <p style={{
+                fontFamily: "var(--font-heading)", fontWeight: 700, fontSize: "24px",
+                color: "var(--charcoal-deep)", maxWidth: "600px", margin: "0 auto 24px",
+              }}>
+                Make nutrition easier to understand.
+              </p>
+              <p style={{
+                fontFamily: "var(--font-body)", fontSize: "16px", lineHeight: 1.7,
+                color: "var(--gray-muted)", maxWidth: "700px", margin: "0 auto",
+              }}>
+                TrueDiet exists to help people become more informed about nutrition without becoming overwhelmed by it.
+              </p>
+            </motion.div>
+
             {/* CTA */}
             <motion.div
               initial={{ opacity: 0, y: 20 }}
