@@ -430,9 +430,9 @@ export default function AboutPage() {
               viewport={{ once: true }}
               transition={{ duration: 0.6 }}
               style={{
-                textAlign: "center", padding: "60px 0", marginBottom: "60px",
+                textAlign: "center", padding: "60px 48px", marginBottom: "60px",
                 background: "linear-gradient(135deg, rgba(0,80,96,0.05), rgba(96,144,0,0.05))",
-                borderRadius: "24px", padding: "60px 48px",
+                borderRadius: "24px",
               }}
             >
               <h3 style={{
