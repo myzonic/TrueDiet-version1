@@ -25,7 +25,7 @@ export default function AboutPage() {
               initial={{ opacity: 0, scale: 1.05 }}
               animate={{ opacity: 1, scale: 1 }}
               transition={{ duration: 0.8 }}
-              src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=800&h=900&auto=format&fit=crop&q=80"
+              src="https://images.unsplash.com/photo-1559839734-2b71ea197ec2?w=900&q=90&auto=format"
               alt="Maureen Ashbarry, Registered Dietitian"
               style={{
                 width: "100%", maxWidth: "500px", height: "600px",
