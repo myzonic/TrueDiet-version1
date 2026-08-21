@@ -141,7 +141,24 @@ export default function NutritionTabs({ topics }: NutritionTabsProps) {
         @media (max-width: 768px) {
           .nutrition-tab-content {
             grid-template-columns: 1fr !important;
-            gap: 32px !important;
+            gap: 24px !important;
+          }
+          [role="tablist"] {
+            gap: 4px !important;
+            padding-bottom: 12px !important;
+            margin-bottom: 24px !important;
+          }
+          [role="tab"] {
+            padding: 10px 14px !important;
+            font-size: 13px !important;
+            white-space: normal !important;
+          }
+          .nutrition-tab-content img {
+            height: 250px !important;
+            border-radius: 12px !important;
+          }
+          .nutrition-tab-content h3 {
+            font-size: clamp(18px, 5vw, 32px) !important;
           }
         }
       `}</style>

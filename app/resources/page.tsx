@@ -88,7 +88,7 @@ export default function ResourcesPage() {
             }}>
               Featured Resources
             </h2>
-            <div style={{
+            <div className="resources-grid" style={{
               display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(320px, 1fr))", gap: "32px",
             }}>
               {resources.map((res, i) => (
@@ -507,6 +507,17 @@ export default function ResourcesPage() {
         </section>
       </main>
       <Footer />
+      <style>{`
+        @media (max-width: 768px) {
+          .resources-grid { grid-template-columns: 1fr !important; gap: 20px !important; }
+          .resource-card { border-radius: 12px !important; }
+          .resource-card img { min-height: 200px !important; padding: 12px !important; }
+          .resource-card h3 { font-size: clamp(16px, 4vw, 18px) !important; }
+          .resource-card p { font-size: 13px !important; }
+          .resource-categories { grid-template-columns: 1fr 1fr !important; gap: 12px !important; }
+          .resource-cat { padding: 16px 12px !important; font-size: 13px !important; }
+        }
+      `}</style>
     </>
   );
 }
