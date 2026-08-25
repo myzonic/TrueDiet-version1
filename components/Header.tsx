@@ -32,16 +32,14 @@ export default function Header() {
           position: "fixed",
           top: 0, left: 0, right: 0,
           zIndex: 100,
-          transition: "background 0.4s ease, backdrop-filter 0.4s ease, box-shadow 0.4s ease",
-          background: scrolled ? "rgba(255,255,255,0.94)" : "transparent",
-          backdropFilter: scrolled ? "blur(16px)" : "none",
-          boxShadow: scrolled ? "0 1px 0 rgba(0,80,96,0.08)" : "none",
+          transition: "box-shadow 0.4s ease",
+          background: "#ffffff",
+          boxShadow: "0 1px 3px rgba(0,0,0,0.08)",
         }}
       >
         <div style={{
           maxWidth: "1280px", margin: "0 auto", padding: "0 32px",
-          height: scrolled ? "68px" : "80px",
-          transition: "height 0.4s ease",
+          height: "80px",
           display: "flex", alignItems: "center", justifyContent: "space-between",
         }}>
           {/* Logo */}
