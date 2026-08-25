@@ -105,7 +105,7 @@ export default function Header() {
                 aria-label={mobileOpen ? "Close menu" : "Open menu"}
                 style={{
                   background: "none", border: "none", cursor: "pointer",
-                  padding: "8px", display: "none",
+                  padding: "8px",
                   position: "relative", zIndex: 200,
                   width: "44px", height: "44px",
                   alignItems: "center", justifyContent: "center",
@@ -248,6 +248,8 @@ export default function Header() {
       </motion.header>
 
       <style>{`
+        .mobile-menu-btn { display: none !important; }
+        .desktop-nav { display: flex !important; }
         @media (max-width: 768px) {
           .desktop-nav { display: none !important; }
           .mobile-menu-btn { display: flex !important; }
