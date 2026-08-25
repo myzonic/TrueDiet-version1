@@ -139,10 +139,10 @@ export default function Footer() {
         }}>
           <p style={{
             fontFamily: "var(--font-body)", fontSize: "12px",
-            color: "rgba(255,255,255,0.25)",
+            color: "rgba(255,255,255,0.55)",
             margin: 0,
           }}>
-            Design & Developed with ❤️ by <a href="https://myzonic.com" style={{ color: "rgba(255,255,255,0.35)", textDecoration: "none", transition: "color 0.2s" }} onMouseEnter={e => (e.target as HTMLElement).style.color = "var(--orange)"} onMouseLeave={e => (e.target as HTMLElement).style.color = "rgba(255,255,255,0.35)"}>Myzonic.com</a>
+            Design & Developed with ❤️ by <a href="https://myzonic.com" style={{ color: "rgba(255,255,255,0.65)", textDecoration: "none", transition: "color 0.2s" }} onMouseEnter={e => (e.target as HTMLElement).style.color = "var(--orange)"} onMouseLeave={e => (e.target as HTMLElement).style.color = "rgba(255,255,255,0.65)"}>Myzonic.com</a>
           </p>
         </div>
       </div>
