@@ -46,7 +46,7 @@ export default function Header() {
         }}>
           {/* Logo */}
           <a href="#home" style={{ textDecoration: "none", position: "relative", zIndex: 200 }}>
-            <img src="/logo.png" alt="TrueDiet" style={{ height: "60px", width: "auto", display: "block" }} />
+            <img src="/logo.png" alt="TrueDiet" style={{ height: "60px", width: "auto", display: "block", filter: scrolled ? "brightness(1)" : "brightness(0) invert(1)" }} />
           </a>
 
           {/* Desktop Nav */}
@@ -57,16 +57,16 @@ export default function Header() {
                 href={link.href}
                 style={{
                   fontFamily: "var(--font-body)", fontSize: "14px", fontWeight: 500,
-                  color: "var(--charcoal)", textDecoration: "none",
+                  color: scrolled ? "var(--charcoal)" : "#ffffff", textDecoration: "none",
                   padding: "8px 14px", borderRadius: "8px",
                   transition: "color 0.2s ease, background 0.2s ease",
                 }}
                 onMouseEnter={e => {
-                  (e.target as HTMLElement).style.color = "var(--charcoal-deep)";
-                  (e.target as HTMLElement).style.background = "rgba(0,80,96,0.06)";
+                  (e.target as HTMLElement).style.color = scrolled ? "var(--charcoal-deep)" : "rgba(255,255,255,0.8)";
+                  (e.target as HTMLElement).style.background = scrolled ? "rgba(0,80,96,0.06)" : "rgba(255,255,255,0.12)";
                 }}
                 onMouseLeave={e => {
-                  (e.target as HTMLElement).style.color = "var(--charcoal)";
+                  (e.target as HTMLElement).style.color = scrolled ? "var(--charcoal)" : "#ffffff";
                   (e.target as HTMLElement).style.background = "transparent";
                 }}
               >
@@ -80,9 +80,11 @@ export default function Header() {
                 fontFamily: "var(--font-body)", fontSize: "14px", fontWeight: 600,
                 color: "var(--white)", textDecoration: "none",
                 padding: "10px 20px", borderRadius: "10px",
-                background: "var(--orange)",
-                transition: "opacity 0.2s ease, transform 0.2s ease",
+                background: scrolled ? "var(--orange)" : "rgba(255,255,255,0.2)",
+                border: scrolled ? "none" : "1px solid rgba(255,255,255,0.3)",
+                transition: "opacity 0.2s ease, transform 0.2s ease, background 0.2s ease, border 0.2s ease",
                 display: "inline-block",
+                backdropFilter: scrolled ? "none" : "blur(8px)",
               }}
               onMouseEnter={e => {
                 (e.target as HTMLElement).style.opacity = "0.88";
